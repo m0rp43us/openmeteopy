@@ -1,6 +1,3 @@
-
-
-
 class Hourly()  :
 
     def __init__(self) :
