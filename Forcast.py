@@ -20,4 +20,4 @@ class Forcast():
         self.timezone = timezone
         self.current_weather = current_weather
         self.past_days = past_days
-
+        
