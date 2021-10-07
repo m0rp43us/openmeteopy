@@ -8,6 +8,8 @@ Version: 0.0.1
 
 import requests
 import json
+
+from requests import exceptions
 from Options import *
 from Daily import *
 from Hourly import *
@@ -47,11 +49,14 @@ class OWmanager():
         self.payload = "&".join("%s=%s" % (k,v) for k,v in self.payload.items())
     def get_data(self):
         try:
-            r  = json.loads(requests.get(self.url, params = self.payload).content.decode('utf-8'))
+            r  = requests.get(self.url, params = self.payload)
+            print(r.status_code)
+            if r.status_code != 200 and r.status_code != 400:
+                raise BaseException("Failed retrieving open-meteo data, server returned HTTP code: {} on following URL {}.".format(r.status_code, r.url))
             if "reason" in r :
                 raise ApiCallError(r)
-            return r
-        except requests.exceptions as e :
+            return json.loads(r.content.decode('utf-8'))
+        except requests.ConnectionError as e :
             raise(e)
 
 hourly = Hourly()
@@ -61,6 +66,5 @@ options = Options(52.52,13.41)
 mgr = OWmanager(options,
     hourly.all(),
     daily.all())
-
 
 print(mgr.get_data())

@@ -2,6 +2,13 @@ from utils import *
 
 class Daily():
 
+    """
+    Daily Parameter functions
+
+    Aggregations are a simple 24 hour aggregation from hourly values. 
+
+    """
+
     def __init__(self) :
         self.daily_params = TypedList()
 

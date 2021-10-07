@@ -20,4 +20,3 @@ class ApiCallError(Exception):
 
     def __str__(self):
         return f'{self.response["reason"]}'
-
