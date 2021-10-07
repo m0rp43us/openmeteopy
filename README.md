@@ -58,7 +58,7 @@ mgr = OWmanager(options,
 # Download data
 meteo = mgr.get_data()
 
-
+```
 
 
 
