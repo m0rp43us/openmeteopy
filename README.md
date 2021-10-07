@@ -40,19 +40,19 @@ pip3 install .
 Download Meteorological data
 
 ```python
-from openmeteo_py import Hourly as h
-from openmeteo_py import Daily as d
-from openmeteo_py import Options as op
-from openmeteo_py import OWmanager as ow
+from openmeteo_py.Hourly import Hourly
+from openmeteo_py.Daily import Daily
+from openmeteo_py.Options import Options
+from openmeteo_py.OWmanager import OWmanager
 # Latitude, Longitude for Rabat,Morocco
 latitude = 33.9842
 longitude = -6.8675
 
-hourly = h.Hourly()
-daily = d.Daily()
-options = op.Options(latitude,longitude)
+hourly = Hourly()
+daily = Daily()
+options = Options(latitude,longitude)
 
-mgr = ow.OWmanager(options,
+mgr = OWmanager(options,
     hourly.all(),
     daily.all())
 
