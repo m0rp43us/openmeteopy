@@ -1,5 +1,5 @@
-from constants import *
-from timezones import *
+from openmeteo_py.constants import *
+from openmeteo_py.timezones import *
 
 
 

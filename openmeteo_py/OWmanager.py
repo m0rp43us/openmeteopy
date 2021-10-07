@@ -9,10 +9,9 @@ Version: 0.0.1
 import requests
 import json
 
-from requests import exceptions
-from Options import *
-from Daily import *
-from Hourly import *
+from openmeteo_py.Options import Options
+from openmeteo_py.Daily import Daily
+from openmeteo_py.Hourly import Hourly
 
 
 class OWmanager():
@@ -58,13 +57,3 @@ class OWmanager():
             return json.loads(r.content.decode('utf-8'))
         except requests.ConnectionError as e :
             raise(e)
-
-hourly = Hourly()
-daily = Daily()
-options = Options(52.52,13.41)
-
-mgr = OWmanager(options,
-    hourly.all(),
-    daily.all())
-
-print(mgr.get_data())

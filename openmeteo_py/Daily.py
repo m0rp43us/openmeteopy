@@ -1,4 +1,4 @@
-from utils import *
+from openmeteo_py.utils import *
 
 class Daily():
 
