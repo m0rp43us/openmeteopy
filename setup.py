@@ -7,7 +7,7 @@ with open('requirements.txt') as f:
     required = f.read().splitlines()
 
 setuptools.setup(
-    name = "openmeteopy",
+    name = "openmeteo_py",
     version = "0.0.1",
     author = "Wail Chalabi",
     author_email = "wail.agroconcept@gmail.com",
