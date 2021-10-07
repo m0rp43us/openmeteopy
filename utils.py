@@ -12,5 +12,12 @@ class TypedList(list):
         for element in item:
             super(TypedList, self).append(element)
 
-#class Errors():
+class ApiCallError(Exception):
+
+    def __init__(self, response):
+        self.response = response
+        #super().__init__(self.res)
+
+    def __str__(self):
+        return f'{self.response["reason"]}'
 
