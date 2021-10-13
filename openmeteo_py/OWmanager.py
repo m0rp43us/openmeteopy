@@ -12,6 +12,7 @@ import json
 from openmeteo_py.Options import Options
 from openmeteo_py.Daily import Daily
 from openmeteo_py.Hourly import Hourly
+from openmeteo_py.utils import ApiCallError
 
 
 class OWmanager():
@@ -46,14 +47,55 @@ class OWmanager():
         if self.hourly != None :
             self.payload['hourly'] = ','.join(self.hourly.hourly_params)
         self.payload = "&".join("%s=%s" % (k,v) for k,v in self.payload.items())
-    def get_data(self):
+    def Jsonify(meteo):
+        #preparing the dataframe
+        daily = {}
+        hourly = {}
+        cleaned_data = {}
+        if "hourly" in meteo and "daily" in meteo:
+            for i in meteo['hourly']:
+                print(meteo['hourly'][i])
+                data = {}
+                for j in range(len(meteo['hourly'][i])-1):
+                    data[meteo["hourly"]["time"][j]] = meteo['hourly'][i][j]
+                hourly[i] = data
+            cleaned_data["hourly"] = hourly
+            for i in meteo['daily']:
+                data = {}
+                for j in range(len(meteo['daily'][i])-1):
+                    data[meteo["daily"]["time"][j]] = meteo['daily'][i][j]
+                daily[i] = data
+            cleaned_data["daily"] = daily
+        elif "hourly" in meteo and "daily" not in meteo:
+            for i in meteo['hourly']:
+                print(meteo['hourly'][i])
+                data = {}
+                for j in range(len(meteo['hourly'][i])-1):
+                    data[meteo["hourly"]["time"][j]] = meteo['hourly'][i][j]
+                hourly[i] = data
+            cleaned_data["hourly"] = hourly
+        elif "hourly" not in meteo and "daily" in meteo :
+            for i in meteo['daily']:
+                data = {}
+                for j in range(len(meteo['daily'][i])-1):
+                    data[meteo["daily"]["time"][j]] = meteo['daily'][i][j]
+                daily[i] = data
+            cleaned_data["daily"] = daily
+        else :
+            cleaned_data = meteo
+        return cleaned_data
+    def get_data(self,output = 0,file = 0):
         try:
             r  = requests.get(self.url, params = self.payload)
-            print(r.status_code)
             if r.status_code != 200 and r.status_code != 400:
                 raise BaseException("Failed retrieving open-meteo data, server returned HTTP code: {} on following URL {}.".format(r.status_code, r.url))
             if "reason" in r :
                 raise ApiCallError(r)
-            return json.loads(r.content.decode('utf-8'))
+            print(json.loads(r.content.decode('utf-8')))
+            return self.Jsonify(json.loads(r.content.decode('utf-8')))
         except requests.ConnectionError as e :
             raise(e)
+    
+    
+#    def dataframit(meteo):
+#        meteo = Jsonify(meteo)
