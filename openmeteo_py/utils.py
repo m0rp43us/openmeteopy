@@ -20,3 +20,21 @@ class ApiCallError(Exception):
 
     def __str__(self):
         return f'{self.response["reason"]}'
+
+class FilepathNotFilled(Exception):
+    def __init__(self):
+        response = "Forgot to fill the filepath"
+        self.response = response
+        #super().__init__(self.res)
+    
+    def __str__(self):
+        return f'{self.response}'
+
+class FileOptionError(Exception):
+    def __init__(self):
+        response = "file number not in the options"
+        self.response = response
+        #super().__init__(self.res)
+    
+    def __str__(self):
+        return f'{self.response}'
