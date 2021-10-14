@@ -8,7 +8,7 @@ with open('requirements.txt') as f:
 
 setuptools.setup(
     name = "openmeteo_py",
-    version = "0.0.1",
+    version = "0.1.1",
     author = "Wail Chalabi",
     author_email = "wail.agroconcept@gmail.com",
     description = "Download Meteorological Data from OPEN-METEO API (https://open-meteo.com/en/)",
