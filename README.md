@@ -28,8 +28,11 @@ print(mgr.get_data())
 7. past_days - If past_days is set, yesterdays or the day before yesterdays data are also returned.
 
 
-#### Installation
+#### Installation (pypi)
 
+pip install openmeteo-py==0.0.1
+
+#### Installation (manually)
 ```bash
 git clone https://github.com/m0rp43us/openmeteopy
 cd openmeteopy-main/
