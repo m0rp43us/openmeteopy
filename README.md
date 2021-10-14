@@ -32,7 +32,7 @@ print(mgr.get_data())
 
 ```bash
 git clone https://github.com/m0rp43us/openmeteopy
-cd openmeteopy/
+cd openmeteopy-main/
 pip3 install .
 ```
 ### Example
