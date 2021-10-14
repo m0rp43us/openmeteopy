@@ -9,11 +9,9 @@ import http.client
 import requests
 import json
 import pandas as pd
-from openmeteo_py.Options import Options
-from openmeteo_py.Daily import Daily
-from openmeteo_py.Hourly import Hourly
-from openmeteo_py.utils import ApiCallError
-from openmeteo_py.utils import FilepathNotFilled,FileOptionError
+from openmeteo_py import Options,Daily,Hourly
+from openmeteo_py import ApiCallError,FilepathNotFilled,FileOptionError
+
 def patch_http_response_read(func):
     def inner(*args):
         try:
@@ -58,13 +56,20 @@ class OWmanager():
         self.payload = "&".join("%s=%s" % (k,v) for k,v in self.payload.items())
 
     def Jsonify(self,meteo):
-        #preparing the dataframe
+        """Returns a json with each variable having keys as dates,result json otherwise
+
+        Args:
+            meteo (Dict): JSON input
+
+        Returns:
+            dict: response JSON
+        """
+
         daily = {}
         hourly = {}
         cleaned_data = {}
         if "hourly" in meteo and "daily" in meteo:
             for i in meteo['hourly']:
-                print(meteo['hourly'][i])
                 data = {}
                 for j in range(len(meteo['hourly'][i])-1):
                     data[meteo["hourly"]["time"][j]] = meteo['hourly'][i][j]
@@ -78,7 +83,6 @@ class OWmanager():
             cleaned_data["daily"] = daily
         elif "hourly" in meteo and "daily" not in meteo:
             for i in meteo['hourly']:
-                print(meteo['hourly'][i])
                 data = {}
                 for j in range(len(meteo['hourly'][i])-1):
                     data[meteo["hourly"]["time"][j]] = meteo['hourly'][i][j]
@@ -97,6 +101,25 @@ class OWmanager():
 
 
     def get_data(self,output = 0,file = 0,filepath = None):
+        """
+        Handles the retrieval and processing of the OPEN-METEO data.
+
+        Args:
+            output (int, optional): default is the server response JSON (option 0),1 for a JSON with variable keys as dates,2 for the server response parsed as a dataframe and 3 for a dataframe where each column is for a variable with rows being linked each to a time/date
+            file (int, optional): 0 as a default (not saving),1 for the server's response JSON or dataframe saved as csv,2 for excel file (xlsx)
+            filepath (string, optional): filepath of the output file to be saved at
+
+        Raises:
+            BaseException: HTTP error
+            ApiCallError: Api resonse error
+            FileOptionError: File option being incorrect (number < 0 or > 3)
+            FilepathNotFilled: Filepath not filled in the input options
+            ConnectionError: requests connection error (internet connection or server having some trouble)
+
+        Returns:
+            float: Actual vapour pressure, ea [KPa]
+        """
+
         try:
             r  = requests.get(self.url, params = self.payload)
             if r.status_code != 200 and r.status_code != 400:
@@ -112,15 +135,15 @@ class OWmanager():
                     return pd.DataFrame(json.loads(r.content.decode('utf-8')))
                 elif output == 3 :
                     return self.dataframit(json.loads(r.content.decode('utf-8')))
-            elif file > 0 and file < 4 :
+            elif file > 0 and file < 3 :
                 if filepath == None :
                     raise FilepathNotFilled
                 if output == 0 :
-                    with open(file+'.json', 'wb+') as f:
+                    with open(filepath+'.json', 'wb+') as f:
                         f.write(r.content)
                     return json.loads(r.content.decode('utf-8'))
                 elif output == 1 :
-                    with open(file+'.json', 'wb+') as f:
+                    with open(filepath+'.json', 'wb+') as f:
                         f.write(r.content)
                     return self.Jsonify(json.loads(r.content.decode('utf-8')))
                 elif output == 2 :
@@ -141,6 +164,15 @@ class OWmanager():
             raise(e)
     
     def dataframit(self,meteo,format = 0,filepath = None):
+        """Returns a dataframe with each variable having keys as dates,result dataframe otherwise
+
+        Args:
+            meteo (Dict): JSON input
+
+        Returns:
+            dict: response dataframe
+        """
+
         meteo = self.Jsonify(meteo)
         if format == 0 :
             if 'hourly' in meteo :

@@ -40,10 +40,8 @@ pip3 install .
 Download Meteorological data
 
 ```python
-from openmeteo_py.Hourly import Hourly
-from openmeteo_py.Daily import Daily
-from openmeteo_py.Options import Options
-from openmeteo_py.OWmanager import OWmanager
+from openmeteo_py.Hourly import Hourly,Daily,Options,OWmanager
+
 # Latitude, Longitude for Rabat,Morocco
 latitude = 33.9842
 longitude = -6.8675

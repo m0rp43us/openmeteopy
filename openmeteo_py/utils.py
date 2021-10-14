@@ -1,6 +1,12 @@
 
 
 class TypedList(list):
+    """
+    Typelist class
+
+    helps to check if a parameter is already in the payload list then appends the new parameter
+
+    """
 
     def append(self, item):
         if item in self:
@@ -13,6 +19,12 @@ class TypedList(list):
             super(TypedList, self).append(element)
 
 class ApiCallError(Exception):
+    """
+    Response Api exception
+
+    raises an error if the api responds with one
+
+    """
 
     def __init__(self, response):
         self.response = response
@@ -22,6 +34,13 @@ class ApiCallError(Exception):
         return f'{self.response["reason"]}'
 
 class FilepathNotFilled(Exception):
+
+    """
+    Filepath exception
+
+    raises an error if the filepath is not filled but the file option is
+
+    """
     def __init__(self):
         response = "Forgot to fill the filepath"
         self.response = response
@@ -31,6 +50,11 @@ class FilepathNotFilled(Exception):
         return f'{self.response}'
 
 class FileOptionError(Exception):
+    """
+    FileOption exception
+
+    raises an error if the file number option is wrong
+    """
     def __init__(self):
         response = "file number not in the options"
         self.response = response
