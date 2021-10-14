@@ -31,6 +31,7 @@ class APITest(unittest.TestCase):
         
         self.assertTrue(mock_request_text == str(response))
 
-if __name__ == '__main__': main()
+if __name__ == '__main__':
+    unittest.main()
 
 APITest.test_wrapped_example()
