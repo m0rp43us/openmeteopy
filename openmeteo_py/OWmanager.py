@@ -117,7 +117,7 @@ class OWmanager():
             ConnectionError: requests connection error (internet connection or server having some trouble)
 
         Returns:
-            float: Actual vapour pressure, ea [KPa]
+            dict: response JSON
         """
 
         try:
