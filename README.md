@@ -41,7 +41,7 @@ pip3 install .
 ###Parameters
 
 
-forecast :
+Options :
 
 |Parameter	            |Format	        |Required	|Default|
 |-----|--------|--------|--------|
