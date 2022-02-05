@@ -1,5 +1,8 @@
-# openmeteopy
-![openmeteopy](https://cdn.substack.com/image/fetch/w_170,c_limit,f_auto,q_auto:best,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2F5ec8df4d-cc18-465d-a9ef-da912c131061_302x302.png)
+<h1 align="center"> OpenmeteoPy </h1>
+
+<p align="center">
+  <img  src="https://cdn.substack.com/image/fetch/w_1360,c_limit,f_auto,q_auto:best,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Ffd0d7953-5a9d-441c-b59f-4cde244503a1_934x461.png">
+</p>
 
 Download Meteorological Data from OPEN-METEO API (https://open-meteo.com/en)
 
