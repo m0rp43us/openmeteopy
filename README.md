@@ -165,4 +165,4 @@ print(meteo)
 
 
 
-_Contributors (coding, testing, packaging, reporting issues) are welcome!
+## :heart:  Contributors (coding, testing, packaging, reporting issues) are welcome! :heart:
