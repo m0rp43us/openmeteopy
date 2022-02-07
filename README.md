@@ -18,19 +18,6 @@ openmeteopy runs on Python 3.6+.
 
 print(mgr.get_data())
 
-#### Options input parameters
-
-1. latitude - Latitude (float)
-2. longitude - Longitude (float)
-3. windspeed_unit - wind speed unit (string, optional)
-4. precipitation_unit - precipitation amount units (string, optional)
-5. timeformat - If format unixtime is selected, all time values are returned in UNIX epoch time in seconds. 
-                Please note that all time is then in UTC! For daily values with unix timestamp, please apply utc_offset_seconds again to get the correct date. (string, optional)
-6. timezone - If timezone is set, all timestamps are returned as local-time and data is returned starting at 0:00 local-time. 
-                Any time zone name from the time zone database is available under timezones.py . (string, optional)
-7. past_days - If past_days is set, yesterdays or the day before yesterdays data are also returned.
-
-
 #### Installation (pypi)
 ```bash
 pip install openmeteo-py==0.0.1
@@ -49,8 +36,6 @@ Options :
 |Parameter	            |Format	        |Required	|Default|
 |-----|--------|--------|--------|
 |latitude, longitude	    |Floating point	|Yes|        |
-|hourly	                |String array	|No|
-|daily	                |String array	|No|
 |current_weather	        |Bool	        |No|          false|
 |temperature_unit	    |String	        |No|          celsius|
 |windspeed_unit	        |String	        |No|          kmh|
