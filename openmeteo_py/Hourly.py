@@ -424,7 +424,8 @@ class Hourly()  :
 
         All hourly parameters
         """
-        self.hourly_params.append_all(["relativehumidity_2m",
+        self.hourly_params.append_all(["temperature_2m",
+            "relativehumidity_2m",
             "dewpoint_2m",
             "apparent_temperature",
             "pressure_msl",
