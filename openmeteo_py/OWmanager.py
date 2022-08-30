@@ -47,13 +47,15 @@ class OWmanager():
             "precipitation_unit":options.precipitation_unit,
             "timeformat":options.timeformat,
             "current_weather":options.current_weather,
-            "past_days":options.past_days
+            "past_days":options.past_days,
+            "start_date": options.start_date,
+            "end_date": options.end_date
             }
         if self.daily != None :
             self.payload['daily'] = ','.join(self.daily.daily_params)
         if self.hourly != None :
             self.payload['hourly'] = ','.join(self.hourly.hourly_params)
-        self.payload = "&".join("%s=%s" % (k,v) for k,v in self.payload.items())
+        self.payload = "&".join("%s=%s" % (k,v) for k,v in self.payload.items() if v is not None)
 
     def Jsonify(self,meteo):
         """Returns a json with each variable having keys as dates,result json otherwise
