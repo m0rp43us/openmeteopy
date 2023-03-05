@@ -24,7 +24,7 @@ http.client.HTTPResponse.read = patch_http_response_read(http.client.HTTPRespons
 
 class OWmanager():
 
-    def __init__(self, options, hourly = None,daily = None):
+    def __init__(self, options, hourly = None,daily = None, api_key=None):
         
         """
         Entry point class providing ad-hoc API clients for each OW web API.
@@ -33,6 +33,7 @@ class OWmanager():
             options (Options): options for the /v1/forecast endpoint .
             hourly (Hourly): Hourly parameter object.
             daily (Daily) : Daily parameter object.
+            api_key (string) : commercial API key.
         """
 
         self.options = options
@@ -53,6 +54,9 @@ class OWmanager():
             self.payload['daily'] = ','.join(self.daily.daily_params)
         if self.hourly != None :
             self.payload['hourly'] = ','.join(self.hourly.hourly_params)
+        if api_key != None:
+            self.payload['apikey'] = api_key
+            self.url = "https://customer-api.open-meteo.com/v1/forecast?"
         self.payload = "&".join("%s=%s" % (k,v) for k,v in self.payload.items())
 
     def Jsonify(self,meteo):
