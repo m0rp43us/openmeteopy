@@ -62,3 +62,19 @@ class FileOptionError(Exception):
     
     def __str__(self):
         return f'{self.response}'
+
+class MethodnotAllowed(Exception):
+
+    """
+    Filepath exception
+
+    raises an error if the method is not allowed (parameter doesn't exist in the original api)
+
+    """
+    def __init__(self):
+        response = "this method is not allowed for the class (parameter doesn't exist in the original api),please check https://open-meteo.com/en/docs or https://github.com/open-meteo/open-meteo for more details"
+        self.response = response
+        #super().__init__(self.res)
+    
+    def __str__(self):
+        return f'{self.response}'

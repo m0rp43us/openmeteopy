@@ -14,6 +14,8 @@ APIs are free without any API key for open-source developers and non-commercial 
 ##  What is it?
 openmeteopy is a client Python wrapper library for Open-Meteo  web API. It allows quick and easy consumption of OM data from Python applications via a simple object model and in a human-friendly fashion.
 
+You can use all Openmeteo's available APIs,which are 14 (explained in the table below).
+
 openmeteopy runs on Python 3.6+.
 
 print(mgr.get_data())
@@ -28,129 +30,36 @@ git clone https://github.com/m0rp43us/openmeteopy
 cd openmeteopy-main/
 pip3 install .
 ```
-###Parameters
+## APIs
+|API	            |Description|Documentation        |Options Class	|Hourly Class|Daily Class|15 Minutes Class|
+|-----|--------|--------|--------|---------|---------|----------|
+|Weather forecast | Select your location, weather variables and start using the API.|[weather forecast](/Readme/WEATHER_FORECAST.md) | ```ForecastOptions()``` | ```HourlyForecast()```|```DailyForecast()```|-|
+|Historical Weather | Discover how weather has shaped our world from 1940 until now|[historical weather](/Readme/HISTORICAL_WEATHER.md) | ```HistoricalOptions()``` | ```HourlyHistorical()```|```DailyHistorical()```|-|
+|ECMWF Weather Forecast | Global High Frequency Forecasts at 0.4° resolution |[ECMWF Weather Forecast](/Readme/ECMWF_Weather_Forecast.md)  |```EcmwfOptions()``` | ``` HourlyEcmwf()```|-|-|
+|GFS & HRRR Forecast  |Global GFS model combined with hourly HRRR updates at 3-km resolution |[GFS & HRRR Forecast ](/Readme/GFS_HRRR_FORECAST.md) | ```GfsOptions()``` | ```HourlyGfs()```|```DailyGfs()```|-|
+|MeteoFrance  |Global ARPEGE model combined with high resolution AROME model| [MeteoFrance ](/Readme/METEOFRANCE.md) | ```MeteoFranceOptions()``` | ```HourlyMeteoFrance()```|```DailyMeteoFrance()```|-|
+|DWD ICON |Open data weather forecasts from the German weather service DWD |[DWD ICON](/Readme/DWD_ICON.md) | ```DwdOptions()``` | ```HourlyDwd()```|```DailyDwd()```|```FifteenMinutesDwd()```|
+|JMA |5-km high resolution forecasts for Japan, Korea, parts of China and Russia |[JMA](/Readme/JMA.md) | ```JmaOptions()``` | ```HourlyJma()```|```DailyJma()```|-|
+|MET Norway |Hourly updates & 1 km forecasts for Scandinavia| [MET Norway](/Readme/MET_Norway.md) | ```MetnoOptions()``` | ```HourlyMetno()```|-|-|
+|GEM  | 2.5 km high resolution forecasts for North America|[GEM](/Readme/WEATHER_FORECAST.md) | ```GemOptions()``` | ```HourlyGem()```|```DailyGem()```|-|
+|Marine Weather | Hourly wave forecasts at 5 km resolution|[Marine Weather](/Readme/MARINE_WEATHER.md) | ```MarineOptions()``` | ```HourlyMarine()```|```DailyMarine()```|-|
+|Air Quality | Pollutants and pollen forecast in 11 km resolution|[Air Quality](/Readme/AIR_QUALITY.md) | ```AirQualityOptions()``` | ```HourlyAirQuality()```|-|-|
+|Geocoding | Search locations in any language globally|[Geocoding](/Readme/GEOCODING.md) | ```GeocodingOptions()``` | - |-|-|
+|Elevation | 90 meter resolution digital elevation model|[Elevation](/Readme/ELEVATION.md) | ```ElevationOptions()``` | -|-|-|
+|Global Flood | Simulated river discharge at 5 km resolution from 1984 up to 7 months forecast|[Global Flood](/Readme/GLOBAL_FLOOD.md) | ```FloodOptions()``` | - |```DailyForecast()```|-|
 
+# Output formats :
 
-Options :
-
-|Parameter	            |Format	        |Required	|Default|
-|-----|--------|--------|--------|
-|latitude, longitude	    |Floating point	|Yes|        |
-|current_weather	        |Bool	        |No|          false|
-|temperature_unit	    |String	        |No|          celsius|
-|windspeed_unit	        |String	        |No|          kmh|
-|precipitation_unit	    |String          |No|         kmh|
-|timeformat	            |String	        |No|          iso8601|
-|timezone	            |String	        |No|	        UTC|
-|past_days	            |Integer (0-2)	|No|          0|
-
-Hourly Parameter Definition :
-
-|Variable                |Valid time|	            Unit|
-|-----|----|-----|
-|temperature_2m|	            Instant	 |               °C (°F)|
-|relativehumidity_2m|	        Instant	  |              %|
-|dewpoint_2m	       |         Instant	 |               °C (°F)|
-|apparent_temperature	|    Instant	      |          °C (°F)|
-|pressure_msl	         |   Instant	       |         hPa|
-|cloudcover	            |    Instant	      |          %|
-|cloudcover_low	         |   Instant	        |        %|
-|cloudcover_mid	          |  Instant	       |        %|
-|cloudcover_high	         |   Instant	       |         %|
-|windspeed_10m              | Instant           |      km/h (mph, m/s, knots)|
-|windspeed_80m|               Instant            |     km/h (mph, m/s, knots)|
-|windspeed_120m|              Instant             |  km/h (mph, m/s, knots)|
-|windspeed_180m	|            Instant	             |   km/h (mph, m/s, knots)|
-|winddirection_10m|           Instant|                 °|
-|winddirection_80m |          Instant |                °|
-|winddirection_120m |         Instant  |               °|
-|winddirection_180m	 |       Instant	  |              °|
-|windgusts_10m	      |      Preceding hour max|	    km/h (mph, m/s)|
-|shortwave_radiation	 |       Preceding hour mean	    W/m²|
-|direct_radiation	      |  Preceding hour mean	|    W/m²|
-|diffuse_radiation	     |   Preceding hour mean	|    W/mv²|
-|vapor_pressure_deficit	  |  Instant	   |             kPa|
-|evapotranspiration	       | Preceding hour sum|	    mm (inch)|
-|precipitation	            |Preceding hour sum	|    mm (inch)|
-|weathercode	               | Instant	  |              WMO code|
-|snow_height	                |Instant	|                meters|
-|freezinglevel_height|	    Instant	     |           meters|
-|soil_temperature_0cm |       Instant |                °C (°F)|
-|soil_temperature_6cm  |      Instant     |            °C (°F)|
-|soil_temperature_18cm  |     Instant  |               °C (°F)|
-|soil_temperature_54cm	 |   Instant	     |           °C (°F)|
-|soil_moisture_0_1cm      |   Instant   |              m³/m³|
-|soil_moisture_1_3cm       |  Instant       |          m³/m³|
-|soil_moisture_3_9cm        | Instant    |             m³/m³|
-|soil_moisture_9_27cm        |Instant        |         m³/m³|
-|soil_moisture_27_81cm|	    Instant	      |          m³/m³|
-|all|-|-|
-
-Daily Parameter Definition
-
-|Variable	        |            Unit|
-|----|------|
-|temperature_2m_max            |  °C (°F)|
-|temperature_2m_min	          |  °C (°F)|
-|apparent_temperature_max    |    °C (°F)|
-|apparent_temperature_min	  |  °C (°F)|
-|precipitation_sum	       |     mm|
-|precipitation_hours	          |  hours|
-|weathercode	                 |   WMO code|
-|sunrise                      |   iso8601|
-|sunset	                     |   iso8601|
-|windspeed_10m_max|km/h (mph, m/s, knots)|
-|windgusts_10m_max	        |    km/h (mph, m/s, knots)|
-|winddirection_10m_dominant|	    °|
-|shortwave_radiation_sum|	        MJ/m²|
-|all|-|
-
-
-WMO Weather interpretation codes (WW)
-
-|code     |   Description|
-|------|-------|
-|0|	            Clear sky|
-|1, 2, 3|	        Mainly clear, partly cloudy, and overcast|
-|45, 48	 |       Fog and depositing rime fog|
-|51, 53, 55|	    Drizzle: Light, moderate, and dense intensity|
-|56, 57	    |    Freezing Drizzle: Light and dense intensity|
-|61, 63, 65	 |   Rain: Slight, moderate and heavy intensity|
-|66, 67	    |    Freezing Rain: Light and heavy intensity|
-|71, 73, 75	 |   Snow fall: Slight, moderate, and heavy intensity|
-|77	          |  Snow grains|
-|80, 81, 82|	    Rain showers: Slight, moderate, and violent|
-|85, 86	    |    Snow showers slight and heavy|
-|95 *	       | Thunderstorm: Slight or moderate|
-|96, 99 *	    |Thunderstorm with slight and heavy hail|
-
-### Example
-
-Download Meteorological data
-
-```python
-from openmeteo_py import Hourly,Daily,Options,OWmanager
-
-# Latitude, Longitude for Rabat,Morocco
-latitude = 33.9842
-longitude = -6.8675
-
-hourly = Hourly()
-daily = Daily()
-options = Options(latitude,longitude)
-
-mgr = OWmanager(options,
-    hourly.all(),
-    daily.all())
-
-
-# Download data
-meteo = mgr.get_data()
-
-print(meteo)
-
-```
+You can get your output in json,dataframe or save it as csv or excel file as follows : get_data(output = 0,file = 0,filepath = None):
+|Ooutput|```get_data``` Method values|
+|----|-----|
+|json (server response) | ```get_data()```|
+|json (keys are dates,value are correspongding values) | ```get_data(1)```|
+|json (keys are dates,value are correspongding values) saved into a json file | ```get_data(1,1)```|
+|csv (keys are dates,value are correspongding values) saved into a csv file | ```get_data(1,1,'path')```|
+|excel (keys are dates,value are correspongding values) saved into a excel file | ```get_data(1,2,'path')```|
+|dataframe in excel (keys are dates,value are correspongding values) saved into a excel file | ```get_data(1,3,'path')```|
 
 
 
-### :heart:  Contributors (coding, testing, packaging, reporting issues) are welcome! :heart:
+### Contributions (coding, testing, packaging, reporting issues) are more than welcome ! 

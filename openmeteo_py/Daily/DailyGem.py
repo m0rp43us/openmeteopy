@@ -1,6 +1,6 @@
-from openmeteo_py.utils import *
+from openmeteo_py.Exceptions import *
 
-class Daily():
+class DailyGem():
 
     """
     Daily Parameter functions
@@ -21,13 +21,13 @@ class Daily():
         """
         self.daily_params.append("temperature_2m_max")
         return self
-
+    
     def temperature_2m_min(self):
         """
         Returns the Daily configuration object 
         :returns: `Hourly()`
 
-        Minimum daily air temperature at 2 meters above ground
+         	Daily maximum in UV Index starting from 0
         """
         self.daily_params.append("temperature_2m_min")
         return self
@@ -82,26 +82,6 @@ class Daily():
         self.daily_params.append("weathercode")
         return self
 
-    def sunrise(self):
-        """
-        Returns the Daily configuration object 
-        :returns: `Hourly()`
-
-        Sunrise  time
-        """
-        self.daily_params.append("sunrise")
-        return self
-
-    def sunset(self):
-        """
-        Returns the Daily configuration object 
-        :returns: `Hourly()`
-
-        Sunset time
-        """
-        self.daily_params.append("sunset")
-        return self
-
     def windspeed_10m_max(self):
         """
         Returns the Daily configuration object 
@@ -142,24 +122,62 @@ class Daily():
         self.daily_params.append("shortwave_radiation_sum")
         return self
     
-    def all(self):
+    def et0_fao_evapotranspiration(self):
         """
         Returns the Daily configuration object 
         :returns: `Hourly()`
 
-        All parameters
+        Daily sum of ET₀ Reference Evapotranspiration of a well watered grass field
         """
-        self.daily_params.append_all(["temperature_2m_max",                                                                             
-            "temperature_2m_min",
-            "apparent_temperature_max",
-            "apparent_temperature_min",
-            "precipitation_sum",
-            "precipitation_hours",
-            "weathercode",
-            "sunrise",
-            "sunset",
-            "windspeed_10m_max",
-            "windgusts_10m_max",
-            "winddirection_10m_dominant",
-            "shortwave_radiation_sum"])
+        self.daily_params.append("et0_fao_evapotranspiration")
+        return self
+    
+    def sunrise(self):
+        """
+        Returns the Daily configuration object 
+        :returns: `Hourly()`
+
+        Sun rise
+        """
+        self.daily_params.append("sunrise")
+        return self
+    
+    def sunset(self):
+        """
+        Returns the Daily configuration object 
+        :returns: `Hourly()`
+
+        sunset
+        """
+        self.daily_params.append("sunset")
+        return self
+    
+    def rain_sum(self):
+        """
+        Returns the Daily configuration object 
+        :returns: `Hourly()`
+
+        Sum of daily rain
+        """
+        self.daily_params.append("rain_sum")
+        return self
+    
+    def showers_sum(self):
+        """
+        Returns the Daily configuration object 
+        :returns: `Hourly()`
+
+        Sum of daily showers
+        """
+        self.daily_params.append("showers_sum")
+        return self
+    
+    def snowfall_sum(self):
+        """
+        Returns the Daily configuration object 
+        :returns: `Hourly()`
+
+        Sum of daily snowfall
+        """
+        self.daily_params.append("snowfall_sum")
         return self

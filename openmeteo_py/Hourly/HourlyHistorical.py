@@ -1,8 +1,8 @@
-from openmeteo_py.utils import *
+from openmeteo_py.Exceptions import *
 
 
 
-class Hourly()  :
+class HourlyHistorical()  :
 
     """
     Hourly Parameter functions
@@ -137,39 +137,17 @@ class Hourly()  :
 
         self.hourly_params.append("windspeed_10m")
         return self
-
-    def windspeed_80m(self):
+    def windspeed_100m(self):
         """
         Returns the Hourly configuration object 
         :returns: `Hourly()`
 
-        Wind speed at 80 meters above ground. Wind speed on 10 meters is the standard level.
+        Wind speed at 10 meters above ground. Wind speed on 10 meters is the standard level.
+
         
         """
 
         self.hourly_params.append("windspeed_80m")
-        return self
-
-    def windspeed_120m(self):
-        """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
-
-        Wind speed at 120 meters above ground. Wind speed on 10 meters is the standard level.
-        """
-
-        self.hourly_params.append("windspeed_120m")
-        return self
-
-    def windspeed_180m(self):
-        """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
-
-        Wind speed at 180 meters above ground. Wind speed on 10 meters is the standard level.
-        """
-
-        self.hourly_params.append("windspeed_180m")
         return self
 
     def winddirection_10m(self):
@@ -182,38 +160,16 @@ class Hourly()  :
 
         self.hourly_params.append("winddirection_10m")
         return self
-
-    def winddirection_80m(self):
+    
+    def winddirection_100m(self):
         """
         Returns the Hourly configuration object 
         :returns: `Hourly()`
 
-        Wind direction at 80 meters above ground
+        Wind direction at 10 meters above ground
         """
 
         self.hourly_params.append("winddirection_80m")
-        return self
-
-    def winddirection_120m(self):
-        """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
-
-        Wind direction at 120 meters above ground
-        """
-
-        self.hourly_params.append("winddirection_120m")
-        return self
-
-    def winddirection_180m(self):
-        """
-        Returns the Hourly configuration object
-        :returns: `Hourly()`
-
-        Wind direction at 180 meters above ground
-        """
-
-        self.hourly_params.append("winddirection_180m")
         return self
 
     def windgusts_10m(self):
@@ -271,17 +227,6 @@ class Hourly()  :
         self.hourly_params.append("vapor_pressure_deficit")
         return self
 
-    def evapotranspiration(self):
-        """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
-
-        Sum of evapotranspration of the preceding hour from lands urface and plants
-        """
-
-        self.hourly_params.append("evapotranspiration")
-        return self
-
     def precipitation(self):
         """
         Returns the Hourly configuration object 
@@ -291,6 +236,17 @@ class Hourly()  :
         """
 
         self.hourly_params.append("precipitation")
+        return self
+    
+    def precipitation_probability(self):
+        """
+        Returns the Hourly configuration object 
+        :returns: `Hourly()`
+
+        Total precipitation (rain, showers, snow) sum of the preceding hour
+        """
+
+        self.hourly_params.append("precipitation_probability")
         return self
 
     def weathercode(self):
@@ -304,119 +260,138 @@ class Hourly()  :
         self.hourly_params.append("weathercode")
         return self
 
-    def snow_height(self):
+    def snowfall(self):
         """
         Returns the Hourly configuration object 
         :returns: `Hourly()`
 
-        Snow height on the ground
+        Snowfall amount of the preceding hour in centimeters. For the water equivalent in millimeter, divide by 7.
         """
-
-        self.hourly_params.append("snow_height")
-        return self
-
-    def freezinglevel_height(self):
-        """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
-
-        Altitude of the 0°C level
-        """
-
-        self.hourly_params.append("freezinglevel_height")
-        return self
-
-    def soil_temperature_0cm(self):
-        """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
-
-        Temperature in the soil at 0 cm depths. 0 cm is the surface temperature on land or water surface temperature on water.
-        """
-
-        self.hourly_params.append("soil_temperature_0cm")
-        return self
-
-    def soil_temperature_6cm(self):
-        """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
-
-        Temperature in the soil at  6 cm depths.
-        """
-        self.hourly_params.append("soil_temperature_6cm")
-        return self
-
-    def soil_temperature_18cm(self):
-        """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
-
-        Temperature in the soil at  18 cm depths.
-        """
-        self.hourly_params.append("soil_temperature_18cm")
-        return self
-
-    def soil_temperature_54cm(self):
-        """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
-
-        Temperature in the soil at  54 cm depths.
-        """
-        self.hourly_params.append("soil_temperature_54cm")
-        return self
-
-    def soil_moisture_0_1cm(self):
-        """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
-
-        Average soil water content as volumetric mixing ratio at 0-1 cm depths.
-        """
-        self.hourly_params.append("soil_moisture_0_1cm")
-        return self
-
-    def soil_moisture_1_3cm(self):
-        """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
-
-        Average soil water content as volumetric mixing ratio at 1-3 cm depths.
-        """
-        self.hourly_params.append("soil_moisture_1_3cm")
-        return self
-
-    def soil_moisture_3_9cm(self):
-        """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
-
-        Average soil water content as volumetric mixing ratio at 3-9 cm depths.
-        """
-        self.hourly_params.append("soil_moisture_3_9cm")
-        return self
-
-    def soil_moisture_9_27cm(self):
-        """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
-
-        Average soil water content as volumetric mixing ratio at 9-27 cm depths.
-        """
-        self.hourly_params.append("soil_moisture_9_27cm")
-        return self
-
-    def soil_moisture_27_81cm(self):
-        """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
-
-        Average soil water content as volumetric mixing ratio at 27-81 cm depths.
-        """
-        self.hourly_params.append("soil_moisture_27_81cm")
+        self.hourly_params.append("snowfall")
         return self
     
+    def snow_depth(self):
+        """
+        Returns the Hourly configuration object 
+        :returns: `Hourly()`
+
+        Snowfall amount of the preceding hour in centimeters. For the water equivalent in millimeter, divide by 7.
+        """
+        self.hourly_params.append("snow_depth")
+        return self
+    
+    def direct_normal_irradiance(self):
+        """
+        Returns the Hourly configuration object 
+        :returns: `Hourly()`
+
+        Direct solar radiation as average of the preceding hour on the horizontal plane and the normal plane.
+        """
+        self.hourly_params.append("direct_normal_irradiance")
+        return self
+    
+    def cape(self):
+        """
+        Returns the Hourly configuration object 
+        :returns: `Hourly()`
+
+        Convective available potential energy.
+        """
+        self.hourly_params.append("cape")
+        return self
+    
+    def et0_fao_evapotranspiration(self):
+        """
+        Returns the Hourly configuration object 
+        :returns: `Hourly()`
+
+        ET₀ Reference Evapotranspiration of a well watered grass field. Based on FAO-56 Penman-Monteith equations ET₀ is calculated from temperature, wind speed, humidity and solar radiation. Unlimited soil water is assumed. ET₀ is commonly used to estimate the required irrigation for plants.
+        """
+        self.hourly_params.append("et0_fao_evapotranspiration")
+        return self
+    def soil_moisture_28_to_100cm(self):
+        """
+        Returns the Hourly configuration object 
+        :returns: `Hourly()`
+
+        ET₀ Reference Evapotranspiration of a well watered grass field. Based on FAO-56 Penman-Monteith equations ET₀ is calculated from temperature, wind speed, humidity and solar radiation. Unlimited soil water is assumed. ET₀ is commonly used to estimate the required irrigation for plants.
+        """
+        self.hourly_params.append("soil_moisture_28_to_100cm")
+        return self
+    def soil_temperature_0_to_7cm(self):
+        """
+        Returns the Hourly configuration object 
+        :returns: `Hourly()`
+
+        ET₀ Reference Evapotranspiration of a well watered grass field. Based on FAO-56 Penman-Monteith equations ET₀ is calculated from temperature, wind speed, humidity and solar radiation. Unlimited soil water is assumed. ET₀ is commonly used to estimate the required irrigation for plants.
+        """
+        self.hourly_params.append("soil_temperature_0_to_7cm")
+        return self
+    def soil_temperature_7_to_28cm(self):
+        """
+        Returns the Hourly configuration object 
+        :returns: `Hourly()`
+
+        ET₀ Reference Evapotranspiration of a well watered grass field. Based on FAO-56 Penman-Monteith equations ET₀ is calculated from temperature, wind speed, humidity and solar radiation. Unlimited soil water is assumed. ET₀ is commonly used to estimate the required irrigation for plants.
+        """
+        self.hourly_params.append("soil_temperature_7_to_28cm")
+        return self
+    def soil_temperature_28_to_100cm(self):
+        """
+        Returns the Hourly configuration object 
+        :returns: `Hourly()`
+
+        ET₀ Reference Evapotranspiration of a well watered grass field. Based on FAO-56 Penman-Monteith equations ET₀ is calculated from temperature, wind speed, humidity and solar radiation. Unlimited soil water is assumed. ET₀ is commonly used to estimate the required irrigation for plants.
+        """
+        self.hourly_params.append("soil_temperature_28_to_100cm")
+        return self
+    def soil_temperature_100_to_255cm(self):
+        """
+        Returns the Hourly configuration object 
+        :returns: `Hourly()`
+
+        ET₀ Reference Evapotranspiration of a well watered grass field. Based on FAO-56 Penman-Monteith equations ET₀ is calculated from temperature, wind speed, humidity and solar radiation. Unlimited soil water is assumed. ET₀ is commonly used to estimate the required irrigation for plants.
+        """
+        self.hourly_params.append("soil_temperature_100_to_255cm")
+        return self
+    def soil_moisture_0_to_7cm(self):
+        """
+        Returns the Hourly configuration object 
+        :returns: `Hourly()`
+
+        ET₀ Reference Evapotranspiration of a well watered grass field. Based on FAO-56 Penman-Monteith equations ET₀ is calculated from temperature, wind speed, humidity and solar radiation. Unlimited soil water is assumed. ET₀ is commonly used to estimate the required irrigation for plants.
+        """
+        self.hourly_params.append("soil_moisture_0_to_7cm")
+        return self
+    def soil_moisture_7_to_28cm(self):
+        """
+        Returns the Hourly configuration object 
+        :returns: `Hourly()`
+
+        ET₀ Reference Evapotranspiration of a well watered grass field. Based on FAO-56 Penman-Monteith equations ET₀ is calculated from temperature, wind speed, humidity and solar radiation. Unlimited soil water is assumed. ET₀ is commonly used to estimate the required irrigation for plants.
+        """
+        self.hourly_params.append("soil_moisture_7_to_28cm")
+        return self
+    
+    def surface_pressure(self):
+        """
+        Returns the Hourly configuration object 
+        :returns: `Hourly()`
+
+        Atmospheric air pressure reduced to mean sea level (msl) or pressure at surface. Typically pressure on mean sea level is used in meteorology. Surface pressure gets lower with increasing elevation..
+        """
+        self.hourly_params.append("surface_pressure")
+        return self
+    
+    def soil_moisture_100_to_255cm(self):
+        """
+        Returns the Hourly configuration object 
+        :returns: `Hourly()` 
+        geopotential_height at 800hPa
+        """
+        self.hourly_params.append("soil_moisture_100_to_200cm")
+        return self
+
     def all(self):
         """
         Returns the Hourly configuration object 
@@ -424,40 +399,37 @@ class Hourly()  :
 
         All hourly parameters
         """
-        self.hourly_params.append_all(["temperature_2m",
+        self.hourly_params.append_all(
+            ["temperature_2m",
             "relativehumidity_2m",
             "dewpoint_2m",
             "apparent_temperature",
             "pressure_msl",
+            "surface_pressure",
             "cloudcover",
             "cloudcover_low",
             "cloudcover_mid",
             "cloudcover_high",
             "windspeed_10m",
-            "windspeed_80m",
-            "windspeed_120m",
-            "windspeed_180m",
+            "windspeed_100m",
             "winddirection_10m",
-            "winddirection_80m",
-            "winddirection_120m",
-            "winddirection_180m",
+            "winddirection_100m",
             "windgusts_10m",
             "shortwave_radiation",
             "direct_radiation",
             "diffuse_radiation",
             "vapor_pressure_deficit",
-            "evapotranspiration",
+            "et0_fao_evapotranspiration",
             "precipitation",
             "weathercode",
-            "snow_height",
-            "freezinglevel_height",
-            "soil_temperature_0cm",
-            "soil_temperature_6cm",
-            "soil_temperature_18cm",
-            "soil_temperature_54cm",
-            "soil_moisture_0_1cm",
-            "soil_moisture_1_3cm",
-            "soil_moisture_3_9cm",
-            "soil_moisture_9_27cm",
-            "soil_moisture_27_81cm"])
+            "snowfall",
+            "soil_moisture_0_to_7cm",
+            "soil_moisture_7_to_28cm",
+            "soil_moisture_28_to_100cm",
+            "soil_moisture_100_to_255cm",
+            "soil_temperature_0_to_7cm",
+            "soil_temperature_7_to_28cm",
+            "soil_temperature_28_to_100cm",
+            "soil_temperature_100_to_255cm"
+            ])
         return self

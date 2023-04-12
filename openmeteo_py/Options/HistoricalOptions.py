@@ -1,16 +1,16 @@
-from openmeteo_py.constants import *
-from openmeteo_py.timezones import *
+from openmeteo_py.Utils.constants import *
+from openmeteo_py.Utils.timezones import *
 
 
 
-class Options():
+class HistoricalOptions():
     """
 
     The API Options accepts a WGS4 coordinate and other  weather variables .
     Time always starts at 0:00 today and contains 168 hours.
 
     """
-    def __init__(self, latitude, longitude,timeformat = iso8601, timezone = UTC, windspeed_unit =kmh ,  precipitation_unit = mm,current_weather = False,past_days = 0):
+    def __init__(self, latitude, longitude,elevation = nan,current_weather = False,temperature_unit = celsius,windspeed_unit =kmh ,  precipitation_unit = mm,timeformat = iso8601, timezone = UTC, start_date = None,end_date = None,cell_sellection = land):
         """
         Args:
             latitude (float): Latitude (Geographical WGS84 coordiante of the location).
@@ -33,9 +33,13 @@ class Options():
         
         self.latitude = latitude
         self.longitude = longitude
+        self.elevation = elevation
         self.windspeed_unit = windspeed_unit
         self.precipitation_unit = precipitation_unit
         self.timeformat = timeformat
         self.timezone = timezone
         self.current_weather = current_weather
-        self.past_days = past_days
+        self.end_date = end_date
+        self.start_date = start_date
+        self.cell_selection = cell_sellection
+        self.temperature_unit = temperature_unit

@@ -1,15 +1,14 @@
 """
 A module for downloading meteorological data from the open-meteo API (https://open-meteo.com/en/).
 Name: Wail Chalabi
-e-mail: wail.agroconcept@gmail.com
-Version: 0.0.1
+e-mail: wailchalabi1996@gmail.com
+Version: 1.0.0
 """
 
 import http.client
 import requests
 import json
 import pandas as pd
-from openmeteo_py import Options,Daily,Hourly
 from openmeteo_py import ApiCallError,FilepathNotFilled,FileOptionError
 
 def patch_http_response_read(func):
@@ -24,7 +23,24 @@ http.client.HTTPResponse.read = patch_http_response_read(http.client.HTTPRespons
 
 class OWmanager():
 
-    def __init__(self, options, hourly = None,daily = None, api_key=None):
+    gem = "https://api.open-meteo.com/v1/gem?"
+    metno = "https://api.open-meteo.com/v1/metno?"
+    jma = "https://api.open-meteo.com/v1/jma?"
+    dwd_icon = "https://api.open-meteo.com/v1/dwd-icon?"
+    meteofrance = "https://api.open-meteo.com/v1/meteofrance?"
+    gfs = "https://api.open-meteo.com/v1/gfs?"
+    ecmwf = "https://api.open-meteo.com/v1/ecmwf?"
+    historical = "https://archive-api.open-meteo.com/v1/archive?"
+    marine = "https://marine-api.open-meteo.com/v1/marine?"
+    air_quality = "https://air-quality-api.open-meteo.com/v1/air-quality?"
+    geocoding = "https://geocoding-api.open-meteo.com/v1/search?"
+    elevation = "https://api.open-meteo.com/v1/elevation?"
+    flood = "https://flood-api.open-meteo.com/v1/flood?"
+    forecast = "https://api.open-meteo.com/v1/forecast?"
+
+
+
+    def __init__(self,options,api=None , hourly = None,daily = None, fifteen_minutes = None,api_key=None,):
         
         """
         Entry point class providing ad-hoc API clients for each OW web API.
@@ -35,12 +51,27 @@ class OWmanager():
             daily (Daily) : Daily parameter object.
             api_key (string) : commercial API key.
         """
-
+        #self.payload = {}
         self.options = options
         self.hourly = hourly
         self.daily = daily
-        self.url = "https://api.open-meteo.com/v1/forecast?"
-        self.payload = {
+        self.fifteen_minutes = fifteen_minutes
+        if api != None :
+            self.url = api
+            if api == self.geocoding :
+                self.payload = {
+            "name": options.name,
+            "count": options.count,
+            "format": options.format,
+            "language" : options.language
+            }
+            elif api == self.elevation:
+                self.payload = {
+            "latitude": options.latitude,
+            "longitude": options.longitude
+            }
+            elif api == self.marine:
+                self.payload = {
             "latitude": options.latitude,
             "longitude": options.longitude,
             "timezone": options.timezone,
@@ -50,10 +81,205 @@ class OWmanager():
             "current_weather":options.current_weather,
             "past_days":options.past_days
             }
+            elif api == self.gem:
+                self.payload = {
+            "latitude": options.latitude,
+            "longitude": options.longitude,
+            "timezone": options.timezone,
+            "windspeed_unit":options.windspeed_unit,
+            "precipitation_unit":options.precipitation_unit,
+            "timeformat":options.timeformat,
+            "current_weather":options.current_weather,
+            "past_days":options.past_days
+            }
+            elif api == self.metno:
+                if options.start_end :
+                    self.payload = {
+            "latitude": options.latitude,
+            "longitude": options.longitude,
+            "timezone": options.timezone,
+            "windspeed_unit":options.windspeed_unit,
+            "precipitation_unit":options.precipitation_unit,
+            "timeformat":options.timeformat,
+            "current_weather":options.current_weather,
+            "past_days":options.past_days,
+            "self.temperature_unit" : options.temperature_unit,
+            "start_date" : options.start_date ,
+            "end_date": options.end_date,
+            "cell_selection" : options.cell_selection
+            }
+                else :
+                    self.payload = {
+            "latitude": options.latitude,
+            "longitude": options.longitude,
+            "timezone": options.timezone,
+            "windspeed_unit":options.windspeed_unit,
+            "precipitation_unit":options.precipitation_unit,
+            "timeformat":options.timeformat,
+            "current_weather":options.current_weather,
+            "past_days":options.past_days,
+            "self.temperature_unit" : options.temperature_unit,
+            "cell_selection" : options.cell_selection
+            }
+            elif api == self.flood:
+                if options.start_end :
+                    self.payload = {
+            "latitude": options.latitude,
+            "longitude": options.longitude,
+            "timeformat":options.timeformat,
+            "past_days":options.past_days,
+            "forecast_days" : options.forecast_days,
+            "start_date" : options.start_date ,
+            "end_date": options.end_date,
+            "ensemble" : options.ensemble,
+            "cell_selection" : options.cell_selection
+            }
+                else :
+                    self.payload = {
+            "latitude": options.latitude,
+            "longitude": options.longitude,
+            "timeformat":options.timeformat,
+            "past_days":options.past_days,
+            "forecast_days" : options.forecast_days,
+            "ensemble" : options.ensemble,
+            "cell_selection" : options.cell_selection
+            }
+            elif api == self.meteofrance or api == self.jma or api == self.dwd_icon :
+                if options.start_end :
+                    self.payload = {
+            "latitude": options.latitude,
+            "longitude": options.longitude,
+            "elevation" : options.elevation,
+            "timezone": options.timezone,
+            "timeformat":options.timeformat,
+            "past_days":options.past_days,
+            "temperature_unit" : options.temperature_unit,
+            "current_weather":options.current_weather,
+            "windspeed_unit" : options.windspeed_unit,
+            "precipitation_unit": options.precipitation_unit,
+            "start_date" : options.start_date ,
+            "end_date": options.end_date,
+            "cell_selection" : options.cell_selection
+            }
+                else :
+                    self.payload = {
+            "latitude": options.latitude,
+            "longitude": options.longitude,
+            "elevation" : options.elevation,
+            "timeformat":options.timeformat,
+            "timezone": options.timezone,
+            "past_days":options.past_days,
+            "temperature_unit" : options.temperature_unit,
+            "current_weather":options.current_weather,
+            "windspeed_unit" : options.windspeed_unit,
+            "precipitation_unit": options.precipitation_unit,
+            "cell_selection" : options.cell_selection
+            }
+            elif api == self.ecmwf:
+                if options.start_end :
+                    self.payload = {
+            "latitude": options.latitude,
+            "longitude": options.longitude,
+            "elevation" : options.elevation,
+            "timeformat":options.timeformat,
+            "past_days":options.past_days,
+            "temperature_unit" : options.temperature_unit,
+            "current_weather":options.current_weather,
+            "windspeed_unit" : options.windspeed_unit,
+            "precipitation_unit": options.precipitation_unit,
+            "start_date" : options.start_date ,
+            "end_date": options.end_date,
+            "cell_selection" : options.cell_selection
+            }
+                else :
+                    self.payload = {
+            "latitude": options.latitude,
+            "longitude": options.longitude,
+            "elevation" : options.elevation,
+            "timeformat":options.timeformat,
+            "past_days":options.past_days,
+            "temperature_unit" : options.temperature_unit,
+            "current_weather":options.current_weather,
+            "windspeed_unit" : options.windspeed_unit,
+            "precipitation_unit": options.precipitation_unit,
+            "cell_selection" : options.cell_selection
+            }
+            elif api == self.forecast:
+                self.payload = {
+            "latitude": options.latitude,
+            "longitude": options.longitude,
+            "timezone": options.timezone,
+            "windspeed_unit":options.windspeed_unit,
+            "precipitation_unit":options.precipitation_unit,
+            "timeformat":options.timeformat,
+            "past_days":options.past_days
+            }
+            elif api == self.gfs:
+                if options.start_end :
+                    self.payload = {
+            "latitude": options.latitude,
+            "longitude": options.longitude,
+            "elevation" : options.elevation,
+            "timezone": options.timezone,
+            "timeformat":options.timeformat,
+            "past_days":options.past_days,
+            "temperature_unit" : options.temperature_unit,
+            "current_weather":options.current_weather,
+            "windspeed_unit" : options.windspeed_unit,
+            "precipitation_unit": options.precipitation_unit,
+            "forecast_days":options.forecast_days,
+            "start_date" : options.start_date ,
+            "end_date": options.end_date,
+            "cell_selection" : options.cell_selection
+            }
+                else :
+                    self.payload = {
+            "latitude": options.latitude,
+            "longitude": options.longitude,
+            "elevation" : options.elevation,
+            "timeformat":options.timeformat,
+            "timezone": options.timezone,
+            "past_days":options.past_days,
+            "temperature_unit" : options.temperature_unit,
+            "current_weather":options.current_weather,
+            "windspeed_unit" : options.windspeed_unit,
+            "precipitation_unit": options.precipitation_unit,
+            "forecast_days":options.forecast_days,
+            "cell_selection" : options.cell_selection
+            }
+            elif api == self.historical:
+                    self.payload = {
+            "latitude": options.latitude,
+            "longitude": options.longitude,
+            "elevation" : options.elevation,
+            "timezone": options.timezone,
+            "timeformat":options.timeformat,
+            "temperature_unit" : options.temperature_unit,
+            "current_weather":options.current_weather,
+            "windspeed_unit" : options.windspeed_unit,
+            "precipitation_unit": options.precipitation_unit,
+            "start_date" : options.start_date ,
+            "end_date": options.end_date,
+            "cell_selection" : options.cell_selection
+            }
+        else : 
+            self.url = "https://api.open-meteo.com/v1/forecast?"
+        
+            self.payload = {
+            "latitude": options.latitude,
+            "longitude": options.longitude,
+            "timezone": options.timezone,
+            "windspeed_unit":options.windspeed_unit,
+            "precipitation_unit":options.precipitation_unit,
+            "timeformat":options.timeformat,
+            "past_days":options.past_days
+            }
         if self.daily != None :
             self.payload['daily'] = ','.join(self.daily.daily_params)
         if self.hourly != None :
             self.payload['hourly'] = ','.join(self.hourly.hourly_params)
+        if self.fifteen_minutes != None :
+            self.payload['minutely_15'] = ','.join(self.fifteen_minutes.minutes_15_params)
         if api_key != None:
             self.payload['apikey'] = api_key
             self.url = "https://customer-api.open-meteo.com/v1/forecast?"
@@ -101,6 +327,13 @@ class OWmanager():
             cleaned_data["daily"] = daily
         else :
             cleaned_data = meteo
+        if "minutely_15" in meteo  :
+            for i in meteo['minutely_15']:
+                data = {}
+                for j in range(len(meteo['minutely_15'][i])-1):
+                    data[meteo["minutely_15"]["time"][j]] = meteo['minutely_15'][i][j]
+                daily[i] = data
+            cleaned_data["minutely_15"] = daily
         return cleaned_data
 
 
