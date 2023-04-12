@@ -22,7 +22,7 @@ print(mgr.get_data())
 
 #### Installation (pypi)
 ```bash
-pip install openmeteo-py==0.0.1
+working on it
 ```
 #### Installation (manually)
 ```bash
