@@ -48,7 +48,7 @@ pip3 install .
 |Elevation | 90 meter resolution digital elevation model|[Elevation](/Readme/ELEVATION.md) | ```ElevationOptions()``` | -|-|-|
 |Global Flood | Simulated river discharge at 5 km resolution from 1984 up to 7 months forecast|[Global Flood](/Readme/GLOBAL_FLOOD.md) | ```FloodOptions()``` | - |```DailyForecast()```|-|
 
-# Output formats :
+# Output formats : (I know it kindda sucks with integers as inputs,will change it soon)
 
 You can get your output in json,dataframe or save it as csv or excel file as follows : get_data(output = 0,file = 0,filepath = None):
 |Ooutput|```get_data``` Method values|
@@ -60,6 +60,18 @@ You can get your output in json,dataframe or save it as csv or excel file as fol
 |excel (keys are dates,value are correspongding values) saved into a excel file | ```get_data(1,2,'path')```|
 |dataframe in excel (keys are dates,value are correspongding values) saved into a excel file | ```get_data(1,3,'path')```|
 
+
+## Upcoming Changes,updates,things to do :
+
+- Add the other 2 variables to ECWMF pressure level parameters
+- Change ```get_data()``` method to a more developper friendly method
+- Add Documentation for ```dataframit()``` and ```jsonify()```
+- remove pressure level variables from JMA (Remove inheritence from FranceMeteo)
+- Add Support of Date Types (input and output)
+- Add versionning and package to pypi
+- Clean and add corresponding comments
+- Maybe Refactor OWmanager Class and add inheritence for a more Dev friendly Methods
+- Readthedocs
 
 
 ### Contributions (coding, testing, packaging, reporting issues) are more than welcome ! 
