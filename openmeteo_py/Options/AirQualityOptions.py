@@ -1,5 +1,5 @@
-from Utils.constants import *
-from Utils.timezones import *
+from openmeteo_py.Utils.constants import *
+from openmeteo_py.Utils.timezones import *
 
 
 
@@ -42,3 +42,4 @@ class AirQualityOptions():
                     self.end_date = end_date
                     self.start_end = start_end
         self.start_end = start_end
+        self.cell_selection = cell_selection

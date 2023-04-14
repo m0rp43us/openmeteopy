@@ -262,17 +262,28 @@ class OWmanager():
             "end_date": options.end_date,
             "cell_selection" : options.cell_selection
             }
-        else : 
-            self.url = "https://api.open-meteo.com/v1/forecast?"
-        
-            self.payload = {
+            elif api == self.air_quality:
+                if options.start_end :
+                    self.payload = {
             "latitude": options.latitude,
             "longitude": options.longitude,
+            "domains" : options.domains,
             "timezone": options.timezone,
-            "windspeed_unit":options.windspeed_unit,
-            "precipitation_unit":options.precipitation_unit,
             "timeformat":options.timeformat,
-            "past_days":options.past_days
+            "past_days":options.past_days,
+            "start_date" : options.start_date ,
+            "end_date": options.end_date,
+            "cell_selection" : options.cell_selection
+            }
+                else :
+                    self.payload = {
+            "latitude": options.latitude,
+            "longitude": options.longitude,
+            "domains" : options.domains,
+            "timeformat":options.timeformat,
+            "timezone": options.timezone,
+            "past_days":options.past_days,
+            "cell_selection" : options.cell_selection
             }
         if self.daily != None :
             self.payload['daily'] = ','.join(self.daily.daily_params)
