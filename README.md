@@ -74,4 +74,4 @@ You can get your output in json,dataframe or save it as csv or excel file as fol
 - Readthedocs
 
 
-### Contributions (coding, testing, packaging, reporting issues) are more than welcome ! 
+
