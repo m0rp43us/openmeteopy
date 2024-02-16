@@ -467,4 +467,3 @@ class OWmanager():
                     return pd.DataFrame(meteo)
         else :
             raise FileOptionError
-

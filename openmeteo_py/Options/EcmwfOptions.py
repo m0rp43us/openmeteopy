@@ -9,7 +9,7 @@ class EcmwfOptions():
     Time always starts at 0:00 today and contains 168 hours.
 
     """
-    def __init__(self, latitude, longitude,elevation = nan,current_weather = False,temperature_unit = celsius,windspeed_unit =kmh ,  precipitation_unit = mm,timeformat = iso8601, past_days = 0,start_end = False,start_date = None,end_date = None,cell_sellection = land):
+    def __init__(self, latitude, longitude, elevation = nan, current_weather = False, temperature_unit = celsius, windspeed_unit =kmh, precipitation_unit = mm, timeformat = iso8601, past_days = 0, start_end = False, start_date = None, end_date = None, cell_sellection = land):
         """
         Args:
             latitude (float): Latitude (Geographical WGS84 coordiante of the location).
@@ -39,9 +39,9 @@ class EcmwfOptions():
         self.current_weather = current_weather
         self.past_days = past_days
         if start_end != False :
-                    self.start_date = start_date
-                    self.end_date = end_date
-                    self.start_end = start_end
+            self.start_date = start_date
+            self.end_date = end_date
+            self.start_end = start_end
         self.start_end = start_end
         self.cell_selection = cell_sellection
         self.temperature_unit = temperature_unit
