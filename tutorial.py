@@ -20,7 +20,7 @@ options = EcmwfOptions(latitude,
                     #    end_date=end_date) 
 
 # Set the OM client to fetch data
-mgr = OWmanager(options, OWmanager.ecmwf, hourly.precipitation())
+mgr = OWmanager(options, OWmanager.ecmwf, hourly.all())
 # Fetch data
 meteo = mgr.get_data()
 
