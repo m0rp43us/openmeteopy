@@ -14,10 +14,11 @@ end_date = '2024-02-01'
 hourly = HourlyEcmwf()
 # Set options to get specific forecasts
 options = EcmwfOptions(latitude, 
-                       longitude, 
-                       start_end=True, # Set this flag true to get specific time window data 
-                       start_date=start_date, 
-                       end_date=end_date) 
+                       longitude,
+                       forecast_days=5) 
+                    #    start_end=True, # Set this flag true to get specific time window data 
+                    #    start_date=start_date, 
+                    #    end_date=end_date) 
 
 # Set the OM client to fetch data
 mgr = OWmanager(options, OWmanager.ecmwf, hourly.precipitation())
@@ -33,7 +34,6 @@ if meteo['hourly'] == res.json()['hourly']:
 else:
     print('NOOOOO')
     
-print(meteo['hourly'])
+print(meteo)
 print('---------------------------------------------------')
-print(res.json()['hourly'])
-# print(mgr.payload)
+# print(res.json()['hourly'])

@@ -9,7 +9,21 @@ class EcmwfOptions():
     Time always starts at 0:00 today and contains 168 hours.
 
     """
-    def __init__(self, latitude, longitude, elevation = nan, current_weather = False, temperature_unit = celsius, windspeed_unit =kmh, precipitation_unit = mm, timeformat = iso8601, past_days = 0, start_end = False, start_date = None, end_date = None, cell_sellection = land):
+    def __init__(self, 
+                 latitude, 
+                 longitude, 
+                 elevation = nan,
+                 current_weather = False, 
+                 temperature_unit = celsius, 
+                 windspeed_unit = kmh, 
+                 precipitation_unit = mm, 
+                 timeformat = iso8601, 
+                 past_days = 0, 
+                 start_end = False, 
+                 start_date = None, 
+                 end_date = None, 
+                 cell_sellection = land,
+                 forecast_days = 5):
         """
         Args:
             latitude (float): Latitude (Geographical WGS84 coordiante of the location).
@@ -20,7 +34,11 @@ class EcmwfOptions():
                                             Please note that all time is then in UTC! For daily values with unix timestamp, please apply utc_offset_seconds again to get the correct date.
             timezone (string, optional): If timezone is set, all timestamps are returned as local-time and data is returned starting at 0:00 local-time. 
                                         Any time zone name from the time zone database is available under timezones.py .
-            past_days (int, optional):  If past_days is set, yesterdays or the day before yesterdays data are also returned..
+            past_days (int, optional):  If past_days is set, yesterdays or the day before yesterdays data are also returned.
+            start_end (boolean): This flag set call for historical data
+            start_date (string): String written in the 'yyyy-mm-dd' format for the start date
+            end_date (string): String written in the 'yyyy-mm-dd' format for the end date
+            forecast_days (int): number of days for future forecasts. Default value is 5 days.
         Raises:
             ValueError: Raises when latitude is not between -90 and 90 degrees.
             ValueError: Raises when longitude is not between -180 and 180 degrees.
@@ -45,3 +63,4 @@ class EcmwfOptions():
         self.start_end = start_end
         self.cell_selection = cell_sellection
         self.temperature_unit = temperature_unit
+        self.forecast_days = forecast_days

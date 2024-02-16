@@ -15,13 +15,11 @@ def test_row_json_forecasts():
     hourly = HourlyEcmwf()
     # Set options to get specific forecasts
     options = EcmwfOptions(latitude, 
-                        longitude, 
-                        start_end=True, # Set this flag true to get specific time window data 
-                        start_date=start_date, 
-                        end_date=end_date) 
-    
+                           longitude 
+                           forecast_days=3) 
+        
     # Call OM api and check that fetching data is ok 
-    API_URL = 'https://api.open-meteo.com/v1/ecmwf?latitude=-6.31&longitude=33.89&elevation=nan&timeformat=iso8601&past_days=0&temperature_unit=celsius&current_weather=False&windspeed_unit=kmh&precipitation_unit=mm&start_date=2024-01-30&end_date=2024-02-01&cell_selection=land&hourly=precipitation'
+    API_URL = 'https://api.open-meteo.com/v1/ecmwf?latitude=-6.31&longitude=33.89&hourly=precipitation&forecast_days=5'
     res = requests.get(API_URL)
     # Set the OM client to fetch data
     mgr = OWmanager(options, OWmanager.ecmwf, hourly.precipitation())
