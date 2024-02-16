@@ -60,231 +60,232 @@ class OWmanager():
             self.url = api
             if api == self.geocoding :
                 self.payload = {
-            "name": options.name,
-            "count": options.count,
-            "format": options.format,
-            "language" : options.language
-            }
+                    "name": options.name,
+                    "count": options.count,
+                    "format": options.format,
+                    "language" : options.language
+                    }
             elif api == self.elevation:
                 self.payload = {
-            "latitude": options.latitude,
-            "longitude": options.longitude
-            }
+                    "latitude": options.latitude,
+                    "longitude": options.longitude
+                    }
             elif api == self.marine:
                 self.payload = {
-            "latitude": options.latitude,
-            "longitude": options.longitude,
-            "timezone": options.timezone,
-            "windspeed_unit":options.windspeed_unit,
-            "precipitation_unit":options.precipitation_unit,
-            "timeformat":options.timeformat,
-            "current_weather":options.current_weather,
-            "past_days":options.past_days
-            }
+                    "latitude": options.latitude,
+                    "longitude": options.longitude,
+                    "timezone": options.timezone,
+                    "windspeed_unit":options.windspeed_unit,
+                    "precipitation_unit":options.precipitation_unit,
+                    "timeformat":options.timeformat,
+                    "current_weather":options.current_weather,
+                    "past_days":options.past_days
+                    }
             elif api == self.gem:
                 self.payload = {
-            "latitude": options.latitude,
-            "longitude": options.longitude,
-            "timezone": options.timezone,
-            "windspeed_unit":options.windspeed_unit,
-            "precipitation_unit":options.precipitation_unit,
-            "timeformat":options.timeformat,
-            "current_weather":options.current_weather,
-            "past_days":options.past_days
-            }
+                    "latitude": options.latitude,
+                    "longitude": options.longitude,
+                    "timezone": options.timezone,
+                    "windspeed_unit":options.windspeed_unit,
+                    "precipitation_unit":options.precipitation_unit,
+                    "timeformat":options.timeformat,
+                    "current_weather":options.current_weather,
+                    "past_days":options.past_days
+                    }
             elif api == self.metno:
                 if options.start_end :
                     self.payload = {
-            "latitude": options.latitude,
-            "longitude": options.longitude,
-            "timezone": options.timezone,
-            "windspeed_unit":options.windspeed_unit,
-            "precipitation_unit":options.precipitation_unit,
-            "timeformat":options.timeformat,
-            "current_weather":options.current_weather,
-            "past_days":options.past_days,
-            "self.temperature_unit" : options.temperature_unit,
-            "start_date" : options.start_date ,
-            "end_date": options.end_date,
-            "cell_selection" : options.cell_selection
-            }
+                        "latitude": options.latitude,
+                        "longitude": options.longitude,
+                        "timezone": options.timezone,
+                        "windspeed_unit":options.windspeed_unit,
+                        "precipitation_unit":options.precipitation_unit,
+                        "timeformat":options.timeformat,
+                        "current_weather":options.current_weather,
+                        "past_days":options.past_days,
+                        "self.temperature_unit" : options.temperature_unit,
+                        "start_date" : options.start_date ,
+                        "end_date": options.end_date,
+                        "cell_selection" : options.cell_selection
+                        }
                 else :
                     self.payload = {
-            "latitude": options.latitude,
-            "longitude": options.longitude,
-            "timezone": options.timezone,
-            "windspeed_unit":options.windspeed_unit,
-            "precipitation_unit":options.precipitation_unit,
-            "timeformat":options.timeformat,
-            "current_weather":options.current_weather,
-            "past_days":options.past_days,
-            "self.temperature_unit" : options.temperature_unit,
-            "cell_selection" : options.cell_selection
-            }
+                        "latitude": options.latitude,
+                        "longitude": options.longitude,
+                        "timezone": options.timezone,
+                        "windspeed_unit":options.windspeed_unit,
+                        "precipitation_unit":options.precipitation_unit,
+                        "timeformat":options.timeformat,
+                        "current_weather":options.current_weather,
+                        "past_days":options.past_days,
+                        "self.temperature_unit" : options.temperature_unit,
+                        "cell_selection" : options.cell_selection
+                        }
             elif api == self.flood:
                 if options.start_end :
                     self.payload = {
-            "latitude": options.latitude,
-            "longitude": options.longitude,
-            "timeformat":options.timeformat,
-            "past_days":options.past_days,
-            "forecast_days" : options.forecast_days,
-            "start_date" : options.start_date ,
-            "end_date": options.end_date,
-            "ensemble" : options.ensemble,
-            "cell_selection" : options.cell_selection
-            }
+                        "latitude": options.latitude,
+                        "longitude": options.longitude,
+                        "timeformat":options.timeformat,
+                        "past_days":options.past_days,
+                        "forecast_days" : options.forecast_days,
+                        "start_date" : options.start_date ,
+                        "end_date": options.end_date,
+                        "ensemble" : options.ensemble,
+                        "cell_selection" : options.cell_selection
+                        }
                 else :
                     self.payload = {
-            "latitude": options.latitude,
-            "longitude": options.longitude,
-            "timeformat":options.timeformat,
-            "past_days":options.past_days,
-            "forecast_days" : options.forecast_days,
-            "ensemble" : options.ensemble,
-            "cell_selection" : options.cell_selection
-            }
+                        "latitude": options.latitude,
+                        "longitude": options.longitude,
+                        "timeformat":options.timeformat,
+                        "past_days":options.past_days,
+                        "forecast_days" : options.forecast_days,
+                        "ensemble" : options.ensemble,
+                        "cell_selection" : options.cell_selection
+                        }
             elif api == self.meteofrance or api == self.jma or api == self.dwd_icon :
                 if options.start_end :
                     self.payload = {
-            "latitude": options.latitude,
-            "longitude": options.longitude,
-            "elevation" : options.elevation,
-            "timezone": options.timezone,
-            "timeformat":options.timeformat,
-            "past_days":options.past_days,
-            "temperature_unit" : options.temperature_unit,
-            "current_weather":options.current_weather,
-            "windspeed_unit" : options.windspeed_unit,
-            "precipitation_unit": options.precipitation_unit,
-            "start_date" : options.start_date ,
-            "end_date": options.end_date,
-            "cell_selection" : options.cell_selection
-            }
+                        "latitude": options.latitude,
+                        "longitude": options.longitude,
+                        "elevation" : options.elevation,
+                        "timezone": options.timezone,
+                        "timeformat":options.timeformat,
+                        "past_days":options.past_days,
+                        "temperature_unit" : options.temperature_unit,
+                        "current_weather":options.current_weather,
+                        "windspeed_unit" : options.windspeed_unit,
+                        "precipitation_unit": options.precipitation_unit,
+                        "start_date" : options.start_date ,
+                        "end_date": options.end_date,
+                        "cell_selection" : options.cell_selection
+                        }
                 else :
                     self.payload = {
-            "latitude": options.latitude,
-            "longitude": options.longitude,
-            "elevation" : options.elevation,
-            "timeformat":options.timeformat,
-            "timezone": options.timezone,
-            "past_days":options.past_days,
-            "temperature_unit" : options.temperature_unit,
-            "current_weather":options.current_weather,
-            "windspeed_unit" : options.windspeed_unit,
-            "precipitation_unit": options.precipitation_unit,
-            "cell_selection" : options.cell_selection
-            }
+                        "latitude": options.latitude,
+                        "longitude": options.longitude,
+                        "elevation" : options.elevation,
+                        "timeformat":options.timeformat,
+                        "timezone": options.timezone,
+                        "past_days":options.past_days,
+                        "temperature_unit" : options.temperature_unit,
+                        "current_weather":options.current_weather,
+                        "windspeed_unit" : options.windspeed_unit,
+                        "precipitation_unit": options.precipitation_unit,
+                        "cell_selection" : options.cell_selection
+                        }
             elif api == self.ecmwf:
                 if options.start_end :
                     self.payload = {
-            "latitude": options.latitude,
-            "longitude": options.longitude,
-            "elevation" : options.elevation,
-            "timeformat":options.timeformat,
-            "past_days":options.past_days,
-            "temperature_unit" : options.temperature_unit,
-            "current_weather":options.current_weather,
-            "windspeed_unit" : options.windspeed_unit,
-            "precipitation_unit": options.precipitation_unit,
-            "start_date" : options.start_date ,
-            "end_date": options.end_date,
-            "cell_selection" : options.cell_selection
-            }
+                        "latitude": options.latitude,
+                        "longitude": options.longitude,
+                        "elevation" : options.elevation,
+                        "timeformat":options.timeformat,
+                        "past_days":options.past_days,
+                        "temperature_unit" : options.temperature_unit,
+                        "current_weather":options.current_weather,
+                        "windspeed_unit" : options.windspeed_unit,
+                        "precipitation_unit": options.precipitation_unit,
+                        "start_date" : options.start_date ,
+                        "end_date": options.end_date,
+                        "cell_selection" : options.cell_selection
+                        }
                 else :
                     self.payload = {
-            "latitude": options.latitude,
-            "longitude": options.longitude,
-            "elevation" : options.elevation,
-            "timeformat":options.timeformat,
-            "past_days":options.past_days,
-            "temperature_unit" : options.temperature_unit,
-            "current_weather":options.current_weather,
-            "windspeed_unit" : options.windspeed_unit,
-            "precipitation_unit": options.precipitation_unit,
-            "cell_selection" : options.cell_selection
-            }
+                        "latitude": options.latitude,
+                        "longitude": options.longitude,
+                        "elevation" : options.elevation,
+                        "timeformat":options.timeformat,
+                        "past_days":options.past_days,
+                        "temperature_unit" : options.temperature_unit,
+                        "current_weather":options.current_weather,
+                        "windspeed_unit" : options.windspeed_unit,
+                        "precipitation_unit": options.precipitation_unit,
+                        "cell_selection" : options.cell_selection,
+                        "forecast_days" : options.forecast_days
+                        }
             elif api == self.forecast:
                 self.payload = {
-            "latitude": options.latitude,
-            "longitude": options.longitude,
-            "timezone": options.timezone,
-            "windspeed_unit":options.windspeed_unit,
-            "precipitation_unit":options.precipitation_unit,
-            "timeformat":options.timeformat,
-            "past_days":options.past_days
-            }
+                        "latitude": options.latitude,
+                        "longitude": options.longitude,
+                        "timezone": options.timezone,
+                        "windspeed_unit":options.windspeed_unit,
+                        "precipitation_unit":options.precipitation_unit,
+                        "timeformat":options.timeformat,
+                        "past_days":options.past_days
+                        }
             elif api == self.gfs:
                 if options.start_end :
                     self.payload = {
-            "latitude": options.latitude,
-            "longitude": options.longitude,
-            "elevation" : options.elevation,
-            "timezone": options.timezone,
-            "timeformat":options.timeformat,
-            "past_days":options.past_days,
-            "temperature_unit" : options.temperature_unit,
-            "current_weather":options.current_weather,
-            "windspeed_unit" : options.windspeed_unit,
-            "precipitation_unit": options.precipitation_unit,
-            "forecast_days":options.forecast_days,
-            "start_date" : options.start_date ,
-            "end_date": options.end_date,
-            "cell_selection" : options.cell_selection
-            }
+                        "latitude": options.latitude,
+                        "longitude": options.longitude,
+                        "elevation" : options.elevation,
+                        "timezone": options.timezone,
+                        "timeformat":options.timeformat,
+                        "past_days":options.past_days,
+                        "temperature_unit" : options.temperature_unit,
+                        "current_weather":options.current_weather,
+                        "windspeed_unit" : options.windspeed_unit,
+                        "precipitation_unit": options.precipitation_unit,
+                        "forecast_days":options.forecast_days,
+                        "start_date" : options.start_date ,
+                        "end_date": options.end_date,
+                        "cell_selection" : options.cell_selection
+                        }
                 else :
                     self.payload = {
-            "latitude": options.latitude,
-            "longitude": options.longitude,
-            "elevation" : options.elevation,
-            "timeformat":options.timeformat,
-            "timezone": options.timezone,
-            "past_days":options.past_days,
-            "temperature_unit" : options.temperature_unit,
-            "current_weather":options.current_weather,
-            "windspeed_unit" : options.windspeed_unit,
-            "precipitation_unit": options.precipitation_unit,
-            "forecast_days":options.forecast_days,
-            "cell_selection" : options.cell_selection
-            }
+                        "latitude": options.latitude,
+                        "longitude": options.longitude,
+                        "elevation" : options.elevation,
+                        "timeformat":options.timeformat,
+                        "timezone": options.timezone,
+                        "past_days":options.past_days,
+                        "temperature_unit" : options.temperature_unit,
+                        "current_weather":options.current_weather,
+                        "windspeed_unit" : options.windspeed_unit,
+                        "precipitation_unit": options.precipitation_unit,
+                        "forecast_days":options.forecast_days,
+                        "cell_selection" : options.cell_selection
+                        }
             elif api == self.historical:
                     self.payload = {
-            "latitude": options.latitude,
-            "longitude": options.longitude,
-            "elevation" : options.elevation,
-            "timezone": options.timezone,
-            "timeformat":options.timeformat,
-            "temperature_unit" : options.temperature_unit,
-            "current_weather":options.current_weather,
-            "windspeed_unit" : options.windspeed_unit,
-            "precipitation_unit": options.precipitation_unit,
-            "start_date" : options.start_date ,
-            "end_date": options.end_date,
-            "cell_selection" : options.cell_selection
-            }
+                        "latitude": options.latitude,
+                        "longitude": options.longitude,
+                        "elevation" : options.elevation,
+                        "timezone": options.timezone,
+                        "timeformat":options.timeformat,
+                        "temperature_unit" : options.temperature_unit,
+                        "current_weather":options.current_weather,
+                        "windspeed_unit" : options.windspeed_unit,
+                        "precipitation_unit": options.precipitation_unit,
+                        "start_date" : options.start_date ,
+                        "end_date": options.end_date,
+                        "cell_selection" : options.cell_selection
+                        }
             elif api == self.air_quality:
                 if options.start_end :
                     self.payload = {
-            "latitude": options.latitude,
-            "longitude": options.longitude,
-            "domains" : options.domains,
-            "timezone": options.timezone,
-            "timeformat":options.timeformat,
-            "past_days":options.past_days,
-            "start_date" : options.start_date ,
-            "end_date": options.end_date,
-            "cell_selection" : options.cell_selection
-            }
+                        "latitude": options.latitude,
+                        "longitude": options.longitude,
+                        "domains" : options.domains,
+                        "timezone": options.timezone,
+                        "timeformat":options.timeformat,
+                        "past_days":options.past_days,
+                        "start_date" : options.start_date ,
+                        "end_date": options.end_date,
+                        "cell_selection" : options.cell_selection
+                        }
                 else :
                     self.payload = {
-            "latitude": options.latitude,
-            "longitude": options.longitude,
-            "domains" : options.domains,
-            "timeformat":options.timeformat,
-            "timezone": options.timezone,
-            "past_days":options.past_days,
-            "cell_selection" : options.cell_selection
-            }
+                        "latitude": options.latitude,
+                        "longitude": options.longitude,
+                        "domains" : options.domains,
+                        "timeformat":options.timeformat,
+                        "timezone": options.timezone,
+                        "past_days":options.past_days,
+                        "cell_selection" : options.cell_selection
+                        }
         if self.daily != None :
             self.payload['daily'] = ','.join(self.daily.daily_params)
         if self.hourly != None :
@@ -467,4 +468,3 @@ class OWmanager():
                     return pd.DataFrame(meteo)
         else :
             raise FileOptionError
-

@@ -126,6 +126,16 @@ class HourlyEcmwf()  :
         self.hourly_params.append("windspeed_10m")
         return self
 
+    def soil_temperature_0_to_7cm(self):
+        """
+        Returns the Hourly configuration object 
+        :returns: `Hourly()`
+
+        Soil temperature from 0 to 7cm.
+        """
+
+        self.hourly_params.append("soil_temperature_0_to_7cm")
+
     def winddirection_10m(self):
         """
         Returns the Hourly configuration object 
@@ -146,17 +156,6 @@ class HourlyEcmwf()  :
         """
 
         self.hourly_params.append("skin_temperature")
-        return self
-
-    def soil_temperature_0_7cm(self):
-        """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
-
-        Shortwave solar radiation as average of the preceding hour
-        """
-
-        self.hourly_params.append("soil_temperature_0_7cm")
         return self
 
     def total_column_integrated_water_vapour(self):
@@ -1434,7 +1433,7 @@ class HourlyEcmwf()  :
             "weathercode",
             "snowfall",
             "surface_air_pressure",
-            "soil_temperature_0_7cm",
             "total_column_integrated_water_vapour",
-            "skin_temperature"])
+            "skin_temperature",
+            "soil_temperature_0_to_7cm"])
         return self
