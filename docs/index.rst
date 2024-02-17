@@ -5,17 +5,27 @@
 
 Welcome to openmeteo_py's documentation!
 ========================================
+   openmeteo_py is a python library to easily access open meteo APIs and obtain python objects.
+
+Setup and Configuration
+-----------------------
+   Here I will add all the setup and config sources
+
+
+Documentation
+-------------
+
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
-   
+
    modules
 
 
-Indices and tables
-==================
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+.. Indices and tables
+.. ==================
+
+.. * :ref:`genindex`
+.. * :ref:`modindex`
+.. * :ref:`search`

@@ -9,20 +9,11 @@ import http.client
 import requests
 import json
 import pandas as pd
+import numpy as np
 from openmeteo_py import ApiCallError,FilepathNotFilled,FileOptionError
+from enum import Enum
 
-def patch_http_response_read(func):
-    def inner(*args):
-        try:
-            return func(*args)
-        except http.client.IncompleteRead as e:
-            return e.partial
-    return inner
-
-http.client.HTTPResponse.read = patch_http_response_read(http.client.HTTPResponse.read)
-
-class OWmanager():
-
+class Providers(Enum):
     gem = "https://api.open-meteo.com/v1/gem?"
     metno = "https://api.open-meteo.com/v1/metno?"
     jma = "https://api.open-meteo.com/v1/jma?"
@@ -39,9 +30,19 @@ class OWmanager():
     forecast = "https://api.open-meteo.com/v1/forecast?"
 
 
+def patch_http_response_read(func):
+    def inner(*args):
+        try:
+            return func(*args)
+        except http.client.IncompleteRead as e:
+            return e.partial
+    return inner
 
-    def __init__(self,options,api=None , hourly = None,daily = None, fifteen_minutes = None,api_key=None,):
-        
+http.client.HTTPResponse.read = patch_http_response_read(http.client.HTTPResponse.read)
+
+class OWmanager():
+    def __init__(self, options, api=None, hourly = None, daily = None, fifteen_minutes = None, api_key =None):
+         
         """
         Entry point class providing ad-hoc API clients for each OW web API.
 
@@ -56,21 +57,21 @@ class OWmanager():
         self.hourly = hourly
         self.daily = daily
         self.fifteen_minutes = fifteen_minutes
-        if api != None :
+        if api != None:
             self.url = api
-            if api == self.geocoding :
+            if api == Providers.geocoding :
                 self.payload = {
                     "name": options.name,
                     "count": options.count,
                     "format": options.format,
                     "language" : options.language
                     }
-            elif api == self.elevation:
+            elif api == Providers.elevation:
                 self.payload = {
                     "latitude": options.latitude,
                     "longitude": options.longitude
                     }
-            elif api == self.marine:
+            elif api == Providers.marine:
                 self.payload = {
                     "latitude": options.latitude,
                     "longitude": options.longitude,
@@ -81,7 +82,7 @@ class OWmanager():
                     "current_weather":options.current_weather,
                     "past_days":options.past_days
                     }
-            elif api == self.gem:
+            elif api == Providers.gem:
                 self.payload = {
                     "latitude": options.latitude,
                     "longitude": options.longitude,
@@ -92,7 +93,7 @@ class OWmanager():
                     "current_weather":options.current_weather,
                     "past_days":options.past_days
                     }
-            elif api == self.metno:
+            elif api == Providers.metno:
                 if options.start_end :
                     self.payload = {
                         "latitude": options.latitude,
@@ -121,7 +122,7 @@ class OWmanager():
                         "self.temperature_unit" : options.temperature_unit,
                         "cell_selection" : options.cell_selection
                         }
-            elif api == self.flood:
+            elif api == Providers.flood:
                 if options.start_end :
                     self.payload = {
                         "latitude": options.latitude,
@@ -144,7 +145,7 @@ class OWmanager():
                         "ensemble" : options.ensemble,
                         "cell_selection" : options.cell_selection
                         }
-            elif api == self.meteofrance or api == self.jma or api == self.dwd_icon :
+            elif api == Providers.meteofrance or api == Providers.jma or api == Providers.dwd_icon :
                 if options.start_end :
                     self.payload = {
                         "latitude": options.latitude,
@@ -175,7 +176,7 @@ class OWmanager():
                         "precipitation_unit": options.precipitation_unit,
                         "cell_selection" : options.cell_selection
                         }
-            elif api == self.ecmwf:
+            elif api == Providers.ecmwf:
                 if options.start_end :
                     self.payload = {
                         "latitude": options.latitude,
@@ -205,7 +206,7 @@ class OWmanager():
                         "cell_selection" : options.cell_selection,
                         "forecast_days" : options.forecast_days
                         }
-            elif api == self.forecast:
+            elif api == Providers.forecast:
                 self.payload = {
                         "latitude": options.latitude,
                         "longitude": options.longitude,
@@ -248,7 +249,7 @@ class OWmanager():
                         "forecast_days":options.forecast_days,
                         "cell_selection" : options.cell_selection
                         }
-            elif api == self.historical:
+            elif api == Providers.historical:
                     self.payload = {
                         "latitude": options.latitude,
                         "longitude": options.longitude,
@@ -263,7 +264,7 @@ class OWmanager():
                         "end_date": options.end_date,
                         "cell_selection" : options.cell_selection
                         }
-            elif api == self.air_quality:
+            elif api == Providers.air_quality:
                 if options.start_end :
                     self.payload = {
                         "latitude": options.latitude,
@@ -347,15 +348,65 @@ class OWmanager():
                 daily[i] = data
             cleaned_data["minutely_15"] = daily
         return cleaned_data
+    
+    def convert_to_df(response):
+        df = pd.DataFrame(response)
+        return df
+    
+    def convert_to_np(response):
+        df = pd.DataFrame(response)
+        return df
+    
+    def save_to_file(response):
+        return
+    
+    # TODO: Complete this function as an explicit version of the get_data function
+    #       Delete int values to select options for resonses data type
+    def fetch(self, output=None, file=False, filepath=None):
+        """Calls Open-Meteo API with the payload saved in this class and return original json, pandas dataframe or numpy array
+
+        Args:
+            :output (string, optional): None, "pandas" or "numpy" to specity data type for returned object. None value imply original json file returned.
+            :file (boolean, optional): True value to save dataframe to a csv file to the specified path.
+            :filepath (string, optional): Path to file.
+
+        Raises:
+            :BaseException: HTTP error
+            :ApiCallError: Api resonse error
+            :FileOptionError: File option being incorrect (number < 0 or > 3)
+            :FilepathNotFilled: Filepath not filled in the input options
+            :ConnectionError: requests connection error (internet connection or server having some trouble)
+
+        Returns:
+            :pandas.DataFrame: pandas dataframe with time as index and columns corresponding to variables requested
+        """
+        try:
+            res = requests.get(self.url, params = self.payload)
+            if res.status_code != 200 and res.status_code != 400:
+                raise BaseException("Failed retrieving open-meteo data, server returned HTTP code: {} on following URL {}.".format(res.status_code, res.url))
+            if "reason" in res:
+                raise ApiCallError(res)   
+            if file:
+                self.save_to_file(res)
+            if output == None:
+                return res
+            elif output == 'pandas':
+                print(len(res.json()['hourly']))
+                return self.convert_to_df(res.json()['hourly'])
+            elif output == 'numpy':
+                return self.convert_to_np(res.json())
+            
+        except requests.ConnectionError as e :
+            raise(e)
 
 
-    def get_data(self,output = 0,file = 0,filepath = None):
+    def get_data(self, output = 0, file = 0, filepath = None):
         """
         Handles the retrieval and processing of the OPEN-METEO data.
 
         Args:
             output (int, optional): default is the server response JSON (option 0),1 for a JSON with variable keys as dates,2 for the server response parsed as a dataframe and 3 for a dataframe where each column is for a variable with rows being linked each to a time/date
-            file (int, optional): 0 as a default (not saving),1 for the server's response JSON or dataframe saved as csv,2 for excel file (xlsx)
+            file (int, optional): 0 as a default (not saving), 1 for the server's response JSON or dataframe saved as csv, 2 for excel file (xlsx)
             filepath (string, optional): filepath of the output file to be saved at
 
         Raises:
@@ -370,7 +421,7 @@ class OWmanager():
         """
 
         try:
-            r  = requests.get(self.url, params = self.payload)
+            r  = requests.get(self.url.value, params = self.payload)
             if r.status_code != 200 and r.status_code != 400:
                 raise BaseException("Failed retrieving open-meteo data, server returned HTTP code: {} on following URL {}.".format(r.status_code, r.url))
             if "reason" in r :

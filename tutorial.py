@@ -1,4 +1,5 @@
 from openmeteo_py import OWmanager
+from openmeteo_py import Providers
 from openmeteo_py.Hourly.HourlyEcmwf import HourlyEcmwf
 from openmeteo_py.Options.EcmwfOptions import EcmwfOptions
 from openmeteo_py.Utils.constants import *
@@ -20,8 +21,10 @@ options = EcmwfOptions(latitude,
                     #    end_date=end_date) 
 
 # Set the OM client to fetch data
-mgr = OWmanager(options, OWmanager.ecmwf, hourly.all())
+mgr = OWmanager(options, Providers.ecmwf, hourly.all())
 # Fetch data
-meteo = mgr.get_data()
+meteo = mgr.get_data(3)
+# meteo_fetch = mgr.fetch(output="pandas")
 
 print(meteo)
+# print(meteo_fetch)
