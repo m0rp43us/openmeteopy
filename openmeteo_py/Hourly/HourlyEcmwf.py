@@ -2,7 +2,7 @@ from openmeteo_py.Exceptions import *
 
 
 
-class HourlyEcmwf()  :
+class HourlyEcmwf():
 
     """
     Hourly Parameter functions

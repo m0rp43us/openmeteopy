@@ -1,5 +1,3 @@
-
-
 class TypedList(list):
     """
     Typelist class

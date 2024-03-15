@@ -6,4 +6,4 @@ from openmeteo_py.Hourly.HourlyForecast import HourlyForecast
 from openmeteo_py.Exceptions import ApiCallError
 from openmeteo_py.Exceptions import FilepathNotFilled,FileOptionError
 from openmeteo_py.OWmanager import OWmanager
-from openmeteo_py.OWmanager import Providers
+# from openmeteo_py.OWmanager import Providers

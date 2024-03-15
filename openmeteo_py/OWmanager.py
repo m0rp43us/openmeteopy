@@ -13,22 +13,22 @@ import numpy as np
 from openmeteo_py import ApiCallError,FilepathNotFilled,FileOptionError
 from enum import Enum
 
-class Providers(Enum):
-    gem = "https://api.open-meteo.com/v1/gem?"
-    metno = "https://api.open-meteo.com/v1/metno?"
-    jma = "https://api.open-meteo.com/v1/jma?"
-    dwd_icon = "https://api.open-meteo.com/v1/dwd-icon?"
-    meteofrance = "https://api.open-meteo.com/v1/meteofrance?"
-    gfs = "https://api.open-meteo.com/v1/gfs?"
-    ecmwf = "https://api.open-meteo.com/v1/ecmwf?"
-    historical = "https://archive-api.open-meteo.com/v1/archive?"
-    marine = "https://marine-api.open-meteo.com/v1/marine?"
-    air_quality = "https://air-quality-api.open-meteo.com/v1/air-quality?"
-    geocoding = "https://geocoding-api.open-meteo.com/v1/search?"
-    elevation = "https://api.open-meteo.com/v1/elevation?"
-    flood = "https://flood-api.open-meteo.com/v1/flood?"
-    forecast = "https://api.open-meteo.com/v1/forecast?"
-
+_providers = { 
+    "gem" : "https://api.open-meteo.com/v1/gem?",
+    "metno" : "https://api.open-meteo.com/v1/metno?",
+    "jma" : "https://api.open-meteo.com/v1/jma?",
+    "dwd_icon" : "https://api.open-meteo.com/v1/dwd-icon?",
+    "meteofrance" : "https://api.open-meteo.com/v1/meteofrance?",
+    "gfs" : "https://api.open-meteo.com/v1/gfs?",
+    "ecmwf" : "https://api.open-meteo.com/v1/ecmwf?",
+    "historical" : "https://archive-api.open-meteo.com/v1/archive?",
+    "marine" : "https://marine-api.open-meteo.com/v1/marine?",
+    "air_quality" : "https://air-quality-api.open-meteo.com/v1/air-quality?",
+    "geocoding" : "https://geocoding-api.open-meteo.com/v1/search?",
+    "elevation" : "https://api.open-meteo.com/v1/elevation?",
+    "flood" : "https://flood-api.open-meteo.com/v1/flood?",
+    "forecast" : "https://api.open-meteo.com/v1/forecast?",
+}
 
 def patch_http_response_read(func):
     def inner(*args):
@@ -40,15 +40,15 @@ def patch_http_response_read(func):
 
 http.client.HTTPResponse.read = patch_http_response_read(http.client.HTTPResponse.read)
 
-class OWmanager():
-    def __init__(self, options, api=None, hourly = None, daily = None, fifteen_minutes = None, api_key =None):
+class OWmanager():   
+    def __init__(self, options, provider:str = None, hourly = None, daily = None, fifteen_minutes = None, api_key = None):
          
         """
         Entry point class providing ad-hoc API clients for each OW web API.
 
         Args:
-            options (Options): options for the /v1/forecast endpoint .
-            hourly (Hourly): Hourly parameter object.
+            options (Options) : options for the /v1/forecast endpoint .
+            hourly (Hourly) : Hourly parameter object.
             daily (Daily) : Daily parameter object.
             api_key (string) : commercial API key.
         """
@@ -57,21 +57,24 @@ class OWmanager():
         self.hourly = hourly
         self.daily = daily
         self.fifteen_minutes = fifteen_minutes
-        if api != None:
-            self.url = api
-            if api == Providers.geocoding :
+        
+        if provider not in list(_providers.keys()):
+            raise BaseException('Invalid provider, please check the openmeteopy documentation for the valid providers.')
+        else:
+            self.url = _providers[provider]
+            if provider == "geocoding" :
                 self.payload = {
                     "name": options.name,
                     "count": options.count,
                     "format": options.format,
                     "language" : options.language
                     }
-            elif api == Providers.elevation:
+            elif provider == "elevation":
                 self.payload = {
                     "latitude": options.latitude,
                     "longitude": options.longitude
                     }
-            elif api == Providers.marine:
+            elif provider == "marine":
                 self.payload = {
                     "latitude": options.latitude,
                     "longitude": options.longitude,
@@ -82,7 +85,7 @@ class OWmanager():
                     "current_weather":options.current_weather,
                     "past_days":options.past_days
                     }
-            elif api == Providers.gem:
+            elif provider == "gem":
                 self.payload = {
                     "latitude": options.latitude,
                     "longitude": options.longitude,
@@ -93,7 +96,7 @@ class OWmanager():
                     "current_weather":options.current_weather,
                     "past_days":options.past_days
                     }
-            elif api == Providers.metno:
+            elif provider == "metno":
                 if options.start_end :
                     self.payload = {
                         "latitude": options.latitude,
@@ -122,7 +125,7 @@ class OWmanager():
                         "self.temperature_unit" : options.temperature_unit,
                         "cell_selection" : options.cell_selection
                         }
-            elif api == Providers.flood:
+            elif provider == "flood":
                 if options.start_end :
                     self.payload = {
                         "latitude": options.latitude,
@@ -145,7 +148,7 @@ class OWmanager():
                         "ensemble" : options.ensemble,
                         "cell_selection" : options.cell_selection
                         }
-            elif api == Providers.meteofrance or api == Providers.jma or api == Providers.dwd_icon :
+            elif provider == "meteofrance" or provider == "jma" or provider == "dwd_icon" :
                 if options.start_end :
                     self.payload = {
                         "latitude": options.latitude,
@@ -176,7 +179,7 @@ class OWmanager():
                         "precipitation_unit": options.precipitation_unit,
                         "cell_selection" : options.cell_selection
                         }
-            elif api == Providers.ecmwf:
+            elif provider == "ecmwf":
                 if options.start_end :
                     self.payload = {
                         "latitude": options.latitude,
@@ -206,7 +209,7 @@ class OWmanager():
                         "cell_selection" : options.cell_selection,
                         "forecast_days" : options.forecast_days
                         }
-            elif api == Providers.forecast:
+            elif provider == "forecast":
                 self.payload = {
                         "latitude": options.latitude,
                         "longitude": options.longitude,
@@ -216,7 +219,7 @@ class OWmanager():
                         "timeformat":options.timeformat,
                         "past_days":options.past_days
                         }
-            elif api == self.gfs:
+            elif provider == "gfs":
                 if options.start_end :
                     self.payload = {
                         "latitude": options.latitude,
@@ -249,7 +252,7 @@ class OWmanager():
                         "forecast_days":options.forecast_days,
                         "cell_selection" : options.cell_selection
                         }
-            elif api == Providers.historical:
+            elif provider == "historical":
                     self.payload = {
                         "latitude": options.latitude,
                         "longitude": options.longitude,
@@ -264,7 +267,7 @@ class OWmanager():
                         "end_date": options.end_date,
                         "cell_selection" : options.cell_selection
                         }
-            elif api == Providers.air_quality:
+            elif provider == "air_quality":
                 if options.start_end :
                     self.payload = {
                         "latitude": options.latitude,
@@ -298,106 +301,216 @@ class OWmanager():
             self.url = "https://customer-api.open-meteo.com/v1/forecast?"
         self.payload = "&".join("%s=%s" % (k,v) for k,v in self.payload.items())
 
-    def Jsonify(self,meteo):
-        """Returns a json with each variable having keys as dates,result json otherwise
+    # # TODO: Check if this function correctly return a pandas df
+    # def dataframit(self, meteo, format = 0, filepath = None):
+    #     """Returns a dataframe with each variable having keys as dates,result dataframe otherwise
 
-        Args:
-            meteo (Dict): JSON input
+    #     Args:
+    #         meteo (Dict): JSON input
 
-        Returns:
-            dict: response JSON
-        """
+    #     Returns:
+    #         dict: response dataframe
+    #     """
 
-        daily = {}
-        hourly = {}
-        cleaned_data = {}
-        if "hourly" in meteo and "daily" in meteo:
-            for i in meteo['hourly']:
-                data = {}
-                for j in range(len(meteo['hourly'][i])-1):
-                    data[meteo["hourly"]["time"][j]] = meteo['hourly'][i][j]
-                hourly[i] = data
-            cleaned_data["hourly"] = hourly
-            for i in meteo['daily']:
-                data = {}
-                for j in range(len(meteo['daily'][i])-1):
-                    data[meteo["daily"]["time"][j]] = meteo['daily'][i][j]
-                daily[i] = data
-            cleaned_data["daily"] = daily
-        elif "hourly" in meteo and "daily" not in meteo:
-            for i in meteo['hourly']:
-                data = {}
-                for j in range(len(meteo['hourly'][i])-1):
-                    data[meteo["hourly"]["time"][j]] = meteo['hourly'][i][j]
-                hourly[i] = data
-            cleaned_data["hourly"] = hourly
-        elif "hourly" not in meteo and "daily" in meteo :
-            for i in meteo['daily']:
-                data = {}
-                for j in range(len(meteo['daily'][i])-1):
-                    data[meteo["daily"]["time"][j]] = meteo['daily'][i][j]
-                daily[i] = data
-            cleaned_data["daily"] = daily
-        else :
-            cleaned_data = meteo
-        if "minutely_15" in meteo  :
-            for i in meteo['minutely_15']:
-                data = {}
-                for j in range(len(meteo['minutely_15'][i])-1):
-                    data[meteo["minutely_15"]["time"][j]] = meteo['minutely_15'][i][j]
-                daily[i] = data
-            cleaned_data["minutely_15"] = daily
-        return cleaned_data
-    
-    def convert_to_df(response):
-        df = pd.DataFrame(response)
-        return df
-    
-    def convert_to_np(response):
-        df = pd.DataFrame(response)
-        return df
-    
-    def save_to_file(response):
-        return
+    #     meteo = self._jsonify(meteo)
+    #     if format == 0 :
+    #         if 'hourly' in meteo :
+    #             if 'daily' in meteo :
+    #                 return pd.DataFrame(meteo['hourly']), pd.DataFrame(meteo['daily'])
+    #             else :
+    #                 return pd.DataFrame(meteo['hourly'])
+    #         else :
+    #             if 'daily' in meteo :
+    #                 return pd.DataFrame(meteo['daily'])
+    #             else :
+    #                 return pd.DataFrame(meteo)
+    #     elif format == 1 :
+    #         if 'hourly' in meteo :
+    #             if 'daily' in meteo :
+    #                 pd.DataFrame(meteo['hourly']).to_csv(filepath+"_hourly.csv")
+    #                 pd.DataFrame(meteo['daily']).to_csv(filepath+"_daily.csv")
+    #                 return pd.DataFrame(meteo['hourly']),pd.DataFrame(meteo['daily'])
+    #             else :
+    #                 pd.DataFrame(meteo['hourly']).to_csv(filepath+"_hourly.csv")
+    #                 return pd.DataFrame(meteo['hourly'])
+    #         else :
+    #             if 'daily' in meteo :
+    #                 pd.DataFrame(meteo['daily']).to_csv(filepath+"_daily.csv")
+    #                 return pd.DataFrame(meteo['daily'])
+    #             else :
+    #                 pd.DataFrame(meteo).to_csv(filepath+".csv")
+    #                 return pd.DataFrame(meteo)
+    #     elif format == 2 :
+    #         if 'hourly' in meteo :
+    #             if 'daily' in meteo :
+    #                 pd.DataFrame(meteo['hourly']).to_excel(filepath+"_hourly.xlsx")
+    #                 pd.DataFrame(meteo['daily']).to_excel(filepath+"_daily.xlsx")
+    #                 return pd.DataFrame(meteo['hourly']),pd.DataFrame(meteo['daily'])
+    #             else :
+    #                 pd.DataFrame(meteo['hourly']).to_excel(filepath+"_hourly.xlsx")
+    #                 return pd.DataFrame(meteo['hourly'])
+    #         else :
+    #             if 'daily' in meteo :
+    #                 pd.DataFrame(meteo['daily']).to_excel(filepath+"_daily.xlsx")
+    #                 return pd.DataFrame(meteo['daily'])
+    #             else :
+    #                 pd.DataFrame(meteo).to_excel(filepath+".xlsx")
+    #                 return pd.DataFrame(meteo)
+    #     else :
+    #         raise FileOptionError
+
+    # # TODO: Find bug in this function to return a correct clean version of the original json response from the server
+    # def _jsonify(self, res):
+    #     """Returns a json with each variable having keys as dates, result json otherwise.
+
+    #     Args:
+    #         res (Dict): original JSON response from the server
+    #     Returns:
+    #         dict: clean JSON response
+    #     """
+    #     daily = {}
+    #     hourly = {}
+    #     cleaned_data = {}
+    #     if "hourly" in res and "daily" in res:
+    #         for i in res['hourly']:
+    #             data = {}
+    #             for j in range(len(res['hourly'][i])-1):
+    #                 data[res["hourly"]["time"][j]] = res['hourly'][i][j]
+    #             hourly[i] = data
+    #         cleaned_data["hourly"] = hourly
+    #         for i in res['daily']:
+    #             data = {}
+    #             for j in range(len(res['daily'][i])-1):
+    #                 data[res["daily"]["time"][j]] = res['daily'][i][j]
+    #             daily[i] = data
+    #         cleaned_data["daily"] = daily
+    #     elif "hourly" in res and "daily" not in res:
+    #         for i in res['hourly']:
+    #             data = {}
+    #             for j in range(len(res['hourly'][i])-1):
+    #                 data[res["hourly"]["time"][j]] = res['hourly'][i][j]
+    #             hourly[i] = data
+    #         cleaned_data["hourly"] = hourly
+    #     elif "hourly" not in res and "daily" in res :
+    #         for i in res['daily']:
+    #             data = {}
+    #             for j in range(len(res['daily'][i])-1):
+    #                 data[res["daily"]["time"][j]] = res['daily'][i][j]
+    #             daily[i] = data
+    #         cleaned_data["daily"] = daily
+    #     else :
+    #         cleaned_data = res
+    #     if "minutely_15" in res:
+    #         for i in res['minutely_15']:
+    #             data = {}
+    #             for j in range(len(res['minutely_15'][i])-1):
+    #                 data[res["minutely_15"]["time"][j]] = res['minutely_15'][i][j]
+    #             daily[i] = data
+    #         cleaned_data["minutely_15"] = daily
+    #     return cleaned_data
+
     
     # TODO: Complete this function as an explicit version of the get_data function
     #       Delete int values to select options for resonses data type
-    def fetch(self, output=None, file=False, filepath=None):
-        """Calls Open-Meteo API with the payload saved in this class and return original json, pandas dataframe or numpy array
-
-        Args:
-            :output (string, optional): None, "pandas" or "numpy" to specity data type for returned object. None value imply original json file returned.
-            :file (boolean, optional): True value to save dataframe to a csv file to the specified path.
-            :filepath (string, optional): Path to file.
+    def _fetch(self):
+        """Calls Open-Meteo API with the payload saved in this class and return original json
 
         Raises:
             :BaseException: HTTP error
             :ApiCallError: Api resonse error
-            :FileOptionError: File option being incorrect (number < 0 or > 3)
-            :FilepathNotFilled: Filepath not filled in the input options
             :ConnectionError: requests connection error (internet connection or server having some trouble)
-
         Returns:
-            :pandas.DataFrame: pandas dataframe with time as index and columns corresponding to variables requested
+            :json: response from the dataset in json
         """
         try:
             res = requests.get(self.url, params = self.payload)
             if res.status_code != 200 and res.status_code != 400:
                 raise BaseException("Failed retrieving open-meteo data, server returned HTTP code: {} on following URL {}.".format(res.status_code, res.url))
-            if "reason" in res:
-                raise ApiCallError(res)   
-            if file:
-                self.save_to_file(res)
-            if output == None:
-                return res
-            elif output == 'pandas':
-                print(len(res.json()['hourly']))
-                return self.convert_to_df(res.json()['hourly'])
-            elif output == 'numpy':
-                return self.convert_to_np(res.json())
-            
-        except requests.ConnectionError as e :
+            elif "reason" in res:
+                raise ApiCallError(res)
+            else:
+                return res.json()
+        except requests.ConnectionError as e:
             raise(e)
+        
+    # TODO: get_json()
+    def get_json(self) -> str:
+        """Retrieve a json object from the open-meteo APIs.
+
+        Returns:
+            str: A "cleaned" version of the server response in JSON format as a string. It only includes hourly, daily or minutely_15 attributes.
+        """
+        res = self._fetch()
+        daily = {}
+        hourly = {}
+        cleaned_data = {}
+        if "hourly" in res and "daily" in res:
+            cleaned_data["hourly"] = res["hourly"]
+            cleaned_data["daily"] = res["daily"]
+        elif "hourly" in res and "daily" not in res:
+            cleaned_data["hourly"] = res["hourly"]
+        elif "hourly" not in res and "daily" in res :
+            cleaned_data["daily"] = res["daily"]
+        else :
+            cleaned_data = res
+        if "minutely_15" in res:
+            cleaned_data["minutely_15"] = res["minutely_15"]
+        
+        return json.dumps(cleaned_data)
+    
+    # TODO: get_numpy()
+
+    # TODO: get_pandas()
+    def get_pandas(self) -> pd.DataFrame:
+        """This function builds a pandas dataframe from the open-meteo APIs responses.
+
+        Returns:
+            DataFrame: pandas dataframe with time as index and each of the columns is one of the attribute requested.
+        """
+        res = self._fetch()
+
+        if "hourly" in res and "daily" in res:
+            df_hourly = pd.DataFrame(res['hourly'])
+            df_daily = pd.DataFrame(res['daily'])
+            df_hourly = df_hourly.set_index('time')
+            df_daily = df_daily.set_index('time')
+            return df_hourly, df_daily
+        elif "hourly" in res and "daily" not in res:
+            df_hourly = pd.DataFrame(res['hourly'])
+            df_hourly = df_hourly.set_index('time')
+            return df_hourly
+        elif "hourly" not in res and "daily" in res :
+            df_daily = pd.DataFrame(res['daily'])
+            df_daily = df_daily.set_index('time')
+            return df_daily
+        elif "minutely_15" in res:
+            df_minutely = pd.DataFrame(res['minutely_15'])
+            df_minutely = df_minutely.set_index('time')
+            return df_minutely
+        else :
+            return None
+
+
+    # TODO: save_csv()
+    def save_csv(self, filepath: str):
+        """This function directly save the content of response from open-meteo APIs into a csv file
+
+        Returns:
+            DataFrame: pandas dataframe with time as index and each of the columns is one of the attribute requested.
+        """
+        df = self.get_pandas()
+
+        # if self.hourly != None and self.daily == None and self.fifteen_minutes == None:
+        #     df.to_csv(filepath)
+        # elif self.hourly == None and self.daily == None and self.fifteen_minutes == None:
+        #     df.to_csv(filepath)
+        # elif self.hourly != None and self.daily == None and self.fifteen_minutes == None:
+        #     df.to_csv(filepath)
+        df.to_csv(filepath+'.csv')
+
+        return df
+        
+    # TODO: save_excel()
 
 
     def get_data(self, output = 0, file = 0, filepath = None):
@@ -405,8 +518,13 @@ class OWmanager():
         Handles the retrieval and processing of the OPEN-METEO data.
 
         Args:
-            output (int, optional): default is the server response JSON (option 0),1 for a JSON with variable keys as dates,2 for the server response parsed as a dataframe and 3 for a dataframe where each column is for a variable with rows being linked each to a time/date
-            file (int, optional): 0 as a default (not saving), 1 for the server's response JSON or dataframe saved as csv, 2 for excel file (xlsx)
+            output (int, optional): default is the server response JSON (option 0),
+                                        1 for a JSON with variable keys as dates,
+                                        2 for the server response parsed as a dataframe 
+                                        3 for a dataframe where each column is for a variable with rows being linked each to a time/date
+            file (int, optional):       0 as a default (not saving), 
+                                        1 for the server's response JSON or dataframe saved as csv, 
+                                        2 for excel file (xlsx)
             filepath (string, optional): filepath of the output file to be saved at
 
         Raises:
@@ -462,60 +580,3 @@ class OWmanager():
                 raise FileOptionError
         except requests.ConnectionError as e :
             raise(e)
-    
-    def dataframit(self,meteo,format = 0,filepath = None):
-        """Returns a dataframe with each variable having keys as dates,result dataframe otherwise
-
-        Args:
-            meteo (Dict): JSON input
-
-        Returns:
-            dict: response dataframe
-        """
-
-        meteo = self.Jsonify(meteo)
-        if format == 0 :
-            if 'hourly' in meteo :
-                if 'daily' in meteo :
-                    return pd.DataFrame(meteo['hourly']),pd.DataFrame(meteo['daily'])
-                else :
-                    return pd.DataFrame(meteo['hourly'])
-            else :
-                if 'daily' in meteo :
-                    return pd.DataFrame(meteo['daily'])
-                else :
-                    return pd.DataFrame(meteo)
-        elif format == 1 :
-            if 'hourly' in meteo :
-                if 'daily' in meteo :
-                    pd.DataFrame(meteo['hourly']).to_csv(filepath+"_hourly.csv")
-                    pd.DataFrame(meteo['daily']).to_csv(filepath+"_daily.csv")
-                    return pd.DataFrame(meteo['hourly']),pd.DataFrame(meteo['daily'])
-                else :
-                    pd.DataFrame(meteo['hourly']).to_csv(filepath+"_hourly.csv")
-                    return pd.DataFrame(meteo['hourly'])
-            else :
-                if 'daily' in meteo :
-                    pd.DataFrame(meteo['daily']).to_csv(filepath+"_daily.csv")
-                    return pd.DataFrame(meteo['daily'])
-                else :
-                    pd.DataFrame(meteo).to_csv(filepath+".csv")
-                    return pd.DataFrame(meteo)
-        elif format == 2 :
-            if 'hourly' in meteo :
-                if 'daily' in meteo :
-                    pd.DataFrame(meteo['hourly']).to_excel(filepath+"_hourly.xlsx")
-                    pd.DataFrame(meteo['daily']).to_excel(filepath+"_daily.xlsx")
-                    return pd.DataFrame(meteo['hourly']),pd.DataFrame(meteo['daily'])
-                else :
-                    pd.DataFrame(meteo['hourly']).to_excel(filepath+"_hourly.xlsx")
-                    return pd.DataFrame(meteo['hourly'])
-            else :
-                if 'daily' in meteo :
-                    pd.DataFrame(meteo['daily']).to_excel(filepath+"_daily.xlsx")
-                    return pd.DataFrame(meteo['daily'])
-                else :
-                    pd.DataFrame(meteo).to_excel(filepath+".xlsx")
-                    return pd.DataFrame(meteo)
-        else :
-            raise FileOptionError
