@@ -5,37 +5,29 @@ Subpackages
 -----------
 
 .. toctree::
-   :maxdepth: 4
+   :maxdepth: 1
 
-   openmeteo_py.Daily
-   openmeteo_py.FifteenMinutes
-   openmeteo_py.Hourly
-   openmeteo_py.Options
-   openmeteo_py.Utils
+   openmeteo_py.daily
+   openmeteo_py.fifteen_minutes
+   openmeteo_py.hourly
+   openmeteo_py.options
+   openmeteo_py.utils
 
 Submodules
 ----------
 
-openmeteo\_py.Exceptions module
+openmeteo\_py.client module
+---------------------------
+
+.. automodule:: openmeteo_py.client
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+openmeteo\_py.exceptions module
 -------------------------------
 
-.. automodule:: openmeteo_py.Exceptions
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-openmeteo\_py.OWmanager module
-------------------------------
-
-.. automodule:: openmeteo_py.OWmanager
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: openmeteo_py
+.. automodule:: openmeteo_py.exceptions
    :members:
    :undoc-members:
    :show-inheritance:

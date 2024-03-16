@@ -19,13 +19,13 @@ Documentation
 .. toctree::
    :maxdepth: 2
 
-   modules
+   openmeteo_py
 
+Open-Meteo Client
+-----------------
 
-
-.. Indices and tables
-.. ==================
-
-.. * :ref:`genindex`
-.. * :ref:`modindex`
-.. * :ref:`search`
+.. autoclass:: openmeteo_py.client.OpenMeteo
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :special-members: __init__

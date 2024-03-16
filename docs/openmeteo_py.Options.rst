@@ -1,117 +1,117 @@
-openmeteo\_py.Options package
+openmeteo\_py.options package
 =============================
 
 Submodules
 ----------
 
-openmeteo\_py.Options.AirQualityOptions module
+openmeteo\_py.options.AirQualityOptions module
 ----------------------------------------------
 
-.. automodule:: openmeteo_py.Options.AirQualityOptions
+.. automodule:: openmeteo_py.options.AirQualityOptions
    :members:
    :undoc-members:
    :show-inheritance:
 
-openmeteo\_py.Options.DwdOptions module
+openmeteo\_py.options.DwdOptions module
 ---------------------------------------
 
-.. automodule:: openmeteo_py.Options.DwdOptions
+.. automodule:: openmeteo_py.options.DwdOptions
    :members:
    :undoc-members:
    :show-inheritance:
 
-openmeteo\_py.Options.EcmwfOptions module
+openmeteo\_py.options.EcmwfOptions module
 -----------------------------------------
 
-.. automodule:: openmeteo_py.Options.EcmwfOptions
+.. automodule:: openmeteo_py.options.EcmwfOptions
    :members:
    :undoc-members:
    :show-inheritance:
 
-openmeteo\_py.Options.ElevationOptions module
+openmeteo\_py.options.ElevationOptions module
 ---------------------------------------------
 
-.. automodule:: openmeteo_py.Options.ElevationOptions
+.. automodule:: openmeteo_py.options.ElevationOptions
    :members:
    :undoc-members:
    :show-inheritance:
 
-openmeteo\_py.Options.FloodOptions module
+openmeteo\_py.options.FloodOptions module
 -----------------------------------------
 
-.. automodule:: openmeteo_py.Options.FloodOptions
+.. automodule:: openmeteo_py.options.FloodOptions
    :members:
    :undoc-members:
    :show-inheritance:
 
-openmeteo\_py.Options.ForecastOptions module
+openmeteo\_py.options.ForecastOptions module
 --------------------------------------------
 
-.. automodule:: openmeteo_py.Options.ForecastOptions
+.. automodule:: openmeteo_py.options.ForecastOptions
    :members:
    :undoc-members:
    :show-inheritance:
 
-openmeteo\_py.Options.GemOptions module
+openmeteo\_py.options.GemOptions module
 ---------------------------------------
 
-.. automodule:: openmeteo_py.Options.GemOptions
+.. automodule:: openmeteo_py.options.GemOptions
    :members:
    :undoc-members:
    :show-inheritance:
 
-openmeteo\_py.Options.GeocodingOptions module
+openmeteo\_py.options.GeocodingOptions module
 ---------------------------------------------
 
-.. automodule:: openmeteo_py.Options.GeocodingOptions
+.. automodule:: openmeteo_py.options.GeocodingOptions
    :members:
    :undoc-members:
    :show-inheritance:
 
-openmeteo\_py.Options.GfsOptions module
+openmeteo\_py.options.GfsOptions module
 ---------------------------------------
 
-.. automodule:: openmeteo_py.Options.GfsOptions
+.. automodule:: openmeteo_py.options.GfsOptions
    :members:
    :undoc-members:
    :show-inheritance:
 
-openmeteo\_py.Options.HistoricalOptions module
+openmeteo\_py.options.HistoricalOptions module
 ----------------------------------------------
 
-.. automodule:: openmeteo_py.Options.HistoricalOptions
+.. automodule:: openmeteo_py.options.HistoricalOptions
    :members:
    :undoc-members:
    :show-inheritance:
 
-openmeteo\_py.Options.JmaOptions module
+openmeteo\_py.options.JmaOptions module
 ---------------------------------------
 
-.. automodule:: openmeteo_py.Options.JmaOptions
+.. automodule:: openmeteo_py.options.JmaOptions
    :members:
    :undoc-members:
    :show-inheritance:
 
-openmeteo\_py.Options.MarineOptions module
+openmeteo\_py.options.MarineOptions module
 ------------------------------------------
 
-.. automodule:: openmeteo_py.Options.MarineOptions
+.. automodule:: openmeteo_py.options.MarineOptions
    :members:
    :undoc-members:
    :show-inheritance:
 
-openmeteo\_py.Options.MeteoFranceOptions module
+openmeteo\_py.options.MeteoFranceOptions module
 -----------------------------------------------
 
-.. automodule:: openmeteo_py.Options.MeteoFranceOptions
+.. automodule:: openmeteo_py.options.MeteoFranceOptions
    :members:
    :undoc-members:
    :show-inheritance:
 
-openmeteo\_py.Options.MetnoOptions module
+openmeteo\_py.options.MetnoOptions module
 -----------------------------------------
 
-.. automodule:: openmeteo_py.Options.MetnoOptions
+.. automodule:: openmeteo_py.options.MetnoOptions
    :members:
    :undoc-members:
    :show-inheritance:
@@ -119,7 +119,7 @@ openmeteo\_py.Options.MetnoOptions module
 Module contents
 ---------------
 
-.. automodule:: openmeteo_py.Options
+.. automodule:: openmeteo_py.options
    :members:
    :undoc-members:
    :show-inheritance:

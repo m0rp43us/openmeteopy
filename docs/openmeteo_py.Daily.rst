@@ -1,85 +1,74 @@
-openmeteo\_py.Daily package
+openmeteo\_py.daily package
 ===========================
 
-Submodules
-----------
-
-openmeteo\_py.Daily.DailyDwd module
+openmeteo\_py.daily.DailyDwd module
 -----------------------------------
 
-.. automodule:: openmeteo_py.Daily.DailyDwd
+.. automodule:: openmeteo_py.daily.DailyDwd
    :members:
    :undoc-members:
    :show-inheritance:
 
-openmeteo\_py.Daily.DailyFlood module
+openmeteo\_py.daily.DailyFlood module
 -------------------------------------
 
-.. automodule:: openmeteo_py.Daily.DailyFlood
+.. automodule:: openmeteo_py.daily.DailyFlood
    :members:
    :undoc-members:
    :show-inheritance:
 
-openmeteo\_py.Daily.DailyForecast module
+openmeteo\_py.daily.DailyForecast module
 ----------------------------------------
 
-.. automodule:: openmeteo_py.Daily.DailyForecast
+.. automodule:: openmeteo_py.daily.DailyForecast
    :members:
    :undoc-members:
    :show-inheritance:
 
-openmeteo\_py.Daily.DailyGem module
+openmeteo\_py.daily.DailyGem module
 -----------------------------------
 
-.. automodule:: openmeteo_py.Daily.DailyGem
+.. automodule:: openmeteo_py.daily.DailyGem
    :members:
    :undoc-members:
    :show-inheritance:
 
-openmeteo\_py.Daily.DailyGfs module
+openmeteo\_py.daily.DailyGfs module
 -----------------------------------
 
-.. automodule:: openmeteo_py.Daily.DailyGfs
+.. automodule:: openmeteo_py.daily.DailyGfs
    :members:
    :undoc-members:
    :show-inheritance:
 
-openmeteo\_py.Daily.DailyHistorical module
+openmeteo\_py.daily.DailyHistorical module
 ------------------------------------------
 
-.. automodule:: openmeteo_py.Daily.DailyHistorical
+.. automodule:: openmeteo_py.daily.DailyHistorical
    :members:
    :undoc-members:
    :show-inheritance:
 
-openmeteo\_py.Daily.DailyJma module
+openmeteo\_py.daily.DailyJma module
 -----------------------------------
 
-.. automodule:: openmeteo_py.Daily.DailyJma
+.. automodule:: openmeteo_py.daily.DailyJma
    :members:
    :undoc-members:
    :show-inheritance:
 
-openmeteo\_py.Daily.DailyMarine module
+openmeteo\_py.daily.DailyMarine module
 --------------------------------------
 
-.. automodule:: openmeteo_py.Daily.DailyMarine
+.. automodule:: openmeteo_py.daily.DailyMarine
    :members:
    :undoc-members:
    :show-inheritance:
 
-openmeteo\_py.Daily.DailyMeteoFrance module
+openmeteo\_py.daily.DailyMeteoFrance module
 -------------------------------------------
 
-.. automodule:: openmeteo_py.Daily.DailyMeteoFrance
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: openmeteo_py.Daily
+.. automodule:: openmeteo_py.daily.DailyMeteoFrance
    :members:
    :undoc-members:
    :show-inheritance:
