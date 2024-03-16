@@ -1,12 +1,12 @@
-from openmeteo_py.Utils.constants import *
-from openmeteo_py.Utils.timezones import *
+from openmeteo_py.utils.constants import *
+from openmeteo_py.utils.timezones import *
 
 
 
 class ElevationOptions():
     """
 
-    The API Options accepts a WGS4 coordinate and other  weather variables .
+    The API options accepts a WGS4 coordinate and other  weather variables .
     Time always starts at 0:00 today and contains 168 hours.
 
     """

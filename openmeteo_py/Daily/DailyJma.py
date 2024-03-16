@@ -1,5 +1,5 @@
-from openmeteo_py.Daily.DailyMeteoFrance import DailyMeteoFrance
-from openmeteo_py.Exceptions import MethodnotAllowed
+from openmeteo_py.daily.DailyMeteoFrance import DailyMeteoFrance
+from openmeteo_py.exceptions import MethodnotAllowed
 
 
 class DailyJma(DailyMeteoFrance):

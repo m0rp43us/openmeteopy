@@ -1,9 +1,9 @@
-from openmeteo_py.Exceptions import *
+from openmeteo_py.exceptions import *
 
 class DailyFlood():
 
     """
-    Daily Parameter functions
+    daily Parameter functions
 
     Aggregations are a simple 24 hour aggregation from hourly values. 
 
@@ -14,8 +14,8 @@ class DailyFlood():
 
     def river_discharge(self):
         """
-        Returns the Daily configuration object 
-        :returns: `Hourly()`
+        Returns the daily configuration object 
+        :returns: `hourly()`
 
         Maximum  daily air temperature at 2 meters above ground
         """
@@ -24,18 +24,18 @@ class DailyFlood():
     
     def river_discharge_mean(self):
         """
-        Returns the Daily configuration object 
-        :returns: `Hourly()`
+        Returns the daily configuration object 
+        :returns: `hourly()`
 
-         	Daily maximum in UV Index starting from 0
+         	daily maximum in UV Index starting from 0
         """
         self.daily_params.append("river_discharge_mean")
         return self
     
     def river_discharge_median(self):
         """
-        Returns the Daily configuration object 
-        :returns: `Hourly()`
+        Returns the daily configuration object 
+        :returns: `hourly()`
 
         uv_index_clear_sky_max assumes cloud free conditions. Please follow the official WMO guidelines for ultraviolet index.
         """
@@ -44,8 +44,8 @@ class DailyFlood():
 
     def river_discharge_max(self):
         """
-        Returns the Daily configuration object 
-        :returns: `Hourly()`
+        Returns the daily configuration object 
+        :returns: `hourly()`
 
         Minimum daily air temperature at 2 meters above ground
         """
@@ -54,8 +54,8 @@ class DailyFlood():
 
     def river_discharge_min(self):
         """
-        Returns the Daily configuration object 
-        :returns: `Hourly()`
+        Returns the daily configuration object 
+        :returns: `hourly()`
 
         Maximum dailt apparent temperature
         """
@@ -64,8 +64,8 @@ class DailyFlood():
 
     def river_discharge_p25(self):
         """
-        Returns the Daily configuration object 
-        :returns: `Hourly()`
+        Returns the daily configuration object 
+        :returns: `hourly()`
 
         Minimum dailt apparent temperature
         """
@@ -74,8 +74,8 @@ class DailyFlood():
 
     def river_discharge_p75(self):
         """
-        Returns the Daily configuration object 
-        :returns: `Hourly()`
+        Returns the daily configuration object 
+        :returns: `hourly()`
 
         Sum of daily precipitation
         """
@@ -84,8 +84,8 @@ class DailyFlood():
     
     def all(self):
         """
-        Returns the Daily configuration object 
-        :returns: `Hourly()`
+        Returns the daily configuration object 
+        :returns: `hourly()`
 
         All parameters
         """

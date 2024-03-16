@@ -1,13 +1,13 @@
-from openmeteo_py.Exceptions import *
+from openmeteo_py.exceptions import *
 
 
 
 class HourlyForecast()  :
 
     """
-    Hourly Parameter functions
+    hourly Parameter functions
 
-    Hourly Parameter Definition
+    hourly Parameter Definition
     Most weather variables are given as an instantaneous value for the indicated hour. 
     Some variables like precipitation are calculated from the preceding hour as and average or sum.
 
@@ -19,8 +19,8 @@ class HourlyForecast()  :
 
     def temperature_2m(self):
         """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
+        Returns the hourly configuration object 
+        :returns: `hourly()`
 
         Air temperature at 2 meters above ground
         """
@@ -30,8 +30,8 @@ class HourlyForecast()  :
 
     def relativehumidity_2m(self):
         """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
+        Returns the hourly configuration object 
+        :returns: `hourly()`
         
         Relative humidity at 2 meters above ground
         
@@ -41,8 +41,8 @@ class HourlyForecast()  :
 
     def dewpoint_2m(self):
         """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
+        Returns the hourly configuration object 
+        :returns: `hourly()`
 
         Dew point temperature at 2 meters above ground
         
@@ -53,8 +53,8 @@ class HourlyForecast()  :
 
     def apparent_temperature(self):
         """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
+        Returns the hourly configuration object 
+        :returns: `hourly()`
 
         Apparent temperature is the perceived feels-like tempertature combinding wind chill factor, realtive humidity and solar radition
 
@@ -66,8 +66,8 @@ class HourlyForecast()  :
 
     def pressure_msl(self):
         """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
+        Returns the hourly configuration object 
+        :returns: `hourly()`
 
         Atmospheric air pressure reduced to sea level
         
@@ -78,8 +78,8 @@ class HourlyForecast()  :
 
     def cloudcover(self):
         """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
+        Returns the hourly configuration object 
+        :returns: `hourly()`
 
         Total cloud cover as an area fraction
         
@@ -90,8 +90,8 @@ class HourlyForecast()  :
 
     def cloudcover_low(self):
         """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
+        Returns the hourly configuration object 
+        :returns: `hourly()`
 
         Low level clouds and fog up to 3 km altitude
         
@@ -102,8 +102,8 @@ class HourlyForecast()  :
 
     def cloudcover_mid(self):
         """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
+        Returns the hourly configuration object 
+        :returns: `hourly()`
 
         Mid level clouds from 3 to 8 km altitude
 
@@ -115,8 +115,8 @@ class HourlyForecast()  :
 
     def cloudcover_high(self):
         """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
+        Returns the hourly configuration object 
+        :returns: `hourly()`
 
         High level clouds from 8 km altitude
         
@@ -127,8 +127,8 @@ class HourlyForecast()  :
 
     def windspeed_10m(self):
         """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
+        Returns the hourly configuration object 
+        :returns: `hourly()`
 
         Wind speed at 10 meters above ground. Wind speed on 10 meters is the standard level.
 
@@ -140,8 +140,8 @@ class HourlyForecast()  :
 
     def windspeed_80m(self):
         """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
+        Returns the hourly configuration object 
+        :returns: `hourly()`
 
         Wind speed at 80 meters above ground. Wind speed on 10 meters is the standard level.
         
@@ -152,8 +152,8 @@ class HourlyForecast()  :
 
     def windspeed_120m(self):
         """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
+        Returns the hourly configuration object 
+        :returns: `hourly()`
 
         Wind speed at 120 meters above ground. Wind speed on 10 meters is the standard level.
         """
@@ -163,8 +163,8 @@ class HourlyForecast()  :
 
     def windspeed_180m(self):
         """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
+        Returns the hourly configuration object 
+        :returns: `hourly()`
 
         Wind speed at 180 meters above ground. Wind speed on 10 meters is the standard level.
         """
@@ -174,8 +174,8 @@ class HourlyForecast()  :
 
     def winddirection_10m(self):
         """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
+        Returns the hourly configuration object 
+        :returns: `hourly()`
 
         Wind direction at 10 meters above ground
         """
@@ -185,8 +185,8 @@ class HourlyForecast()  :
 
     def winddirection_80m(self):
         """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
+        Returns the hourly configuration object 
+        :returns: `hourly()`
 
         Wind direction at 80 meters above ground
         """
@@ -196,8 +196,8 @@ class HourlyForecast()  :
 
     def winddirection_120m(self):
         """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
+        Returns the hourly configuration object 
+        :returns: `hourly()`
 
         Wind direction at 120 meters above ground
         """
@@ -207,8 +207,8 @@ class HourlyForecast()  :
 
     def winddirection_180m(self):
         """
-        Returns the Hourly configuration object
-        :returns: `Hourly()`
+        Returns the hourly configuration object
+        :returns: `hourly()`
 
         Wind direction at 180 meters above ground
         """
@@ -218,8 +218,8 @@ class HourlyForecast()  :
 
     def windgusts_10m(self):
         """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
+        Returns the hourly configuration object 
+        :returns: `hourly()`
 
         Gusts at 10 meters above ground as a maximum of the preceding hour
         """
@@ -229,8 +229,8 @@ class HourlyForecast()  :
 
     def shortwave_radiation(self):
         """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
+        Returns the hourly configuration object 
+        :returns: `hourly()`
 
         Shortwave solar radiation as average of the preceding hour
         """
@@ -240,8 +240,8 @@ class HourlyForecast()  :
 
     def direct_radiation(self):
         """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
+        Returns the hourly configuration object 
+        :returns: `hourly()`
 
         Direct solar radiation as average of the preceding hour
         """
@@ -251,8 +251,8 @@ class HourlyForecast()  :
 
     def diffuse_radiation(self):
         """
-        Returns the Hourly configuration object
-        :returns: `Hourly()`
+        Returns the hourly configuration object
+        :returns: `hourly()`
 
         Diffure solar radiation as average of the preceding hour
         """
@@ -262,8 +262,8 @@ class HourlyForecast()  :
 
     def vapor_pressure_deficit(self):
         """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
+        Returns the hourly configuration object 
+        :returns: `hourly()`
 
         Vapor Pressure Deificit (VPD) in kilo pascal (kPa). For high VPD (>1.6), water transpiration of plants increases. For low VPD (<0.4), transpiration decreases
         """
@@ -273,8 +273,8 @@ class HourlyForecast()  :
 
     def evapotranspiration(self):
         """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
+        Returns the hourly configuration object 
+        :returns: `hourly()`
 
         Sum of evapotranspration of the preceding hour from lands urface and plants
         """
@@ -284,8 +284,8 @@ class HourlyForecast()  :
 
     def precipitation(self):
         """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
+        Returns the hourly configuration object 
+        :returns: `hourly()`
 
         Total precipitation (rain, showers, snow) sum of the preceding hour
         """
@@ -295,8 +295,8 @@ class HourlyForecast()  :
 
     def weathercode(self):
         """
-        Returns the Hourly configuration object
-        :returns: `Hourly()`
+        Returns the hourly configuration object
+        :returns: `hourly()`
 
         Weather condition as a numeric code. Follow WMO weather interpretation codes. See table below for details.
         """
@@ -306,8 +306,8 @@ class HourlyForecast()  :
 
     def snow_depth(self):
         """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
+        Returns the hourly configuration object 
+        :returns: `hourly()`
 
         Snow depth on the ground
         """
@@ -317,8 +317,8 @@ class HourlyForecast()  :
 
     def freezinglevel_height(self):
         """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
+        Returns the hourly configuration object 
+        :returns: `hourly()`
 
         Altitude of the 0°C level
         """
@@ -328,8 +328,8 @@ class HourlyForecast()  :
 
     def soil_temperature_0cm(self):
         """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
+        Returns the hourly configuration object 
+        :returns: `hourly()`
 
         Temperature in the soil at 0 cm depths. 0 cm is the surface temperature on land or water surface temperature on water.
         """
@@ -339,8 +339,8 @@ class HourlyForecast()  :
 
     def soil_temperature_6cm(self):
         """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
+        Returns the hourly configuration object 
+        :returns: `hourly()`
 
         Temperature in the soil at  6 cm depths.
         """
@@ -349,8 +349,8 @@ class HourlyForecast()  :
 
     def soil_temperature_18cm(self):
         """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
+        Returns the hourly configuration object 
+        :returns: `hourly()`
 
         Temperature in the soil at  18 cm depths.
         """
@@ -359,8 +359,8 @@ class HourlyForecast()  :
 
     def soil_temperature_54cm(self):
         """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
+        Returns the hourly configuration object 
+        :returns: `hourly()`
 
         Temperature in the soil at  54 cm depths.
         """
@@ -369,8 +369,8 @@ class HourlyForecast()  :
 
     def soil_moisture_0_1cm(self):
         """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
+        Returns the hourly configuration object 
+        :returns: `hourly()`
 
         Average soil water content as volumetric mixing ratio at 0-1 cm depths.
         """
@@ -379,8 +379,8 @@ class HourlyForecast()  :
 
     def soil_moisture_1_3cm(self):
         """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
+        Returns the hourly configuration object 
+        :returns: `hourly()`
 
         Average soil water content as volumetric mixing ratio at 1-3 cm depths.
         """
@@ -389,8 +389,8 @@ class HourlyForecast()  :
 
     def soil_moisture_3_9cm(self):
         """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
+        Returns the hourly configuration object 
+        :returns: `hourly()`
 
         Average soil water content as volumetric mixing ratio at 3-9 cm depths.
         """
@@ -399,8 +399,8 @@ class HourlyForecast()  :
 
     def soil_moisture_9_27cm(self):
         """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
+        Returns the hourly configuration object 
+        :returns: `hourly()`
 
         Average soil water content as volumetric mixing ratio at 9-27 cm depths.
         """
@@ -409,8 +409,8 @@ class HourlyForecast()  :
 
     def Showers(self):
         """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
+        Returns the hourly configuration object 
+        :returns: `hourly()`
 
         Average soil water content as volumetric mixing ratio at 27-81 cm depths.
         """
@@ -419,8 +419,8 @@ class HourlyForecast()  :
     
     def snowfall(self):
         """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
+        Returns the hourly configuration object 
+        :returns: `hourly()`
 
         Snowfall amount of the preceding hour in centimeters. For the water equivalent in millimeter, divide by 7.
         """
@@ -429,8 +429,8 @@ class HourlyForecast()  :
     
     def soil_moisture_27_81cm(self):
         """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
+        Returns the hourly configuration object 
+        :returns: `hourly()`
 
         Average soil water content as volumetric mixing ratio at 27-81 cm depths.
         """
@@ -439,8 +439,8 @@ class HourlyForecast()  :
     
     def visibility(self):
         """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
+        Returns the hourly configuration object 
+        :returns: `hourly()`
 
         Viewing distance in meters. Influenced by low clouds, humidity and aerosols. Maximum visibility is approximately 24 km.
         """
@@ -449,8 +449,8 @@ class HourlyForecast()  :
     
     def direct_normal_irradiance(self):
         """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
+        Returns the hourly configuration object 
+        :returns: `hourly()`
 
         Direct solar radiation as average of the preceding hour on the horizontal plane and the normal plane.
         """
@@ -459,8 +459,8 @@ class HourlyForecast()  :
     
     def direct_radiation(self):
         """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
+        Returns the hourly configuration object 
+        :returns: `hourly()`
 
         Direct solar radiation as average of the preceding hour on the horizontal plane and the normal plane.
         """
@@ -469,8 +469,8 @@ class HourlyForecast()  :
     
     def cape(self):
         """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
+        Returns the hourly configuration object 
+        :returns: `hourly()`
 
         Convective available potential energy.
         """
@@ -479,8 +479,8 @@ class HourlyForecast()  :
     
     def et0_fao_evapotranspiration(self):
         """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
+        Returns the hourly configuration object 
+        :returns: `hourly()`
 
         ET₀ Reference Evapotranspiration of a well watered grass field. Based on FAO-56 Penman-Monteith equations ET₀ is calculated from temperature, wind speed, humidity and solar radiation. Unlimited soil water is assumed. ET₀ is commonly used to estimate the required irrigation for plants.
         """
@@ -489,8 +489,8 @@ class HourlyForecast()  :
     
     def is_day(self):
         """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
+        Returns the hourly configuration object 
+        :returns: `hourly()`
 
         1 if the current time step has daylight, 0 at night..
         """
@@ -499,8 +499,8 @@ class HourlyForecast()  :
     
     def rain(self):
         """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
+        Returns the hourly configuration object 
+        :returns: `hourly()`
 
         Rain from large scale weather systems of the preceding hour in millimeter.
         """
@@ -509,8 +509,8 @@ class HourlyForecast()  :
     
     def surface_pressure(self):
         """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
+        Returns the hourly configuration object 
+        :returns: `hourly()`
 
         Atmospheric air pressure reduced to mean sea level (msl) or pressure at surface. Typically pressure on mean sea level is used in meteorology. Surface pressure gets lower with increasing elevation..
         """
@@ -519,8 +519,8 @@ class HourlyForecast()  :
     
     def precipitation_probability(self):
         """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
+        Returns the hourly configuration object 
+        :returns: `hourly()`
 
         Probability of precipitation with more than 0.1 mm of the preceding hour. Probability is based on ensemble weather models with 0.25° (~27 km) resolution. 30 different simulations are computed to better represent future weather conditions.
         """
@@ -529,8 +529,8 @@ class HourlyForecast()  :
     
     def all(self):
         """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
+        Returns the hourly configuration object 
+        :returns: `hourly()`
 
         All hourly parameters
         """

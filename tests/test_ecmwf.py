@@ -1,7 +1,7 @@
 from openmeteo_py import OWmanager
-from openmeteo_py.Hourly.HourlyEcmwf import HourlyEcmwf
-from openmeteo_py.Options.EcmwfOptions import EcmwfOptions
-from openmeteo_py.Utils.constants import *
+from openmeteo_py.hourly.HourlyEcmwf import HourlyEcmwf
+from openmeteo_py.options.EcmwfOptions import EcmwfOptions
+from openmeteo_py.utils.constants import *
 import requests
 
 # Latitude, Longitude 

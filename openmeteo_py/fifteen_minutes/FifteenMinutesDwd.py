@@ -1,9 +1,9 @@
-from openmeteo_py.Exceptions import *
+from openmeteo_py.exceptions import *
 
 class FiftennMinutesDwd():
 
     """
-    Daily Parameter functions
+    daily Parameter functions
 
     Aggregations are a simple 24 hour aggregation from hourly values. 
 
@@ -14,8 +14,8 @@ class FiftennMinutesDwd():
 
     def shortwave_radiation(self):
         """
-        Returns the Daily configuration object 
-        :returns: `Hourly()`
+        Returns the daily configuration object 
+        :returns: `hourly()`
 
         Maximum  daily air temperature at 2 meters above ground
         """
@@ -24,8 +24,8 @@ class FiftennMinutesDwd():
     
     def direct_normal_irradiance(self):
         """
-        Returns the Daily configuration object 
-        :returns: `Hourly()`
+        Returns the daily configuration object 
+        :returns: `hourly()`
 
         Minimum daily air temperature at 2 meters above ground
         """
@@ -34,8 +34,8 @@ class FiftennMinutesDwd():
 
     def direct_radiation(self):
         """
-        Returns the Daily configuration object 
-        :returns: `Hourly()`
+        Returns the daily configuration object 
+        :returns: `hourly()`
 
         Maximum dailt apparent temperature
         """
@@ -44,8 +44,8 @@ class FiftennMinutesDwd():
 
     def diffuse_radiation(self):
         """
-        Returns the Daily configuration object 
-        :returns: `Hourly()`
+        Returns the daily configuration object 
+        :returns: `hourly()`
 
         Minimum dailt apparent temperature
         """
@@ -54,8 +54,8 @@ class FiftennMinutesDwd():
 
     def lightning_potential(self):
         """
-        Returns the Daily configuration object 
-        :returns: `Hourly()`
+        Returns the daily configuration object 
+        :returns: `hourly()`
 
         Sum of daily precipitation
         """
@@ -64,8 +64,8 @@ class FiftennMinutesDwd():
 
     def precipitation(self):
         """
-        Returns the Daily configuration object 
-        :returns: `Hourly()`
+        Returns the daily configuration object 
+        :returns: `hourly()`
 
         The number of hours with rain
         """
@@ -74,8 +74,8 @@ class FiftennMinutesDwd():
 
     def snowfall(self):
         """
-        Returns the Daily configuration object 
-        :returns: `Hourly()`
+        Returns the daily configuration object 
+        :returns: `hourly()`
 
         The most severe weather condition on a given day
         """
@@ -84,8 +84,8 @@ class FiftennMinutesDwd():
 
     def rain(self):
         """
-        Returns the Daily configuration object 
-        :returns: `Hourly()`
+        Returns the daily configuration object 
+        :returns: `hourly()`
 
         Maximum wind speed  on a day
         """
@@ -94,8 +94,8 @@ class FiftennMinutesDwd():
 
     def snowfall_height(self):
         """
-        Returns the Daily configuration object 
-        :returns: `Hourly()`
+        Returns the daily configuration object 
+        :returns: `hourly()`
 
         Maximum wind gusts on a day
         """
@@ -104,8 +104,8 @@ class FiftennMinutesDwd():
 
     def freezinglevel_height(self):
         """
-        Returns the Daily configuration object 
-        :returns: `Hourly()`
+        Returns the daily configuration object 
+        :returns: `hourly()`
 
         Dominant wind direction
         """
@@ -114,8 +114,8 @@ class FiftennMinutesDwd():
 
     def cape(self):
         """
-        Returns the Daily configuration object 
-        :returns: `Hourly()`
+        Returns the daily configuration object 
+        :returns: `hourly()`
 
         The sum of solar radiaion on a given day in Mega Joules
         """
@@ -124,8 +124,8 @@ class FiftennMinutesDwd():
     
     def all(self):
         """
-        Returns the Daily configuration object 
-        :returns: `Hourly()`
+        Returns the daily configuration object 
+        :returns: `hourly()`
 
         All parameters
         """

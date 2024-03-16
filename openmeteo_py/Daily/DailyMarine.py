@@ -1,9 +1,9 @@
-from openmeteo_py.Exceptions import *
+from openmeteo_py.exceptions import *
 
 class DailyMarine():
 
     """
-    Daily Parameter functions
+    daily Parameter functions
 
     Aggregations are a simple 24 hour aggregation from hourly values. 
 
@@ -14,8 +14,8 @@ class DailyMarine():
 
     def wave_height_max(self):
         """
-        Returns the Daily configuration object 
-        :returns: `Hourly()`
+        Returns the daily configuration object 
+        :returns: `hourly()`
 
         Maximum wave height on a given day for the mean waves
         """
@@ -24,8 +24,8 @@ class DailyMarine():
     
     def wind_wave_height_max(self):
         """
-        Returns the Daily configuration object 
-        :returns: `Hourly()`
+        Returns the daily configuration object 
+        :returns: `hourly()`
 
         Maximum wave height on a given day for wind waves
         """
@@ -34,8 +34,8 @@ class DailyMarine():
     
     def swell_wave_height_max(self):
         """
-        Returns the Daily configuration object 
-        :returns: `Hourly()`
+        Returns the daily configuration object 
+        :returns: `hourly()`
 
         Maximum wave height on a given day for swell waves.
         """
@@ -44,8 +44,8 @@ class DailyMarine():
 
     def wave_direction_dominant(self):
         """
-        Returns the Daily configuration object 
-        :returns: `Hourly()`
+        Returns the daily configuration object 
+        :returns: `hourly()`
 
         Dominant wave direction of mean if swell and wind waves.
         """
@@ -54,8 +54,8 @@ class DailyMarine():
 
     def wind_wave_direction_dominant(self):
         """
-        Returns the Daily configuration object 
-        :returns: `Hourly()`
+        Returns the daily configuration object 
+        :returns: `hourly()`
 
         Dominant wave direction of wind waves
         """
@@ -64,8 +64,8 @@ class DailyMarine():
 
     def swell_wave_direction_dominant(self):
         """
-        Returns the Daily configuration object 
-        :returns: `Hourly()`
+        Returns the daily configuration object 
+        :returns: `hourly()`
 
         Dominant wave direction of swell waves
         """
@@ -74,8 +74,8 @@ class DailyMarine():
 
     def wave_period_max(self):
         """
-        Returns the Daily configuration object 
-        :returns: `Hourly()`
+        Returns the daily configuration object 
+        :returns: `hourly()`
 
         Maximum wave period of mean, wind and swell
         """
@@ -84,8 +84,8 @@ class DailyMarine():
 
     def wind_wave_period_max(self):
         """
-        Returns the Daily configuration object 
-        :returns: `Hourly()`
+        Returns the daily configuration object 
+        :returns: `hourly()`
 
         Maximum wave period of wind waves
         """
@@ -94,8 +94,8 @@ class DailyMarine():
 
     def swell_wave_period_max(self):
         """
-        Returns the Daily configuration object 
-        :returns: `Hourly()`
+        Returns the daily configuration object 
+        :returns: `hourly()`
 
         Maximum wave period of swell waves
         """
@@ -104,8 +104,8 @@ class DailyMarine():
 
     def wind_wave_peak_period_max(self):
         """
-        Returns the Daily configuration object 
-        :returns: `Hourly()`
+        Returns the daily configuration object 
+        :returns: `hourly()`
 
         Maximum peak period between wind waves
         """
@@ -114,8 +114,8 @@ class DailyMarine():
 
     def swell_wave_peak_period_max(self):
         """
-        Returns the Daily configuration object 
-        :returns: `Hourly()`
+        Returns the daily configuration object 
+        :returns: `hourly()`
 
         Maximum peak period between swell waves
         """
@@ -124,8 +124,8 @@ class DailyMarine():
     
     def all(self):
         """
-        Returns the Daily configuration object 
-        :returns: `Hourly()`
+        Returns the daily configuration object 
+        :returns: `hourly()`
 
         All parameters
         """

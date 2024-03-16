@@ -1,5 +1,5 @@
-from openmeteo_py.Hourly.HourlyMeteoFrance import HourlyMeteoFrance
-from openmeteo_py.Exceptions import MethodnotAllowed
+from openmeteo_py.hourly.HourlyMeteoFrance import HourlyMeteoFrance
+from openmeteo_py.exceptions import MethodnotAllowed
 
 class HourlyJma(HourlyMeteoFrance):
     def windgusts_10m(self):

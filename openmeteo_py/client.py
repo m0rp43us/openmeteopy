@@ -40,16 +40,16 @@ def patch_http_response_read(func):
 
 http.client.HTTPResponse.read = patch_http_response_read(http.client.HTTPResponse.read)
 
-class OWmanager():   
+class OpenMeteo():   
     def __init__(self, options, provider:str = None, hourly = None, daily = None, fifteen_minutes = None, api_key = None):
          
         """
         Entry point class providing ad-hoc API clients for each OW web API.
 
         Args:
-            options (Options) : options for the /v1/forecast endpoint .
-            hourly (Hourly) : Hourly parameter object.
-            daily (Daily) : Daily parameter object.
+            options (options) : options for the /v1/forecast endpoint .
+            hourly (hourly) : hourly parameter object.
+            daily (daily) : daily parameter object.
             api_key (string) : commercial API key.
         """
         #self.payload = {}

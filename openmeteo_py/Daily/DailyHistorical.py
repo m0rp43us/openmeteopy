@@ -1,9 +1,9 @@
-from openmeteo_py.Exceptions import *
+from openmeteo_py.exceptions import *
 
 class DailyHistorical():
 
     """
-    Daily Parameter functions
+    daily Parameter functions
 
     Aggregations are a simple 24 hour aggregation from hourly values. 
 
@@ -14,8 +14,8 @@ class DailyHistorical():
 
     def temperature_2m_max(self):
         """
-        Returns the Daily configuration object 
-        :returns: `Hourly()`
+        Returns the daily configuration object 
+        :returns: `hourly()`
 
         Maximum  daily air temperature at 2 meters above ground
         """
@@ -24,18 +24,18 @@ class DailyHistorical():
     
     def uv_index_max(self):
         """
-        Returns the Daily configuration object 
-        :returns: `Hourly()`
+        Returns the daily configuration object 
+        :returns: `hourly()`
 
-         	Daily maximum in UV Index starting from 0
+         	daily maximum in UV Index starting from 0
         """
         self.daily_params.append("uv_index_max")
         return self
     
     def uv_index_clear_sky_max(self):
         """
-        Returns the Daily configuration object 
-        :returns: `Hourly()`
+        Returns the daily configuration object 
+        :returns: `hourly()`
 
         uv_index_clear_sky_max assumes cloud free conditions. Please follow the official WMO guidelines for ultraviolet index.
         """
@@ -44,8 +44,8 @@ class DailyHistorical():
 
     def temperature_2m_min(self):
         """
-        Returns the Daily configuration object 
-        :returns: `Hourly()`
+        Returns the daily configuration object 
+        :returns: `hourly()`
 
         Minimum daily air temperature at 2 meters above ground
         """
@@ -54,8 +54,8 @@ class DailyHistorical():
 
     def apparent_temperature_max(self):
         """
-        Returns the Daily configuration object 
-        :returns: `Hourly()`
+        Returns the daily configuration object 
+        :returns: `hourly()`
 
         Maximum dailt apparent temperature
         """
@@ -64,8 +64,8 @@ class DailyHistorical():
 
     def apparent_temperature_min(self):
         """
-        Returns the Daily configuration object 
-        :returns: `Hourly()`
+        Returns the daily configuration object 
+        :returns: `hourly()`
 
         Minimum dailt apparent temperature
         """
@@ -74,8 +74,8 @@ class DailyHistorical():
 
     def precipitation_sum(self):
         """
-        Returns the Daily configuration object 
-        :returns: `Hourly()`
+        Returns the daily configuration object 
+        :returns: `hourly()`
 
         Sum of daily precipitation
         """
@@ -84,8 +84,8 @@ class DailyHistorical():
 
     def precipitation_hours(self):
         """
-        Returns the Daily configuration object 
-        :returns: `Hourly()`
+        Returns the daily configuration object 
+        :returns: `hourly()`
 
         The number of hours with rain
         """
@@ -94,8 +94,8 @@ class DailyHistorical():
 
     def windspeed_10m_max(self):
         """
-        Returns the Daily configuration object 
-        :returns: `Hourly()`
+        Returns the daily configuration object 
+        :returns: `hourly()`
 
         Maximum wind speed  on a day
         """
@@ -104,8 +104,8 @@ class DailyHistorical():
 
     def windgusts_10m_max(self):
         """
-        Returns the Daily configuration object 
-        :returns: `Hourly()`
+        Returns the daily configuration object 
+        :returns: `hourly()`
 
         Maximum wind gusts on a day
         """
@@ -114,8 +114,8 @@ class DailyHistorical():
 
     def winddirection_10m_dominant(self):
         """
-        Returns the Daily configuration object 
-        :returns: `Hourly()`
+        Returns the daily configuration object 
+        :returns: `hourly()`
 
         Dominant wind direction
         """
@@ -124,8 +124,8 @@ class DailyHistorical():
 
     def shortwave_radiation_sum(self):
         """
-        Returns the Daily configuration object 
-        :returns: `Hourly()`
+        Returns the daily configuration object 
+        :returns: `hourly()`
 
         The sum of solar radiaion on a given day in Mega Joules
         """
@@ -134,18 +134,18 @@ class DailyHistorical():
     
     def et0_fao_evapotranspiration(self):
         """
-        Returns the Daily configuration object 
-        :returns: `Hourly()`
+        Returns the daily configuration object 
+        :returns: `hourly()`
 
-        Daily sum of ET₀ Reference Evapotranspiration of a well watered grass field
+        daily sum of ET₀ Reference Evapotranspiration of a well watered grass field
         """
         self.daily_params.append("et0_fao_evapotranspiration")
         return self
     
     def sunrise(self):
         """
-        Returns the Daily configuration object 
-        :returns: `Hourly()`
+        Returns the daily configuration object 
+        :returns: `hourly()`
 
         Sun rise
         """
@@ -154,8 +154,8 @@ class DailyHistorical():
     
     def sunset(self):
         """
-        Returns the Daily configuration object 
-        :returns: `Hourly()`
+        Returns the daily configuration object 
+        :returns: `hourly()`
 
         sunset
         """
@@ -163,8 +163,8 @@ class DailyHistorical():
         return self
     def weathercode(self):
         """
-        Returns the Daily configuration object 
-        :returns: `Hourly()`
+        Returns the daily configuration object 
+        :returns: `hourly()`
 
         sunset
         """
@@ -172,8 +172,8 @@ class DailyHistorical():
         return self
     def rain_sum(self):
         """
-        Returns the Daily configuration object 
-        :returns: `Hourly()`
+        Returns the daily configuration object 
+        :returns: `hourly()`
 
         sunset
         """
@@ -181,8 +181,8 @@ class DailyHistorical():
         return self
     def snowfall_sum(self):
         """
-        Returns the Daily configuration object 
-        :returns: `Hourly()`
+        Returns the daily configuration object 
+        :returns: `hourly()`
 
         sunset
         """
@@ -191,8 +191,8 @@ class DailyHistorical():
     
     def all(self):
         """
-        Returns the Daily configuration object 
-        :returns: `Hourly()`
+        Returns the daily configuration object 
+        :returns: `hourly()`
 
         All parameters
         """

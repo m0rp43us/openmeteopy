@@ -1,4 +1,4 @@
-from openmeteo_py.Options.MeteoFranceOptions import MeteoFranceOptions
+from openmeteo_py.options.MeteoFranceOptions import MeteoFranceOptions
 
 class DwdOptions(MeteoFranceOptions):
     pass

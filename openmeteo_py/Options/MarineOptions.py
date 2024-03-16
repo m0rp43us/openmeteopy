@@ -1,6 +1,6 @@
-from openmeteo_py.Utils.constants import *
-from openmeteo_py.Utils.timezones import *
-from openmeteo_py.Options.ForecastOptions import ForecastOptions
+from openmeteo_py.utils.constants import *
+from openmeteo_py.utils.timezones import *
+from openmeteo_py.options.ForecastOptions import ForecastOptions
 
 
 class MarineOptions(ForecastOptions):

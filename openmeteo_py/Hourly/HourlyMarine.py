@@ -1,12 +1,12 @@
-from openmeteo_py.Exceptions import *
+from openmeteo_py.exceptions import *
 
 
 class HourlyMarine()  :
 
     """
-    Hourly Parameter functions
+    hourly Parameter functions
 
-    Hourly Parameter Definition
+    hourly Parameter Definition
     Most weather variables are given as an instantaneous value for the indicated hour. 
     Some variables like precipitation are calculated from the preceding hour as and average or sum.
 
@@ -18,8 +18,8 @@ class HourlyMarine()  :
 
     def wave_height(self):
         """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
+        Returns the hourly configuration object 
+        :returns: `hourly()`
 
          	Wave height of significant mean
         """
@@ -29,8 +29,8 @@ class HourlyMarine()  :
 
     def wave_direction(self):
         """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
+        Returns the hourly configuration object 
+        :returns: `hourly()`
         
         Relative humidity at 2 meters above ground
         
@@ -40,8 +40,8 @@ class HourlyMarine()  :
 
     def wave_period(self):
         """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
+        Returns the hourly configuration object 
+        :returns: `hourly()`
 
         Dew point temperature at 2 meters above ground
         
@@ -52,8 +52,8 @@ class HourlyMarine()  :
 
     def wind_wave_height(self):
         """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
+        Returns the hourly configuration object 
+        :returns: `hourly()`
 
         Wind wave height of significant mean
 
@@ -65,8 +65,8 @@ class HourlyMarine()  :
 
     def wind_wave_direction(self):
         """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
+        Returns the hourly configuration object 
+        :returns: `hourly()`
 
         Mean direction of wind waves
         
@@ -77,8 +77,8 @@ class HourlyMarine()  :
 
     def wind_wave_period(self):
         """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
+        Returns the hourly configuration object 
+        :returns: `hourly()`
 
         Period between mean wind waves
         
@@ -89,8 +89,8 @@ class HourlyMarine()  :
 
     def wind_wave_peak_period(self):
         """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
+        Returns the hourly configuration object 
+        :returns: `hourly()`
 
         Peak period between wind waves.
         
@@ -101,8 +101,8 @@ class HourlyMarine()  :
 
     def swell_wave_height(self):
         """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
+        Returns the hourly configuration object 
+        :returns: `hourly()`
 
         Swell  wave height of significant mean
 
@@ -114,8 +114,8 @@ class HourlyMarine()  :
 
     def swell_wave_direction(self):
         """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
+        Returns the hourly configuration object 
+        :returns: `hourly()`
 
          	Mean direction of swell waves
         
@@ -126,8 +126,8 @@ class HourlyMarine()  :
 
     def swell_wave_period(self):
         """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
+        Returns the hourly configuration object 
+        :returns: `hourly()`
 
         Period between mean swell waves
 
@@ -139,8 +139,8 @@ class HourlyMarine()  :
 
     def swell_wave_peak_period(self):
         """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
+        Returns the hourly configuration object 
+        :returns: `hourly()`
 
         Peak period between swell waves
         
@@ -152,8 +152,8 @@ class HourlyMarine()  :
     
     def all(self):
         """
-        Returns the Hourly configuration object 
-        :returns: `Hourly()`
+        Returns the hourly configuration object 
+        :returns: `hourly()`
 
         All hourly parameters
         """

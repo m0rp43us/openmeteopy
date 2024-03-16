@@ -1,5 +1,3 @@
-
-
 celsius = 'celsius'
 fahrenheit = 'fahrenheit'
 kmh = 'kmh'
@@ -19,4 +17,3 @@ protobuf = "protobuf"
 auto = "auto"
 nan = "nan"
 utc = "UTC"
-
