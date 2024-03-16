@@ -160,3 +160,5 @@ cython_debug/
 # Python files for local test
 test.py
 tutorial.py
+
+.github

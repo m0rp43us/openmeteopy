@@ -19,13 +19,12 @@ Documentation
 .. toctree::
    :maxdepth: 2
 
-   openmeteo_py
+   openmeteopy
 
 Open-Meteo Client
 -----------------
 
-.. autoclass:: openmeteo_py.client.OpenMeteo
+.. autoclass:: openmeteopy.client.OpenMeteo
    :members:
-   :undoc-members:
    :show-inheritance:
    :special-members: __init__
