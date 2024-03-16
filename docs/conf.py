@@ -11,7 +11,7 @@ import sys
 
 sys.path.insert(0, os.path.abspath('..'))
 
-project = 'openmeteo_py'
+project = 'openmeteopy'
 copyright = '2024, Wail Chalabi'
 author = 'Wail Chalabi'
 release = '1.0.0'

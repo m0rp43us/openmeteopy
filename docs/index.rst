@@ -1,11 +1,11 @@
-.. openmeteo_py documentation master file, created by
+.. openmeteopy documentation master file, created by
    sphinx-quickstart on Fri Feb 16 17:04:10 2024.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to openmeteo_py's documentation!
+Welcome to openmeteopy's documentation!
 ========================================
-   openmeteo_py is a python library to easily access open meteo APIs and obtain python objects.
+   openmeteopy is a python library to easily access open meteo APIs and obtain python objects.
 
 Setup and Configuration
 -----------------------
@@ -14,7 +14,6 @@ Setup and Configuration
 
 Documentation
 -------------
-
 
 .. toctree::
    :maxdepth: 2
