@@ -1,9 +1,10 @@
 from openmeteopy.utils.constants import *
 from openmeteopy.utils.timezones import *
+from .option import Option
 
 
-
-class ElevationOptions():
+class ElevationOptions(Option):
+    API_PATH = "https://api.open-meteo.com/v1/elevation?"
     """
 
     The API options accepts a WGS4 coordinate and other  weather variables .
@@ -26,3 +27,13 @@ class ElevationOptions():
         
         self.latitude = latitude
         self.longitude = longitude
+
+    def get_api_path(self):
+        return self.API_PATH
+    
+    def get_payload(self):
+        payload = {
+            "latitude": self.latitude,
+            "longitude": self.longitude
+            }
+        return payload

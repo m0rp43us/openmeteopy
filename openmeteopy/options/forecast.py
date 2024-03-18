@@ -1,9 +1,10 @@
 from openmeteopy.utils.constants import *
 from openmeteopy.utils.timezones import *
+from .option import Option
 
 
-
-class ForecastOptions():
+class ForecastOptions(Option):
+    API_PATH = "https://api.open-meteo.com/v1/forecast?"
     """
 
     The API options accepts a WGS4 coordinate and other  weather variables .
@@ -48,3 +49,18 @@ class ForecastOptions():
         self.cell_selection = cell_sellection
         self.temperature_unit = temperature_unit
         self.models = models
+
+    def get_api_path(self):
+          return self.API_PATH
+
+    def get_payload(self):
+        payload = {
+            "latitude": self.latitude,
+            "longitude": self.longitude,
+            "timezone": self.timezone,
+            "windspeed_unit":self.windspeed_unit,
+            "precipitation_unit":self.precipitation_unit,
+            "timeformat":self.timeformat,
+            "past_days":self.past_days
+            }
+        return payload

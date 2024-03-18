@@ -1,16 +1,18 @@
 from openmeteopy.utils.constants import *
 from openmeteopy.utils.timezones import *
+from .option import Option
 
 
-
-class AirQualityOptions():
+class AirQualityOptions(Option):
     """
 
     The API options accepts a WGS4 coordinate and other  weather variables .
     Time always starts at 0:00 today and contains 168 hours.
 
     """
-    def __init__(self, latitude, longitude,domains = auto,timeformat = iso8601, timezone = UTC, past_days = 0,start_end = False,start_date=None,end_date=None,cell_selection=nearest):
+    API_PATH = "https://air-quality-api.open-meteo.com/v1/air-quality?"
+
+    def __init__(self, latitude, longitude, domains = auto, timeformat = iso8601, timezone = UTC, past_days = 0, start_end = False, start_date=None, end_date=None, cell_selection=nearest):
         """
         Args:
             latitude (float): Latitude (Geographical WGS84 coordiante of the location).
@@ -43,3 +45,33 @@ class AirQualityOptions():
                     self.start_end = start_end
         self.start_end = start_end
         self.cell_selection = cell_selection
+    
+    def get_api_path(self):
+        return self.API_PATH
+    
+    def get_payload(self):
+        payload = {}
+        if self.start_end :
+            payload = {
+                "latitude": self.latitude,
+                "longitude": self.longitude,
+                "domains" : self.domains,
+                "timezone": self.timezone,
+                "timeformat":self.timeformat,
+                "past_days":self.past_days,
+                "start_date" : self.start_date ,
+                "end_date": self.end_date,
+                "cell_selection" : self.cell_selection
+                }
+        else :
+            payload = {
+                "latitude": self.latitude,
+                "longitude": self.longitude,
+                "domains" : self.domains,
+                "timeformat":self.timeformat,
+                "timezone": self.timezone,
+                "past_days":self.past_days,
+                "cell_selection" : self.cell_selection
+                }
+        return payload
+        

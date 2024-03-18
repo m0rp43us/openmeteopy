@@ -1,9 +1,10 @@
 from openmeteopy.utils.constants import *
 from openmeteopy.utils.timezones import *
+from .option import Option
 
 
-
-class MetnoOptions():
+class MetnoOptions(Option):
+    API_PATH = "https://api.open-meteo.com/v1/metno?"
     """
 
     The API options accepts a WGS4 coordinate and other  weather variables .
@@ -46,4 +47,39 @@ class MetnoOptions():
                     self.end_date = end_date
                     self.start_end = start_end
         self.start_end = start_end
-              
+    
+    def get_api_path(self):
+        return self.API_PATH  
+        
+    def get_payload(self):
+        payload = {}
+
+        if self.start_end:
+            payload = {
+                "latitude": self.latitude,
+                "longitude": self.longitude,
+                "timezone": self.timezone,
+                "windspeed_unit":self.windspeed_unit,
+                "precipitation_unit":self.precipitation_unit,
+                "timeformat":self.timeformat,
+                "current_weather":self.current_weather,
+                "past_days":self.past_days,
+                "self.temperature_unit" : self.temperature_unit,
+                "start_date" : self.start_date ,
+                "end_date": self.end_date,
+                "cell_selection" : self.cell_selection
+            }
+        else :
+            payload = {
+                "latitude": self.latitude,
+                "longitude": self.longitude,
+                "timezone": self.timezone,
+                "windspeed_unit":self.windspeed_unit,
+                "precipitation_unit":self.precipitation_unit,
+                "timeformat":self.timeformat,
+                "current_weather":self.current_weather,
+                "past_days":self.past_days,
+                "self.temperature_unit" : self.temperature_unit,
+                "cell_selection" : self.cell_selection
+            }
+        return payload

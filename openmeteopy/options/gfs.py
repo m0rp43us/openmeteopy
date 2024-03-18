@@ -4,6 +4,7 @@ from openmeteopy.utils.timezones import *
 
 
 class GfsOptions():
+    API_PATH = "https://api.open-meteo.com/v1/gfs?"
     """
 
     The API options accepts a WGS4 coordinate and other  weather variables .
@@ -48,3 +49,42 @@ class GfsOptions():
         self.cell_selection = cell_sellection
         self.temperature_unit = temperature_unit
         self.forecast_days = forecast_days
+
+    def get_api_path(self):
+        return self.API_PATH
+    
+    def get_payload(self):
+        payload = {}
+        if self.start_end :
+            self.payload = {
+                "latitude": self.latitude,
+                "longitude": self.longitude,
+                "elevation" : self.elevation,
+                "timezone": self.timezone,
+                "timeformat":self.timeformat,
+                "past_days":self.past_days,
+                "temperature_unit" : self.temperature_unit,
+                "current_weather":self.current_weather,
+                "windspeed_unit" : self.windspeed_unit,
+                "precipitation_unit": self.precipitation_unit,
+                "forecast_days":self.forecast_days,
+                "start_date" : self.start_date ,
+                "end_date": self.end_date,
+                "cell_selection" : self.cell_selection
+                }
+        else :
+            self.payload = {
+                "latitude": self.latitude,
+                "longitude": self.longitude,
+                "elevation" : self.elevation,
+                "timeformat":self.timeformat,
+                "timezone": self.timezone,
+                "past_days":self.past_days,
+                "temperature_unit" : self.temperature_unit,
+                "current_weather":self.current_weather,
+                "windspeed_unit" : self.windspeed_unit,
+                "precipitation_unit": self.precipitation_unit,
+                "forecast_days":self.forecast_days,
+                "cell_selection" : self.cell_selection
+                }
+        return payload

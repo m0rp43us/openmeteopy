@@ -1,3 +1,4 @@
+from .option import Option
 from .air_quality import AirQualityOptions
 from .dwd import DwdOptions
 from .ecmwf import EcmwfOptions

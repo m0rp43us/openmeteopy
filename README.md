@@ -12,13 +12,13 @@ Open-Meteo collaborates with National Weather Services providing Open Data with 
 APIs are free without any API key for open-source developers and non-commercial use. You can embed them directly into your app.
 
 ##  What is it?
-openmeteopy is a client Python wrapper library for Open-Meteo  web API. It allows quick and easy consumption of OM data from Python applications via a simple object model and in a human-friendly fashion.
+openmeteopy is a client Python wrapper library for Open-Meteo  web API. It allows quick and easy consumption of Open-Meteo data from Python applications via a simple object model and in a human-friendly fashion.
 
 You can use all Openmeteo's available APIs,which are 14 (explained in the table below).
 
 openmeteopy runs on Python 3.6+.
 
-print(mgr.get_data())
+Full documentation is reported here: [DOCUMENTATION](https://openmeteo-Wpy.readthedocs.io/en/latest/index.html).
 
 #### Installation (pypi)
 ```bash
@@ -48,17 +48,21 @@ pip3 install .
 |Elevation | 90 meter resolution digital elevation model|[Elevation](/Readme/ELEVATION.md) | ```ElevationOptions()``` | -|-|-|
 |Global Flood | Simulated river discharge at 5 km resolution from 1984 up to 7 months forecast|[Global Flood](/Readme/GLOBAL_FLOOD.md) | ```FloodOptions()``` | - |```DailyForecast()```|-|
 
-# Output formats : (I know it kindda sucks with integers as inputs,will change it soon)
+# Output formats:
 
-You can get your output in json,dataframe or save it as csv or excel file as follows : get_data(output = 0,file = 0,filepath = None):
-|Ooutput|```get_data``` Method values|
+You can get your output in python dictionary, json string, pandas DataFrame, numpy array. Additionally, you can save APIs response to files in csv, excel or json format.
+
+|Output | Library function |
 |----|-----|
-|json (server response) | ```get_data()```|
-|json (keys are dates,value are correspongding values) | ```get_data(1)```|
-|json (keys are dates,value are correspongding values) saved into a json file | ```get_data(1,1)```|
-|csv (keys are dates,value are correspongding values) saved into a csv file | ```get_data(1,1,'path')```|
-|excel (keys are dates,value are correspongding values) saved into a excel file | ```get_data(1,2,'path')```|
-|dataframe in excel (keys are dates,value are correspongding values) saved into a excel file | ```get_data(1,3,'path')```|
+|dict (full server response) | ```client._fetch()```|
+|dict (cleaned version) | ```client.get_dict()```|
+|json string (cleaned version) |``client.get_json_str()``|
+|numpy array |``client.get_numpy()``|
+|pandas DataFrame (keys are dates,value are correspongding values) | ```client.get_pandas()```|
+|save to csv (keys are dates,value are correspongding values)| ```save_csv(<filepath>)```|
+|save to excel (keys are dates,value are correspongding values) | ```save_excel(<filepath>)```|
+|save to json | ```save_json(<filepath>)```|
+
 
 
 ## Upcoming Changes,updates,things to do :

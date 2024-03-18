@@ -1,9 +1,11 @@
 from openmeteopy.utils.constants import *
 from openmeteopy.utils.timezones import *
+from .option import Option
 
 
 
-class HistoricalOptions():
+class HistoricalOptions(Option):
+    API_PATH = "https://archive-api.open-meteo.com/v1/archive?"
     """
 
     The API options accepts a WGS4 coordinate and other  weather variables .
@@ -43,3 +45,23 @@ class HistoricalOptions():
         self.start_date = start_date
         self.cell_selection = cell_sellection
         self.temperature_unit = temperature_unit
+
+    def get_api_path(self):
+        return self.API_PATH
+    
+    def get_payload(self):
+        payload = {
+            "latitude": self.latitude,
+            "longitude": self.longitude,
+            "elevation" : self.elevation,
+            "timezone": self.timezone,
+            "timeformat":self.timeformat,
+            "temperature_unit" : self.temperature_unit,
+            "current_weather":self.current_weather,
+            "windspeed_unit" : self.windspeed_unit,
+            "precipitation_unit": self.precipitation_unit,
+            "start_date" : self.start_date ,
+            "end_date": self.end_date,
+            "cell_selection" : self.cell_selection
+            }
+        return payload

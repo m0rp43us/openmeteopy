@@ -1,9 +1,10 @@
 from openmeteopy.utils.constants import *
 from openmeteopy.utils.timezones import *
+from .option import Option
 
 
-
-class FloodOptions():
+class FloodOptions(Option):
+    API_PATH = "https://flood-api.open-meteo.com/v1/flood?"
     """
 
     The API options accepts a WGS4 coordinate and other  weather variables .
@@ -39,3 +40,32 @@ class FloodOptions():
                     self.end_date = end_date
                     self.start_end = start_end
         self.start_end = start_end
+
+    def get_api_path(self):
+        return self.API_PATH
+    
+    def get_payload(self):
+        payload = {}
+        if self.start_end :
+            payload = {
+                "latitude": self.latitude,
+                "longitude": self.longitude,
+                "timeformat":self.timeformat,
+                "past_days":self.past_days,
+                "forecast_days" : self.forecast_days,
+                "start_date" : self.start_date ,
+                "end_date": self.end_date,
+                "ensemble" : self.ensemble,
+                "cell_selection" : self.cell_selection
+            }
+        else :
+            payload = {
+                "latitude": self.latitude,
+                "longitude": self.longitude,
+                "timeformat":self.timeformat,
+                "past_days":self.past_days,
+                "forecast_days" : self.forecast_days,
+                "ensemble" : self.ensemble,
+                "cell_selection" : self.cell_selection
+            }
+        return payload
