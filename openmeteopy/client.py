@@ -20,11 +20,11 @@ class OpenMeteo():
     def __init__(self, options: Option, hourly = None, daily = None, fifteen_minutes = None, api_key = None):
         """
         Args:
-            options: This paramete is a Option object that specify the provider, geocoordinates and time period to fetch data.
-            hourly: This parameter is a Hourly object that specify the meteorological variables required with hourly frequency.
-            daily: This parameter is a Daily object that specify the meteorological variables required with daily frequency.
-            fifteen_minutes: This parameter is a FifteenMinutes object that specify the meteorological variables required with fifteen minutes frequency.
-            api_key: This parameter specify a private API key for commercial use.
+            :options: This paramete is a Option object that specify the provider, geocoordinates and time period to fetch data.
+            :hourly: This parameter is a Hourly object that specify the meteorological variables required with hourly frequency.
+            :daily: This parameter is a Daily object that specify the meteorological variables required with daily frequency.
+            :fifteen_minutes: This parameter is a FifteenMinutes object that specify the meteorological variables required with fifteen minutes frequency.
+            :api_key: This parameter specify a private API key for commercial use.
         """ 
         self.options = options
         self.hourly = hourly
@@ -71,7 +71,7 @@ class OpenMeteo():
         """Get the response from Open-Meteo API as a python dictionary.
 
         Returns:
-            dict: A "cleaned" version of the server response returned as a python dictionary. It only includes hourly, daily or minutely_15 attributes.
+            :dict: A "cleaned" version of the server response returned as a python dictionary. It only includes hourly, daily or minutely_15 attributes.
         """
         res = self._fetch().json()
         cleaned_data = {}
@@ -93,7 +93,7 @@ class OpenMeteo():
         """Get the response from Open-Meteo API as a string in JSON format.
 
         Returns:
-            str: a string containing the cleaned response from the Open-Meteo APIs in JSON format.
+            :str: a string containing the cleaned response from the Open-Meteo APIs in JSON format.
         """
         return json.dumps(self.get_dict())
     
@@ -101,7 +101,7 @@ class OpenMeteo():
         """Get the response from Open-Meteo API as a pandas DataFrame format.
 
         Returns:
-            DataFrame: pandas dataframe with time as index and each of the columns is one of the attribute required.
+            :DataFrame: pandas dataframe with time as index and each of the columns is one of the attribute required.
         """
         res = self._fetch()
         if "hourly" in res and "daily" in res:
@@ -130,7 +130,7 @@ class OpenMeteo():
         """Get the response from Open-Meteo API as a numpy array.
 
         Returns:
-            np.ndarray: a numpy array with shape (N, M), where N is the number of hourly/daily/fifteen_minutes samples and M is the number of meteorological variables required 
+            :np.ndarray: a numpy array with shape (N, M), where N is the number of hourly/daily/fifteen_minutes samples and M is the number of meteorological variables required 
         """
         df = self.get_pandas()
         arr = df.to_numpy()
@@ -140,10 +140,10 @@ class OpenMeteo():
         """This function directly save the content of response from open-meteo APIs into a csv file
 
         Args:
-            filepath (str): filepath where the .csv file will be saved.
+            :filepath (str): filepath where the .csv file will be saved.
 
         Returns:
-            DataFrame: pandas dataframe with time as index and each of the columns is one of the attribute requested.
+            :DataFrame: pandas dataframe with time as index and each of the columns is one of the attribute requested.
         """
 
         df = self.get_pandas()
@@ -155,10 +155,10 @@ class OpenMeteo():
         """This function directly save the content of response from open-meteo APIs into a excel file
 
         Args:
-            filepath (str): filepath where the .excel file will be saved.
+            :filepath (str): filepath where the .excel file will be saved.
 
         Returns:
-            DataFrame: pandas dataframe with time as index and each of the columns is one of the attribute requested.
+            :DataFrame: pandas dataframe with time as index and each of the columns is one of the attribute requested.
         """
 
         df = self.get_pandas()
@@ -167,10 +167,10 @@ class OpenMeteo():
         return df
 
     def save_json(self, filepath:str):
-        """_summary_
+        """This function directly save the content of response from open-meteo APIs into a JSON file
 
         Args:
-            filepath (str): filepath where the .json file will be saved.
+            :filepath (str): filepath where the .json file will be saved.
         """
 
         data = self.get_dict()
