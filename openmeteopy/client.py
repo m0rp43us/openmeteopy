@@ -103,7 +103,7 @@ class OpenMeteo():
         Returns:
             :DataFrame: pandas dataframe with time as index and each of the columns is one of the attribute required.
         """
-        res = self._fetch()
+        res = self._fetch().json()
         if "hourly" in res and "daily" in res:
             df_hourly = pd.DataFrame(res['hourly'])
             df_daily = pd.DataFrame(res['daily'])
@@ -125,7 +125,6 @@ class OpenMeteo():
         else :
             return None
 
-    # TODO: get_numpy()
     def get_numpy(self) -> np.ndarray:
         """Get the response from Open-Meteo API as a numpy array.
 
@@ -133,7 +132,7 @@ class OpenMeteo():
             :np.ndarray: a numpy array with shape (N, M), where N is the number of hourly/daily/fifteen_minutes samples and M is the number of meteorological variables required 
         """
         df = self.get_pandas()
-        arr = df.to_numpy()
+        arr = df.values
         return arr
     
     def save_csv(self, filepath: str):
@@ -147,9 +146,10 @@ class OpenMeteo():
         """
 
         df = self.get_pandas()
-        df.to_csv(filepath+'.csv')
-
-        return df
+        if filepath.endswith('.csv'):
+            df.to_csv(filepath)
+        else:
+            df.to_csv(filepath + '.csv')
         
     def save_excel(self, filepath: str):
         """This function directly save the content of response from open-meteo APIs into a excel file
@@ -162,9 +162,11 @@ class OpenMeteo():
         """
 
         df = self.get_pandas()
-        df.to_excel(filepath+'.excel')
+        if filepath.endswith('.xlsx'):
+            df.to_excel(filepath)
+        else:
+            df.to_excel(filepath + '.xlsx')
 
-        return df
 
     def save_json(self, filepath:str):
         """This function directly save the content of response from open-meteo APIs into a JSON file
@@ -174,5 +176,9 @@ class OpenMeteo():
         """
 
         data = self.get_dict()
+
+        if not filepath.endswith('.json'):
+            filepath = filepath + '.json'
+
         with open(filepath, 'w') as json_file:
             json.dump(data, json_file)

@@ -1,3 +1,5 @@
+[![Documentation Status](https://readthedocs.org/projects/openmeteo-py/badge/?version=latest)](https://openmeteo-py.readthedocs.io/en/latest/?badge=latest)
+
 <h1 align="center"> OpenmeteoPy </h1>
 
 <p align="center">
@@ -28,7 +30,7 @@ working on it
 ```bash
 git clone https://github.com/m0rp43us/openmeteopy
 cd openmeteopy-main/
-pip3 install .
+pip install .
 ```
 ## APIs
 |API	            |Description|Documentation        |Options Class	|Hourly Class|Daily Class|15 Minutes Class|
@@ -68,14 +70,8 @@ You can get your output in python dictionary, json string, pandas DataFrame, num
 ## Upcoming Changes,updates,things to do :
 
 - Add the other 2 variables to ECWMF pressure level parameters
-- Change ```get_data()``` method to a more developper friendly method
-- Add Documentation for ```dataframit()``` and ```jsonify()```
 - remove pressure level variables from JMA (Remove inheritence from FranceMeteo)
 - Add Support of Date Types (input and output)
 - Add versionning and package to pypi
-- Clean and add corresponding comments
-- Maybe Refactor OWmanager Class and add inheritence for a more Dev friendly Methods
-- Readthedocs
-
 
 
