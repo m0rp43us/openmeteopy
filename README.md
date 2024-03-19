@@ -18,7 +18,7 @@ You can use all Openmeteo's available APIs,which are 14 (explained in the table 
 
 openmeteopy runs on Python 3.6+.
 
-Full documentation is reported here: [DOCUMENTATION](https://openmeteo-Wpy.readthedocs.io/en/latest/index.html).
+Full documentation is reported here: [DOCUMENTATION](https://openmeteo-py.readthedocs.io/en/latest/index.html).
 
 #### Installation (pypi)
 ```bash

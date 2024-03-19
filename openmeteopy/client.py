@@ -1,5 +1,5 @@
 """
-A module for downloading meteorological data from the open-meteo API (https://open-meteo.com/en/).
+A module for downloading meteorological data from the Open-Meteo APIs (https://open-meteo.com/en/).
 Name: Wail Chalabi
 e-mail: wailchalabi1996@gmail.com
 Version: 1.0.0
@@ -14,18 +14,17 @@ from .options.option import Option
 from .options import *
 
 class OpenMeteo():   
-    """OpenMeteo class is the client to manage http to Open-Meteo public APIs requests.add
+    """OpenMeteo class is the client to manage http to Open-Meteo public APIs requests.
 
     """
     def __init__(self, options: Option, hourly = None, daily = None, fifteen_minutes = None, api_key = None):
         """
         Args:
-            options:
-            provides:
-            hourly:
-            dailt:
-            fifteen_minutes:
-            api_key:
+            options: This paramete is a Option object that specify the provider, geocoordinates and time period to fetch data.
+            hourly: This parameter is a Hourly object that specify the meteorological variables required with hourly frequency.
+            daily: This parameter is a Daily object that specify the meteorological variables required with daily frequency.
+            fifteen_minutes: This parameter is a FifteenMinutes object that specify the meteorological variables required with fifteen minutes frequency.
+            api_key: This parameter specify a private API key for commercial use.
         """ 
         self.options = options
         self.hourly = hourly
@@ -47,8 +46,6 @@ class OpenMeteo():
         self.payload = "&".join("%s=%s" % (k,v) for k,v in self.payload.items())
 
 
-    # TODO: Complete this function as an explicit version of the get_data function
-    #       Delete int values to select options for resonses data type
     def _fetch(self):
         """Calls Open-Meteo API with the payload saved in this class and return original json
 
@@ -66,18 +63,17 @@ class OpenMeteo():
             elif "reason" in res:
                 raise ApiCallError(res)
             else:
-                return res.json()
+                return res
         except requests.ConnectionError as e:
             raise(e)
         
-    # TODO: get_dict()
     def get_dict(self) -> dict:
-        """Retrieve a json object from the open-meteo APIs.
+        """Get the response from Open-Meteo API as a python dictionary.
 
         Returns:
-            str: A "cleaned" version of the server response in JSON format as a string. It only includes hourly, daily or minutely_15 attributes.
+            dict: A "cleaned" version of the server response returned as a python dictionary. It only includes hourly, daily or minutely_15 attributes.
         """
-        res = self._fetch()
+        res = self._fetch().json()
         cleaned_data = {}
         if "hourly" in res and "daily" in res:
             cleaned_data["hourly"] = res["hourly"]
@@ -93,33 +89,21 @@ class OpenMeteo():
         
         return cleaned_data
     
-    # TODO: get_json_str()
     def get_json_str(self) -> str:
-        """Return the dict object as a json string format.
+        """Get the response from Open-Meteo API as a string in JSON format.
 
         Returns:
             str: a string containing the cleaned response from the Open-Meteo APIs in JSON format.
         """
         return json.dumps(self.get_dict())
     
-    # TODO: get_numpy()
-    def get_numpy(self):
-        """_summary_
-
-        Returns:
-            _type_: _description_
-        """
-        return
-
-    # TODO: get_pandas()
     def get_pandas(self) -> pd.DataFrame:
-        """This function builds a pandas dataframe from the open-meteo APIs responses.
+        """Get the response from Open-Meteo API as a pandas DataFrame format.
 
         Returns:
-            DataFrame: pandas dataframe with time as index and each of the columns is one of the attribute requested.
+            DataFrame: pandas dataframe with time as index and each of the columns is one of the attribute required.
         """
         res = self._fetch()
-
         if "hourly" in res and "daily" in res:
             df_hourly = pd.DataFrame(res['hourly'])
             df_daily = pd.DataFrame(res['daily'])
@@ -141,53 +125,54 @@ class OpenMeteo():
         else :
             return None
 
+    # TODO: get_numpy()
+    def get_numpy(self) -> np.ndarray:
+        """Get the response from Open-Meteo API as a numpy array.
 
-    # TODO: save_csv()
-    #       specify that the string for filepath must have .csv at the end
+        Returns:
+            np.ndarray: a numpy array with shape (N, M), where N is the number of hourly/daily/fifteen_minutes samples and M is the number of meteorological variables required 
+        """
+        df = self.get_pandas()
+        arr = df.to_numpy()
+        return arr
+    
     def save_csv(self, filepath: str):
         """This function directly save the content of response from open-meteo APIs into a csv file
+
+        Args:
+            filepath (str): filepath where the .csv file will be saved.
 
         Returns:
             DataFrame: pandas dataframe with time as index and each of the columns is one of the attribute requested.
         """
-        df = self.get_pandas()
 
-        # if self.hourly != None and self.daily == None and self.fifteen_minutes == None:
-        #     df.to_csv(filepath)
-        # elif self.hourly == None and self.daily == None and self.fifteen_minutes == None:
-        #     df.to_csv(filepath)
-        # elif self.hourly != None and self.daily == None and self.fifteen_minutes == None:
-        #     df.to_csv(filepath)
+        df = self.get_pandas()
         df.to_csv(filepath+'.csv')
 
         return df
         
-    # TODO: save_excel()
     def save_excel(self, filepath: str):
-        """_summary_
+        """This function directly save the content of response from open-meteo APIs into a excel file
 
         Args:
-            filepath (str): _description_
+            filepath (str): filepath where the .excel file will be saved.
 
         Returns:
-            _type_: _description_
+            DataFrame: pandas dataframe with time as index and each of the columns is one of the attribute requested.
         """
-        df = self.get_pandas()
 
-        # if self.hourly != None and self.daily == None and self.fifteen_minutes == None:
-        #     df.to_csv(filepath)
-        # elif self.hourly == None and self.daily == None and self.fifteen_minutes == None:
-        #     df.to_csv(filepath)
-        # elif self.hourly != None and self.daily == None and self.fifteen_minutes == None:
-        #     df.to_csv(filepath)
-        df.to_csv(filepath+'.csv')
+        df = self.get_pandas()
+        df.to_excel(filepath+'.excel')
 
         return df
 
-    # TODO: save_json()
-    #       specify that the string for the filepath should have .json at the end 
     def save_json(self, filepath:str):
-        # Write the Python object to a JSON file
-        data = self.get_dict
+        """_summary_
+
+        Args:
+            filepath (str): filepath where the .json file will be saved.
+        """
+
+        data = self.get_dict()
         with open(filepath, 'w') as json_file:
             json.dump(data, json_file)
