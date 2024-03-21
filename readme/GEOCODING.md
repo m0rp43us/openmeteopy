@@ -4,19 +4,17 @@
 ## Code Example
 
 ```python 
+from openmeteopy import OpenMeteo
+from openmeteopy.options import GeocodingOptions
 
-from openmeteo_py import OWmanager
-from openmeteo_py.Options.GeocodingOptions import GeocodingOptions as Options
+options = GeocodingOptions("casablanca")
 
-options = Options("casablanca")
-
-mgr = OWmanager(options,OWmanager.geocoding)
+mgr = OpenMeteo(options)
 
 # Download data
 meteo = mgr.get_data()
 
 print(meteo)
-
 ```
 
 ## Parameters
@@ -49,4 +47,3 @@ print(meteo)
 |postcodes|   String array 		       |         List of postcodes for this location|
 |admin1, admin2, admin3, admin4|String|Name of hierarchical administrative areas this location resides in. Admin1 is the first administrative level. Admin2 the second administrative level,Localized following the ``` language ``` parameter, if possible|
 |admin1_id, admin2_id, admin3_id, admin4_id|               Integer           |      	Unique IDs for the administrative areas|
-

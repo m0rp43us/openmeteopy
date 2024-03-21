@@ -3,9 +3,8 @@
 ## Code Example 
 
 ```python
-
-from openmeteo_py import OWmanager
-from openmeteo_py.Options.ElevationOptions import ElevationOptions 
+from openmeteopy import OpenMeteo
+from openmeteopy.options import ElevationOptions 
 
 # Latitude, Longitude for Rabat,Morocco
 latitude = 32.864823
@@ -13,15 +12,12 @@ longitude = -11.325094
 
 options = ElevationOptions(longitude,latitude)
 
-mgr = OWmanager(options,OWmanager.elevation
-    )
-
+mgr = OpenMeteo(options)
 
 # Download data
-meteo = mgr.get_data()
+meteo = mgr.get_pandas()
 
 print(meteo)
-
 ```
 
 ## Parameters

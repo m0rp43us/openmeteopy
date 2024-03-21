@@ -3,28 +3,23 @@
 ## Code Example :
 
 ```python 
-
-#from openmeteo_py.Daily.Marine import Marine as Daily
-from openmeteo_py import OWmanager
-from openmeteo_py.Hourly.HourlyMarine import HourlyMarine
-from openmeteo_py.Options.MarineOptions import MarineOptions
+from openmeteopy import OWmanager
+from openmeteopy.hourly import HourlyMarine
+from openmeteopy.options import MarineOptions
 
 # Latitude, Longitude 
-longitude = 	59.906296
+longitude = 59.906296
 latitude = 10.74408
 
 hourly = HourlyMarine()
 options = MarineOptions(longitude,latitude)
 
-mgr = OWmanager(options,OWmanager.marine,hourly.swell_wave_height())
-
+mgr = OpenMeteo(options, hourly.swell_wave_height())
 
 # Download data
-meteo = mgr.get_data()
+meteo = mgr.get_pandas()
 
 print(meteo)
-
-
 ```
 
 

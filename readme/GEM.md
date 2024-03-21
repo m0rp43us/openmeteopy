@@ -3,12 +3,10 @@
 ## Code Example :
 
 ```python
-
-#from openmeteo_py.Daily.Marine import Marine as Daily
-from openmeteo_py import OWmanager
-from openmeteo_py.Hourly.HourlyGem import HourlyGem
-from openmeteo_py.Options.GemOptions import GemOptions
-from openmeteo_py.Utils.constants import *
+from openmeteopy import OpenMeteo
+from openmeteopy.hourly import HourlyGem
+from openmeteopy.options import GemOptions
+from openmeteopy.utils.constants import *
 
 # Latitude, Longitude 
 longitude = 33.89
@@ -17,21 +15,18 @@ latitude =  -6.31
 hourly = HourlyGem()
 options = GemOptions(latitude,longitude)
 
-#notice that we had to give the value "None" for the hourly parameter,otherwise you'll be filling the hourly parameter instead of the daily one.
-mgr = OWmanager(options,OWmanager.gem,hourly.cloudcover_150hpa())
+mgr = OpenMeteo(options, hourly.cloudcover_150hpa())
 
-
-# Download data,here we want it as a key value json where the keys are dates and values the corresponding values of that date (technically timestamp)
-meteo = mgr.get_data(1)
+# Download data
+meteo = mgr.get_pandas()
 
 print(meteo)
-
 ```
 
-## Parameters
+## Parameters:
 
 
-### Options :
+### Options:
 
 |Parameter	            |Format	        |Required	|Default|
 |-----|--------|--------|--------|
@@ -49,7 +44,7 @@ print(meteo)
 |end_date	            |String (yyyy-mm-dd)	|No|          -|
 |cell_selection	            |String	|No|          land|
 
-### Hourly Parameter Definition :
+### Hourly Parameter Definition:
 
 |Variable                |Valid time|	            Unit|
 |-----|----|-----|
@@ -87,7 +82,7 @@ print(meteo)
 |soil_moisture_0_to_10cm  |      Instant     |            °C (°F)|
 |all|-|-|
 
-### Daily Parameter Definition
+### Daily Parameter Definition:
 
 |Variable	        |            Unit|
 |----|------|
@@ -107,7 +102,7 @@ print(meteo)
 |all|-|
 
 
-### Pressure Level Variables
+### Pressure Level Variables:
 
 Pressure level variables do not have fixed altitudes. Altitude varies with atmospheric pressure. 1000 hPa is roughly between 60 and 160 meters above sea level. Estimated altitudes are given below. Altitudes are in meters above sea level (not above ground). For precise altitudes, geopotential_height can be used.
 |Variable     |   Unit|
@@ -121,7 +116,7 @@ Pressure level variables do not have fixed altitudes. Altitude varies with atmos
 |winddirection_1015hPa	...  winddirection_10hPa   |    °|
 |geopotential_height_1015hPa ... geopotential_height_10hPa	 |   meter|
 
-### Pressure level methods
+### Pressure level methods:
 
 to call a pressure level method all you have to do is put the variable for example ; ``` temperature ``` then an underscore ``` _ ``` and the equivalent pressure level for example : ``` 1015hpa  ```
 

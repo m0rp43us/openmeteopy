@@ -5,10 +5,9 @@
 #### Only Hourly Options 
 
 ```python
-
-from openmeteo_py import OWmanager
-from openmeteo_py.Hourly.HourlyJma import HourlyJma
-from openmeteo_py.Options.JmaOptions import JmaOptions
+from openmeteopy import OpenMeteo
+from openmeteopy.hourly import HourlyJma
+from openmeteopy.options import JmaOptions
 
 # Latitude, Longitude for Japan,Tokyo
 longitude = 139.817413
@@ -17,97 +16,84 @@ latitude =  35.672855
 hourly = HourlyJma()
 options = JmaOptions(latitude,longitude)
 
-mgr = OWmanager(options,OWmanager.meteofrance,hourly.all(),None)
-
+mgr = OpenMeteo(options, hourly.all())
 
 # Download data
-meteo = mgr.get_data()
+meteo = mgr.get_pandas()
 
 print(meteo)
-
 ```
 
 #### Only Hourly Options using a pressure level variable
 
 ```python
-
-from openmeteo_py import OWmanager
-from openmeteo_py.Hourly.HourlyJma import HourlyJma
-from openmeteo_py.Options.JmaOptions import JmaOptions
+from openmeteopy import OpenMeteo
+from openmeteopy.hourly import HourlyJma
+from openmeteopy.options import JmaOptions
 
 # Latitude, Longitude for Japan,Tokyo
 longitude = 139.817413
 latitude =  35.672855
 
 hourly = HourlyJma()
-options = JmaOptions(latitude,longitude)
+options = JmaOptions(latitude, longitude)
 
-#notice that we had to give the value "None" for the hourly parameter,otherwise you'll be filling the hourly parameter instead of the daily one.
-mgr = OWmanager(options,OWmanager.jma,hourly.geopotential_height_600hpa(),None)
+mgr = OpenMeteo(options, hourly.geopotential_height_600hpa())
 
 
 # Download data
-meteo = mgr.get_data()
+meteo = mgr.get_pandas()
 
 print(meteo)
-
 ```
 
 #### Only Daily Variables 
 
 ```python
-
 #from openmeteo_py.Daily.Marine import Marine as Daily
-from openmeteo_py import OWmanager
-from openmeteo_py.Daily.DailyJma import DailyJma
-from openmeteo_py.Options.JmaOptions import JmaOptions
+from openmeteopy import OpenMeteo
+from openmeteopy.daily import DailyJma
+from openmeteopy.options import JmaOptions
 
 # Latitude, Longitude for Japan,Tokyo
 longitude = 139.817413
 latitude =  35.672855
 
-
 daily = DailyJma()
-options = JmaOptions(latitude,longitude)
+options = JmaOptions(latitude, longitude)
 
-#notice that we had to give the value "None" for the hourly parameter,otherwise you'll be filling the hourly parameter instead of the daily one.
-mgr = OWmanager(options,OWmanager.jma,None,daily.all())
+mgr = OpenMeteo(options, daily=daily.all())
 
 
 # Download data
-meteo = mgr.get_data()
+meteo = mgr.get_pandas()
 
 print(meteo)
-
 ```
 
 #### Both Daily and Hourly Variables
 
 ```python
-
-from openmeteo_py import OWmanager
-from openmeteo_py.Daily.DailyJma import DailyJma
-from openmeteo_py.Hourly.HourlyJma import HourlyJma
-from openmeteo_py.Options.JmaOptions import JmaOptions
+from openmeteopy import OpenMeteo
+from openmeteopy.daily import DailyJma
+from openmeteopy.hourly import HourlyJma
+from openmeteopy.options import JmaOptions
 
 # Latitude, Longitude for Japan,Tokyo
 longitude = 139.817413
 latitude =  35.672855
 
-
 daily = DailyJma()
 hourly = HourlyJma()
 options = JmaOptions(latitude,longitude)
 
-#notice that we had to give the value "None" for the hourly parameter,otherwise you'll be filling the hourly parameter instead of the daily one.
-mgr = OWmanager(options,OWmanager.jma,hourly.all(),daily.all())
+mgr = OpenMeteo(options, hourly.all(), daily.all())
 
 
-# Download data and order it as a key value json where the keys are timestamps and value are the equivalent variable value
-meteo = mgr.get_data(1)
+# Download data
+meteo = mgr.get_pandas()
 
 print(meteo)
-
 ```
 
 ## Options :

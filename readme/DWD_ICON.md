@@ -3,12 +3,11 @@
 # Code Example :
 
 ```python
-
-from openmeteo_py import OWmanager
-from openmeteo_py.Hourly.HourlyDwd import HourlyDwd
-from openmeteo_py.Daily.DailyDwd import DailyDwd
-from openmeteo_py.Options.DwdOptions import DwdOptions
-from openmeteo_py.FifteenMinutes.FifteenMinutesDwd import FiftennMinutesDwd
+from openmeteopy import OpenMeteo
+from openmeteopy.options import DwdOptions
+from openmeteopy.hourly import HourlyDwd
+from openmeteopy.daily import DailyDwd
+from openmeteopy.fifteen_minutes import FiftennMinutesDwd
 
 
 # Latitude, Longitude 
@@ -20,14 +19,13 @@ daily = DailyDwd()
 minutes_15 = FiftennMinutesDwd()
 options = DwdOptions(latitude,longitude)
 
-mgr = OWmanager(options,OWmanager.dwd_icon,hourly.all(),daily.all(),minutes_15.all())
+mgr = OpenMeteo(options, hourly.all(), daily.all(), minutes_15.all())
 
 
 # Download data
-meteo = mgr.get_data()
+meteo = mgr.get_pandas()
 
 print(meteo)
-
 ```
 
 ## Parameters

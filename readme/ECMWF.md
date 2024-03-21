@@ -5,29 +5,27 @@
 #### Hourly Variables
 
 ```python
-
-from openmeteo_py import OWmanager
-from openmeteo_py.Hourly.HourlyEcmwf import HourlyEcmwf
-from openmeteo_py.Options.EcmwfOptions import EcmwfOptions
-from openmeteo_py.Utils.constants import *
+from openmeteopy import OpenMeteo
+from openmeteopy.options import EcmwfOptions
+from openmeteopy.hourly import HourlyEcmwf
+from openmeteopy.utils.constants import *
 
 # Latitude, Longitude 
 longitude = 33.89
 latitude =  -6.31
 
 hourly = HourlyEcmwf()
-#here we wanted to see the data of past days too,notice how the timezone parameter is non existent for these api options
-options = EcmwfOptions(latitude,longitude,nan,False,celsius,kmh,mm,iso8601,2)
+# Here we want to see the data of past days too,notice how the timezone parameter is non existent for these api options
+options =  EcmwfOptions(latitude, 
+                        longitude, 
+                        past_days=2)
 
-#notice that we had to give the value "None" for the hourly parameter,otherwise you'll be filling the hourly parameter instead of the daily one.
-mgr = OWmanager(options,OWmanager.ecmwf,hourly.all())
+mgr = OpenMeteo(options, hourly.all())
 
-
-# Download data,here we want it as a key value json where the keys are dates and values the corresponding values of that date (technically timestamp)
-meteo = mgr.get_data(1)
+# Download data in json format
+meteo = mgr.get_json_str()
 
 print(meteo)
-
 ```
 
 

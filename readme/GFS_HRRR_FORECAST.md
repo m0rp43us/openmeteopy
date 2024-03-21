@@ -3,13 +3,11 @@
 ## Code Example :
 
 ```python
-
-#from openmeteo_py.Daily.Marine import Marine as Daily
-from openmeteo_py import OWmanager
-from openmeteo_py.Hourly.HourlyGfs import HourlyGfs
-from openmeteo_py.Daily.DailyGfs import DailyGfs
-from openmeteo_py.Options.GfsOptions import GfsOptions
-from openmeteo_py.Utils.constants import *
+from openmeteopy import OpenMeteo
+from openmeteopy.hourly import HourlyGfs
+from openmeteopy.daily import DailyGfs
+from openmeteopy.options import GfsOptions
+from openmeteopy.utils.constants import *
 
 # Latitude, Longitude 
 longitude = 33.89
@@ -19,15 +17,12 @@ hourly = HourlyGfs()
 daily = DailyGfs()
 options = GfsOptions(latitude,longitude)
 
-#notice that we had to give the value "None" for the hourly parameter,otherwise you'll be filling the hourly parameter instead of the daily one.
-mgr = OWmanager(options,OWmanager.gfs,hourly.all(),daily.all())
+mgr = OpenMeteo(options, hourly.all(), daily.all())
 
-
-# Download data,here we want it as a key value json where the keys are dates and values the corresponding values of that date (technically timestamp)
-meteo = mgr.get_data(1)
+# Download data
+meteo = mgr.get_pandas()
 
 print(meteo)
-
 ```
 
 ## Options :

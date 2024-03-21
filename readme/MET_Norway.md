@@ -4,27 +4,23 @@
 ## Code Example :
 
 ```python 
-
-from openmeteo_py import OWmanager
-from openmeteo_py.Hourly.HourlyMetno import HourlyMetno
-from openmeteo_py.Options.MetnoOptions import MetnoOptions
+from openmeteopy import OpenMeteo
+from openmeteopy.hourly import HourlyMetno
+from openmeteopy.options import MetnoOptions
 
 # Latitude, Longitude for coordinates in Norway,any coordinates outside scandinavia will raise an error
-longitude = 	59.906296
+longitude = 59.906296
 latitude = 10.74408
 
 hourly = HourlyMetno()
 options = MetnoOptions(longitude,latitude)
 
-mgr = OWmanager(options,OWmanager.metno,hourly.temperature_2m()
-    )
-
+mgr = OpenMeteo(options, hourly.temperature_2m())
 
 # Download data
-meteo = mgr.get_data()
+meteo = mgr.get_pandas()
 
 print(meteo)
-
 ```
 
 

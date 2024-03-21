@@ -5,10 +5,9 @@
 #### Only Hourly Options 
 
 ```python
-
-from openmeteo_py import OWmanager
-from openmeteo_py.Hourly.HourlyMeteoFrance import HourlyMeteoFrance
-from openmeteo_py.Options.MeteoFranceOptions import MeteoFranceOptions
+from openmeteopy import OpenMeteo
+from openmeteopy.hourly import HourlyMeteoFrance
+from openmeteopy.options import MeteoFranceOptions
 
 # Latitude, Longitude for Toulouse,France
 longitude = 1.444209	
@@ -17,24 +16,20 @@ latitude = 43.604652
 hourly = HourlyMeteoFrance()
 options = MeteoFranceOptions(latitude,longitude)
 
-mgr = OWmanager(options,OWmanager.meteofrance,hourly.all(),None)
-
+mgr = OpenMeteo(options, hourly.all())
 
 # Download data
-meteo = mgr.get_data()
+meteo = mgr.get_pandas()
 
 print(meteo)
-
 ```
 
 #### Only Hourly Options using a pressure level variable
 
 ```python
-
-#from openmeteo_py.Daily.Marine import Marine as Daily
-from openmeteo_py import OWmanager
-from openmeteo_py.Hourly.HourlyMeteoFrance import HourlyMeteoFrance
-from openmeteo_py.Options.MeteoFranceOptions import MeteoFranceOptions
+from openmeteopy import OpenMeteo
+from openmeteopy.hourly import HourlyMeteoFrance
+from openmeteopy.options import MeteoFranceOptions
 
 # Latitude, Longitude 
 longitude = 1.444209	
@@ -43,53 +38,43 @@ latitude = 43.604652
 hourly = HourlyMeteoFrance()
 options = MeteoFranceOptions(latitude,longitude)
 
-#notice that we had to give the value "None" for the hourly parameter,otherwise you'll be filling the hourly parameter instead of the daily one.
-mgr = OWmanager(options,OWmanager.meteofrance,hourly.geopotential_height_600hpa(),None)
-
+mgr = OpenMeteo(options, hourly.geopotential_height_600hpa())
 
 # Download data
-meteo = mgr.get_data()
+meteo = mgr.get_pandas()
 
 print(meteo)
-
 ```
 
 #### Only Daily Variables 
 
 ```python
-
-#from openmeteo_py.Daily.Marine import Marine as Daily
-from openmeteo_py import OWmanager
-from openmeteo_py.Daily.DailyMeteoFrance import DailyMeteoFrance
-from openmeteo_py.Options.MeteoFranceOptions import MeteoFranceOptions
+from openmeteopy import OpenMeteo
+from openmeteopy.daily import DailyMeteoFrance
+from openmeteopy.options import MeteoFranceOptions
 
 # Latitude, Longitude 
 longitude = 1.444209	
 latitude = 43.604652
 
 daily = DailyMeteoFrance()
-options = MeteoFranceOptions(latitude,longitude)
+options = MeteoFranceOptions(latitude, longitude)
 
-#notice that we had to give the value "None" for the hourly parameter,otherwise you'll be filling the hourly parameter instead of the daily one.
-mgr = OWmanager(options,OWmanager.meteofrance,None,daily.all())
-
+mgr = OpenMeteo(options, daily=daily.all())
 
 # Download data
-meteo = mgr.get_data()
+meteo = mgr.get_pandas()
 
 print(meteo)
-
 ```
 
 #### Both Daily and Hourly Variables
 
 ```python
-
-#from openmeteo_py.Daily.Marine import Marine as Daily
-from openmeteo_py import OWmanager
-from openmeteo_py.Daily.DailyMeteoFrance import DailyMeteoFrance
-from openmeteo_py.Hourly.HourlyMeteoFrance import HourlyMeteoFrance
-from openmeteo_py.Options.MeteoFranceOptions import MeteoFranceOptions
+from openmeteopy import OpenMeteo
+from openmeteopy.daily import DailyMeteoFrance
+from openmeteopy.hourly import HourlyMeteoFrance
+from openmeteopy.options import MeteoFranceOptions
 
 # Latitude, Longitude 
 longitude = 1.444209	
@@ -97,17 +82,13 @@ latitude = 43.604652
 
 daily = DailyMeteoFrance()
 hourly = HourlyMeteoFrance()
-options = MeteoFranceOptions(latitude,longitude)
+options = MeteoFranceOptions(latitude, longitude)
 
-#notice that we had to give the value "None" for the hourly parameter,otherwise you'll be filling the hourly parameter instead of the daily one.
-mgr = OWmanager(options,OWmanager.meteofrance,hourly.all(),daily.all())
+mgr = OpenMeteo(options, hourly.all(), daily.all())
 
-
-# Download data and order it as a key value json where the keys are timestamps and value are the equivalent variable value
-meteo = mgr.get_data(1)
+meteo = mgr.get_pandas()
 
 print(meteo)
-
 ```
 
 ## Options :

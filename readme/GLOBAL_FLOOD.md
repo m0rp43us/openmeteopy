@@ -4,28 +4,23 @@
 ### Code Example :
 
 ```python 
-
-#from openmeteo_py.Daily.Marine import Marine as Daily
-from openmeteo_py import OWmanager
-from openmeteo_py.Daily.DailyFlood import DailyFlood
-from openmeteo_py.Options.FloodOptions import FloodOptions
+from openmeteopy import OpenMeteo
+from openmeteopy.daily import DailyFlood
+from openmeteopy.options import FloodOptions
 
 # Latitude, Longitude 
-longitude = 	59.906296
+longitude = 59.906296
 latitude = 10.74408
 
 daily = DailyFlood()
 options = FloodOptions(longitude,latitude)
 
-#notice that we had to give the value "None" for the hourly parameter,otherwise you'll be filling the hourly parameter instead of the daily one,which will raise an error.
-mgr = OWmanager(options,OWmanager.flood,None,daily.all())
-
+mgr = OpenMeteo(options, daily=daily.all())
 
 # Download data
-meteo = mgr.get_data()
+meteo = mgr.get_pandas()
 
 print(meteo)
-
 ```
 
 

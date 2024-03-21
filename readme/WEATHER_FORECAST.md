@@ -4,13 +4,10 @@
 ## Code Example :
 
 ```python
-
-#from openmeteo_py.Daily.Marine import Marine as Daily
-from openmeteo_py import OWmanager
-from openmeteo_py.Hourly.HourlyForecast import HourlyForecast
-from openmeteo_py.Daily.DailyForecast import DailyForecast
-from openmeteo_py.Options.ForecastOptions import ForecastOptions
-from openmeteo_py.Utils.constants import *
+from openmeteopy import OpenMeteo
+from openmeteopy.hourly import HourlyForecast
+from openmeteopy.daily import DailyForecast
+from openmeteopy.options import ForecastOptions
 
 # Latitude, Longitude 
 longitude = 33.89
@@ -19,18 +16,14 @@ latitude =  -6.31
 hourly = HourlyForecast()
 daily = DailyForecast()
 
-#here we provide a bit more information as we want to pull also the data of past days
-options = ForecastOptions(latitude,longitude,False,celsius,kmh,mm,iso8601,utc,2)
+options = ForecastOptions(latitude, longitude)
 
-#notice that we had to give the value "None" for the hourly parameter,otherwise you'll be filling the hourly parameter instead of the daily one.
-mgr = OWmanager(options,OWmanager.forecast,hourly.shortwave_radiation(),daily.shortwave_radiation_sum())
-
+mgr = OpenMeteo(options, hourly.shortwave_radiation(), daily.shortwave_radiation_sum())
 
 # Download data
-meteo = mgr.get_data(1)
+meteo = mgr.get_pandas()
 
 print(meteo)
-
 ```
 
 
