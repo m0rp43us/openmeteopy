@@ -11,7 +11,7 @@ import sys
 
 sys.path.insert(0, os.path.abspath('..'))
 
-project = 'openmeteo_py'
+project = 'openmeteopy'
 copyright = '2024, Wail Chalabi'
 author = 'Wail Chalabi'
 release = '1.0.0'
@@ -25,7 +25,7 @@ templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 
-# -- Options for HTML output -------------------------------------------------
+# -- options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 html_theme = 'sphinx_rtd_theme'
