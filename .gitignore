@@ -141,6 +141,7 @@ dmypy.json
 cython_debug/
 
 ### VisualStudioCode ###
+.vscode
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
@@ -156,4 +157,8 @@ cython_debug/
 .history
 .ionide
 
-# End
+# Python files for local test
+test.py
+tutorial.py
+
+.github
