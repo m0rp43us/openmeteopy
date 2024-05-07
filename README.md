@@ -26,11 +26,9 @@ Full documentation is reported here: [DOCUMENTATION](https://openmeteo-py.readth
 ```bash
 working on it
 ```
-#### Installation (manually)
+#### Installation (source)
 ```bash
-git clone https://github.com/m0rp43us/openmeteopy
-cd openmeteopy-main/
-pip install .
+pip install git+https://github.com/m0rp43us/openmeteopy
 ```
 ## APIs
 |API	            |Description|Documentation        |Options Class	|Hourly Class|Daily Class|15 Minutes Class|
