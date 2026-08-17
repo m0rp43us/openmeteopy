@@ -1,6 +1,17 @@
+<h1 align="center"> ⚠️ ARCHIVED - NO LONGER MAINTAINED  </h1>
+
+<h1 align="center"> Openmeteopy  </h1>
+
+**This project has been archived and is no longer maintained.**
+
+For the official and up-to-date Open-Meteo SDKs, please refer to the official sources:
+
+- **Official Website**: [https://open-meteo.com](https://open-meteo.com)
+- **Official GitHub**: [https://github.com/open-meteo](https://github.com/open-meteo)
+
+The official SDKs are actively maintained and support the latest Open-Meteo API features.
 [![Documentation Status](https://readthedocs.org/projects/openmeteo-py/badge/?version=latest)](https://openmeteo-py.readthedocs.io/en/latest/?badge=latest)
 
-<h1 align="center"> OpenmeteoPy </h1>
 
 <p align="center">
   <img  src="https://cdn.substack.com/image/fetch/w_1360,c_limit,f_auto,q_auto:best,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Ffd0d7953-5a9d-441c-b59f-4cde244503a1_934x461.png">
